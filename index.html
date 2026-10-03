@@ -1,0 +1,1671 @@
+<!DOCTYPE html><html lang="th"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><title>OM ฉบับเข้าใจง่าย</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500;600&family=IBM+Plex+Sans+Thai:wght@400;500;600;700&family=Noto+Serif+Thai:wght@600;700&display=swap">
+<style>
+:root{
+  --bg:#EDF1EC; --surface:#FFFFFF; --surface-2:#E3E9E1; --ink:#15232A; --ink-soft:#4F6168; --ink-faint:#83948F;
+  --line:#D4DCD1; --accent:#1E6C75; --accent-strong:#113D43; --accent-tint:#DAECEC;
+  --fx:#9E4B1C; --fx-tint:#F7E8DB; --good:#2C7A4C; --good-tint:#DFF0E4; --warn:#9A6B08; --warn-tint:#FBEFD2;
+  --radius:14px; --shadow:0 1px 2px rgba(20,30,30,.05),0 6px 18px rgba(20,30,30,.05);
+  color-scheme:light;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#11181A; --surface:#1A2325; --surface-2:#202B2D; --ink:#E6EDEA; --ink-soft:#A8B9B5; --ink-faint:#6D817E;
+  --line:#2B393A; --accent:#56C1CA; --accent-strong:#92DDE3; --accent-tint:#1C3437;
+  --fx:#E7A673; --fx-tint:#382819; --good:#7CCB98; --good-tint:#1B3325; --warn:#E6C46B; --warn-tint:#352C14;
+  --shadow:0 1px 2px rgba(0,0,0,.3),0 8px 24px rgba(0,0,0,.35); color-scheme:dark;}}
+:root[data-theme="dark"]{
+  --bg:#11181A; --surface:#1A2325; --surface-2:#202B2D; --ink:#E6EDEA; --ink-soft:#A8B9B5; --ink-faint:#6D817E;
+  --line:#2B393A; --accent:#56C1CA; --accent-strong:#92DDE3; --accent-tint:#1C3437;
+  --fx:#E7A673; --fx-tint:#382819; --good:#7CCB98; --good-tint:#1B3325; --warn:#E6C46B; --warn-tint:#352C14;
+  --shadow:0 1px 2px rgba(0,0,0,.3),0 8px 24px rgba(0,0,0,.35); color-scheme:dark;}
+
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:'IBM Plex Sans Thai','Noto Sans Thai','Sarabun',system-ui,sans-serif;line-height:1.7;font-size:15px;padding-inline:16px}
+h1,h2,h3,h4{font-family:'Noto Serif Thai','IBM Plex Sans Thai',serif;font-weight:700;text-wrap:balance;margin:0;line-height:1.35}
+.mono,code,.eq,.v{font-family:'IBM Plex Mono',ui-monospace,monospace}
+.num{font-variant-numeric:tabular-nums}
+b,strong{font-weight:600}
+a{color:var(--accent)}
+.wrap{max-width:940px;margin:0 auto;padding-block:26px 90px}
+p{margin:10px 0}
+ul,ol{margin:8px 0;padding-left:1.3em}
+li{margin-bottom:5px}
+sub,sup{font-size:.72em}
+
+/* header */
+.top{border-bottom:1px solid var(--line);padding-bottom:22px}
+.eyebrow{font-size:.76rem;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);font-weight:600}
+h1.title{font-size:clamp(1.8rem,4.2vw,2.6rem);margin-top:6px}
+.lede{color:var(--ink-soft);max-width:64ch;margin-top:10px}
+.howto{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px;margin-top:18px}
+.howto div{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:12px 14px;font-size:.86rem;color:var(--ink-soft)}
+.howto div b{display:block;color:var(--ink);font-size:.9rem;margin-bottom:2px}
+.toolbar{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.btn{font:inherit;font-size:.84rem;font-weight:600;cursor:pointer;border:1px solid var(--line);background:var(--surface);color:var(--ink);padding:8px 14px;border-radius:9px}
+.btn:hover{border-color:var(--accent)}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:#fff}
+.btn:focus-visible,.tab:focus-visible,summary:focus-visible,input:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+
+/* map */
+.bigpic{margin-top:26px}
+.bigpic h2{font-size:1.25rem}
+.lane{display:grid;grid-template-columns:110px 1fr;gap:10px;align-items:center;margin-top:10px}
+.lane .ln{font-size:.76rem;text-transform:uppercase;letter-spacing:.06em;color:var(--ink-faint);font-weight:700}
+.chain{display:flex;flex-wrap:wrap;align-items:center;gap:6px}
+.chip{font:inherit;cursor:pointer;background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:7px 11px;font-size:.84rem;font-weight:600;color:var(--ink);text-align:left}
+.chip:hover{border-color:var(--accent)}
+.chip small{display:block;font-weight:400;color:var(--ink-soft);font-size:.74rem}
+.arrow{color:var(--ink-faint)}
+.band{border-radius:10px;padding:8px 12px;font-size:.84rem;font-weight:600;cursor:pointer;border:none;font-family:inherit;text-align:left;width:100%}
+.band.q{background:var(--fx-tint);color:var(--fx)}
+.band.t{background:var(--accent-tint);color:var(--accent-strong)}
+@media(max-width:560px){.lane{grid-template-columns:1fr}.lane .ln{margin-top:6px}}
+
+/* tabs */
+.tabbar{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;display:flex;gap:6px;overflow-x:auto;padding:12px 0 10px;margin-top:26px;background:var(--bg);border-bottom:1px solid var(--line);scrollbar-width:thin}
+.tab{flex:none;font:inherit;font-size:.82rem;font-weight:600;cursor:pointer;border:1px solid var(--line);background:var(--surface);color:var(--ink-soft);padding:7px 13px;border-radius:999px;white-space:nowrap}
+.tab[aria-selected="true"]{background:var(--accent);border-color:var(--accent);color:#fff}
+.tab.sheet{border-color:var(--fx);color:var(--fx)}
+.tab.sheet[aria-selected="true"]{background:var(--fx);color:#fff}
+
+/* module */
+section.mod{padding-top:26px}
+.mh{display:flex;gap:12px;align-items:baseline;flex-wrap:wrap}
+.mh .no{font-family:'IBM Plex Mono';font-weight:600;color:var(--accent);font-size:.9rem;border:1px solid var(--accent);border-radius:7px;padding:1px 8px}
+.mh h2{font-size:1.55rem}
+.sub{color:var(--ink-soft);font-size:.9rem;margin-top:4px}
+.tldr{background:var(--surface);border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:0 12px 12px 0;padding:12px 16px;margin:16px 0}
+.tldr .k{font-size:.72rem;letter-spacing:.07em;text-transform:uppercase;color:var(--accent);font-weight:700}
+.link{background:var(--accent-tint);border-radius:12px;padding:10px 14px;font-size:.88rem;color:var(--accent-strong);margin:12px 0}
+h3.h{font-size:1.1rem;margin:30px 0 8px;padding-top:6px;border-top:1px dashed var(--line)}
+h4{font-size:.98rem;margin:16px 0 6px}
+.muted{color:var(--ink-soft)}
+.small{font-size:.85rem}
+
+/* tables */
+.tw{overflow-x:auto;margin:10px 0}
+table{border-collapse:collapse;width:100%;font-size:.86rem;background:var(--surface)}
+th,td{border:1px solid var(--line);padding:6px 9px;vertical-align:top;text-align:left}
+th{background:var(--surface-2);font-weight:600}
+table.c td,table.c th{text-align:center}
+table.c td:first-child,table.c th:first-child{text-align:left;white-space:nowrap}
+td.hl{background:var(--fx-tint);font-weight:600}
+td.ok{background:var(--good-tint);font-weight:600}
+
+/* grid cards */
+.g2{display:grid;grid-template-columns:1fr;gap:8px;margin:10px 0}
+@media(min-width:640px){.g2{grid-template-columns:1fr 1fr}}
+.g3{display:grid;grid-template-columns:1fr;gap:8px;margin:10px 0}
+@media(min-width:720px){.g3{grid-template-columns:1fr 1fr 1fr}}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:11px 13px;font-size:.88rem}
+.card b.t{display:block;color:var(--accent-strong);margin-bottom:2px;font-size:.92rem}
+
+/* formula card */
+.fx{background:var(--fx-tint);border:1px solid color-mix(in srgb,var(--fx) 30%,transparent);border-radius:var(--radius);padding:14px 16px;margin:14px 0}
+.fx .nm{font-size:.74rem;text-transform:uppercase;letter-spacing:.06em;color:var(--fx);font-weight:700}
+.fx .eq{font-size:1.08rem;font-weight:600;color:var(--ink);margin:6px 0 4px;overflow-x:auto;white-space:nowrap;padding-bottom:2px}
+.fx .eq + .eq{margin-top:0}
+.fx table{margin-top:8px;font-size:.84rem}
+.fx td.v{white-space:nowrap;color:var(--fx);font-weight:600}
+.fx th{background:color-mix(in srgb,var(--fx-tint) 60%,var(--surface))}
+.keys{margin-top:10px;font-size:.84rem;background:var(--surface);border-radius:9px;padding:8px 11px;border:1px dashed color-mix(in srgb,var(--fx) 40%,transparent)}
+.keys b{color:var(--fx)}
+
+/* worked example */
+.ex{border-left:3px solid var(--accent);padding:2px 0 2px 14px;margin:14px 0}
+.ex .tag{font-size:.72rem;text-transform:uppercase;letter-spacing:.06em;color:var(--accent);font-weight:700}
+.ex .line{font-family:'IBM Plex Mono';font-size:.88rem;margin:3px 0;overflow-x:auto;white-space:nowrap}
+.ans{display:inline-block;background:var(--good-tint);color:var(--good);font-weight:700;border-radius:6px;padding:0 6px}
+.steps{counter-reset:s;list-style:none;padding:0}
+.steps>li{counter-increment:s;position:relative;padding-left:30px;margin-bottom:8px}
+.steps>li::before{content:counter(s);position:absolute;left:0;top:2px;width:21px;height:21px;border-radius:50%;background:var(--accent-tint);color:var(--accent-strong);font:600 .72rem 'IBM Plex Mono';display:flex;align-items:center;justify-content:center}
+
+/* warnings / tips */
+.tip{background:var(--warn-tint);border-radius:10px;padding:9px 13px;font-size:.86rem;margin:10px 0}
+.tip b{color:var(--warn)}
+.case{background:var(--surface-2);border-radius:var(--radius);padding:14px 16px;margin:16px 0;font-size:.9rem}
+.case .tag{font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-faint);font-weight:700}
+
+/* quiz */
+details.q{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:9px 13px;margin:8px 0;font-size:.9rem}
+details.q summary{cursor:pointer;font-weight:600;list-style:none}
+details.q summary::-webkit-details-marker{display:none}
+details.q summary::before{content:"คำถาม · ";color:var(--accent);font-weight:700}
+details.q[open] summary{margin-bottom:6px}
+details.q .a{color:var(--ink-soft)}
+
+/* calculators */
+.calc{border:1.5px dashed var(--accent);border-radius:var(--radius);padding:14px 16px;margin:16px 0;background:color-mix(in srgb,var(--accent-tint) 45%,var(--surface))}
+.calc .ct{font-weight:700;font-size:.9rem;color:var(--accent-strong)}
+.calc .ct span{font-weight:400;color:var(--ink-soft);font-size:.8rem}
+.fields{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin-top:10px}
+.fields label{display:block;font-size:.76rem;color:var(--ink-soft);margin-bottom:3px}
+.fields input{width:100%;padding:7px 9px;border:1px solid var(--line);border-radius:8px;background:var(--surface);color:var(--ink);font:500 .9rem 'IBM Plex Mono'}
+.out{margin-top:10px;background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:10px 12px;font-size:.86rem}
+.out .r{display:flex;justify-content:space-between;gap:10px;padding:2px 0;border-bottom:1px dotted var(--line)}
+.out .r:last-child{border-bottom:none}
+.out .r b{font-family:'IBM Plex Mono';color:var(--accent-strong)}
+.out .how{color:var(--ink-soft);font-size:.82rem;margin-top:6px;font-family:'IBM Plex Mono';white-space:normal}
+
+footer{margin-top:50px;padding-top:18px;border-top:1px solid var(--line);font-size:.8rem;color:var(--ink-faint)}
+
+@media (prefers-reduced-motion:no-preference){.chip,.btn{transition:border-color .15s}}
+@media print{
+  body{background:#fff;color:#000;font-size:11.5pt;padding:0}
+  .tabbar,.calc,.toolbar,.noprint{display:none!important}
+  section.mod[hidden]{display:block!important}
+  section.mod{page-break-before:always}
+  details.q{border:1px solid #ccc}
+  .fx,.tldr,.link,.case,.tip{break-inside:avoid}
+}
+</style></head><body>
+
+<div class="wrap">
+<header class="top">
+  <div class="eyebrow">Next-Generation Operations Management · 14227102 · KMITL</div>
+  <h1 class="title">OM ฉบับเข้าใจง่าย</h1>
+  <p class="lede">สรุปทั้งวิชาสำหรับคนที่ไม่มีพื้นฐาน 10 บท (8 บทหลัก + SPC + Lean) ทุกสูตรเขียนด้วยตัวแปรภาษาอังกฤษแบบในสไลด์ แล้วแปลไทยไว้ใต้สูตรทุกตัว บอกว่าตัวเลขแต่ละตัวเอามาจากไหน และมีตัวอย่างที่ไล่กดเครื่องคิดเลขทีละขั้น ตัวเลขในตัวอย่างดึงมาจากสไลด์จริงของอาจารย์ และคำนวณตรวจซ้ำแล้วทุกข้อ</p>
+  <div class="howto">
+    <div><b>① อ่าน "สรุป 30 วินาที" ก่อน</b>ทุกบทเริ่มด้วยกรอบสรุป อ่านกรอบนี้ครบ 10 บทก่อน จะเห็นภาพรวมทั้งวิชาก่อนลงรายละเอียด</div>
+    <div><b>② กล่องส้ม = สูตร</b>ใต้สูตรมีตารางบอกว่าตัวแปรแต่ละตัวแปลว่าอะไร และเอาตัวเลขมาจากไหนในโจทย์</div>
+    <div><b>③ เส้นเขียว = ตัวอย่าง</b>ไล่ตัวเลขทีละบรรทัด ลองกดเครื่องคิดเลขตามจนได้คำตอบเดียวกัน</div>
+    <div><b>④ ห้องสอบไม่มีเว็บ</b>กล่องคำนวณในหน้านี้มีไว้ใช้เช็คคำตอบตอนฝึกเท่านั้น ถ้าจะสั่งพิมพ์หน้านี้ กล่องคำนวณจะถูกซ่อนไว้ แล้วระบบจะเปิดทุกบทพร้อมเฉลยให้เอง</div>
+  </div>
+  <div class="toolbar noprint">
+    <button class="btn primary" type="button" id="goSheet">เปิดชีทสรุปสูตรทั้งหมด</button>
+    <button class="btn" type="button" id="printAll">พิมพ์ทั้งเล่ม / บันทึก PDF</button>
+  </div>
+
+  <div class="bigpic">
+    <h2>ภาพรวม: 10 บทนี้เชื่อมกันยังไง</h2>
+    <p class="muted small">ทั้งวิชาเล่าเรื่องเดียวกัน ตั้งแต่ "จะขายได้เท่าไหร่" ไปจนถึง "ของถึงมือลูกค้า" แถวบนคือลำดับงาน ส่วนแถบสีคือเรื่องที่ต้องใช้ทุกขั้นตอน กดที่ชื่อบทเพื่อเปิดอ่านได้เลย</p>
+    <button class="band t" type="button" data-go="m1">บทที่ 1 · Industry 4.0 และพื้นฐาน OM คือบริบทของทั้งวิชา: OM คืออะไร วัดความคุ้มค่าด้วย Productivity และเทคโนโลยีทำให้ทุกขั้นข้างล่างเร็วขึ้น</button>
+    <div class="lane"><div class="ln">วางแผน</div><div class="chain">
+      <button class="chip" type="button" data-go="m3">M3 พยากรณ์<small>จะขายได้เท่าไหร่</small></button><span class="arrow">→</span>
+      <button class="chip" type="button" data-go="m4">M4 วางแผนผลิต<small>ผลิตอะไร เมื่อไหร่</small></button><span class="arrow">→</span>
+      <button class="chip" type="button" data-go="m5">M5 สินค้าคงคลัง<small>สั่งเท่าไหร่ สั่งเมื่อไหร่</small></button>
+    </div></div>
+    <div class="lane"><div class="ln">ผลิต</div><div class="chain">
+      <button class="chip" type="button" data-go="m6">M6 Work Study<small>ทำงานวิธีไหน ใช้เวลาเท่าไหร่</small></button><span class="arrow">→</span>
+      <button class="chip" type="button" data-go="m7">M7 Line Balancing<small>แบ่งงานเข้าสถานี</small></button><span class="arrow">+</span>
+      <button class="chip" type="button" data-go="m10">M10 Lean<small>ตัดความสูญเปล่าทั้งสาย</small></button>
+    </div></div>
+    <div class="lane"><div class="ln">ส่งมอบ</div><div class="chain">
+      <button class="chip" type="button" data-go="m8">M8 Logistics &amp; Supply Chain<small>ของไหลไปถึงลูกค้า</small></button>
+    </div></div>
+    <button class="band q" type="button" data-go="m2" style="margin-top:10px">บทที่ 2 Quality และบทที่ 9 SPC ใช้คุมคุณภาพทุกขั้นตอน บทที่ 2 บอกว่าคุณภาพคืออะไร บทที่ 9 วัดคุณภาพด้วยตัวเลขและกราฟควบคุม</button>
+
+    <h4 style="margin-top:20px">ตัวเลขที่ส่งต่อข้ามบท (ส่วนที่ข้อสอบชอบถามแบบเชื่อมโยง)</h4>
+    <div class="tw"><table>
+      <tr><th>ได้ตัวเลขนี้จาก…</th><th>เอาไปใช้เป็น…</th></tr>
+      <tr><td>M3 ค่าพยากรณ์ F<sub>t</sub></td><td>M4 แถว Forecast ในตาราง MPS · M5 ค่า D (ความต้องการต่อปี) ในสูตร EOQ</td></tr>
+      <tr><td>M4 แถว MPS Issue ของสินค้าแม่</td><td>M4 MRP แถว Gross Requirement ของชิ้นส่วนลูก (คูณจำนวนที่ใช้ต่อ 1 ชิ้นใน BOM)</td></tr>
+      <tr><td>M5 ค่า d (ใช้ต่อวัน) และ L (Lead Time)</td><td>M5 จุดสั่งซื้อ R = d×L + SS · M4 เรื่อง Lead Time ก็เป็นแนวคิดเดียวกัน</td></tr>
+      <tr><td>M6 Standard Time ของแต่ละงานย่อย</td><td>M7 ค่า t ของแต่ละงาน แล้วรวมเป็น Σt ในสูตร N และ Efficiency</td></tr>
+      <tr><td>M7 Desired Cycle Time (C<sub>d</sub>)</td><td>M10 Takt Time ใช้สูตรเดียวกันคือ เวลาที่มี ÷ จำนวนที่ต้องผลิต</td></tr>
+      <tr><td>M1 Productivity = Output ÷ Input</td><td>M10 Productivity, OEE, Yield ใช้หลักคิดเดียวกัน คือวัดว่าได้ผลลัพธ์เท่าไหร่เทียบกับที่ใส่เข้าไป</td></tr>
+      <tr><td>M2 Control Chart (1 ใน 7 QC Tools)</td><td>M9 ลงรายละเอียดวิธีคำนวณเส้น UCL/LCL และดัชนี Cp/Cpk</td></tr>
+      <tr><td>M5 Lot-for-Lot และ JIT · M4 แนวคิด Push/Pull (Uniqlo)</td><td>M10 Pull System และ Kanban</td></tr>
+    </table></div>
+  </div>
+</header>
+
+<nav class="tabbar" role="tablist" aria-label="เลือกบท">
+  <button class="tab" role="tab" type="button" data-tab="m1">M1 I4.0</button>
+  <button class="tab" role="tab" type="button" data-tab="m2">M2 Quality</button>
+  <button class="tab" role="tab" type="button" data-tab="m3">M3 Forecast</button>
+  <button class="tab" role="tab" type="button" data-tab="m4">M4 MPS/MRP</button>
+  <button class="tab" role="tab" type="button" data-tab="m5">M5 Inventory</button>
+  <button class="tab" role="tab" type="button" data-tab="m6">M6 Work Study</button>
+  <button class="tab" role="tab" type="button" data-tab="m7">M7 Line Bal.</button>
+  <button class="tab" role="tab" type="button" data-tab="m8">M8 Logistics</button>
+  <button class="tab" role="tab" type="button" data-tab="m9">M9 SPC</button>
+  <button class="tab" role="tab" type="button" data-tab="m10">M10 Lean</button>
+  <button class="tab sheet" role="tab" type="button" data-tab="sheet">ชีทสูตร</button>
+</nav>
+
+<!-- ===================== M1 ===================== -->
+<section class="mod" id="m1" hidden>
+  <div class="mh"><span class="no">M1</span><h2>Industry 4.0 กับพื้นฐาน Operations Management</h2></div>
+  <div class="sub">ธุรกิจเปลี่ยนเร็ว · OM คืออะไร · สินค้าต่างจากบริการยังไง · วัดความคุ้มค่าด้วย Productivity · กลยุทธ์การผลิต 3 แบบ</div>
+
+  <div class="tldr"><div class="k">สรุป 30 วินาที</div>
+    ธุรกิจเปลี่ยนตลอดเวลา และคู่แข่งอาจมาจากนอกวงการ วิกฤตของธุรกิจหนึ่งมักเป็นโอกาสของอีกธุรกิจหนึ่ง · <b>OM</b> คือการเปลี่ยน input ให้เป็น output ที่มีมูลค่า · วัดว่าคุ้มแค่ไหนด้วย <b>Productivity = Output ÷ Input</b> · <b>Industry 4.0</b> คือการเชื่อมเครื่องจักรกับข้อมูล (IoT, AI, Cloud, Robot) ให้ระบบวิเคราะห์และตัดสินใจเองได้ · กลยุทธ์การผลิตมี 3 แบบคือ <b>MTS / MTO / ATO</b></div>
+
+  <h3 class="h">1. ธุรกิจเป็นของที่เปลี่ยนตลอด (Business Dynamics)</h3>
+  <ul>
+    <li><b>ธุรกิจไม่หยุดนิ่ง:</b> สิ่งที่ขายดีวันนี้อาจหายไปในไม่กี่ปี คำถามที่ผู้บริหารต้องถามอยู่เสมอคือ "What's next?"</li>
+    <li><b>คู่แข่งไม่ได้มีแค่คนที่ขายของเหมือนเรา:</b> คู่แข่งทางอ้อม (indirect competitor) คือคนที่แก้ปัญหาเดียวกันให้ลูกค้าด้วยวิธีอื่น เช่น ร้านอาหารแข่งกับอาหารแช่แข็งในร้านสะดวกซื้อ หรือแท็กซี่แข่งกับแอปเรียกรถ ส่วน Outsourcing Model ทำให้บริษัทเล็กจ้างคนอื่นผลิตแทนได้ แล้วเข้ามาแข่งได้ทันที</li>
+    <li><b>วิกฤตกับโอกาสมาพร้อมกัน:</b> เหตุการณ์เดียวกันอาจเป็นวิกฤตของธุรกิจหนึ่ง แต่เป็นโอกาสของอีกธุรกิจหนึ่ง (สไลด์ยกตัวอย่าง The New Normal ใน Automotive Supply Chain) ธุรกิจที่ปรับ Operations ได้เร็วกว่าจะคว้าโอกาสได้ก่อน</li>
+  </ul>
+
+  <h3 class="h">2. Industry 4.0 คืออะไร</h3>
+  <p>คือการ <b>รวมโลกกายภาพ</b> (เครื่องจักร โรงงาน สินค้า) <b>เข้ากับโลกดิจิทัล</b> (ข้อมูล อินเทอร์เน็ต AI) เพื่อให้ได้ Smart System ที่วิเคราะห์ คาดการณ์ และตัดสินใจเองได้แบบ real-time โดยให้คนเข้ามายุ่งน้อยที่สุด เป้าหมายไม่ได้มีแค่ลดต้นทุน แต่เพื่อให้ผลิตของที่ตรงกับลูกค้าแต่ละคนได้เร็วด้วย</p>
+  <div class="g2">
+    <div class="card"><b class="t">IoT (Internet of Things)</b>ติดเซนเซอร์ที่เครื่องจักรเพื่อเก็บข้อมูล และให้เครื่องจักรคุยกันเองได้ (Machine-to-Machine)</div>
+    <div class="card"><b class="t">Big Data &amp; AI</b>เอาข้อมูลจำนวนมากมาพยากรณ์ดีมานด์ หรือทำนายว่าเครื่องจะเสียเมื่อไหร่ (Predictive Maintenance)</div>
+    <div class="card"><b class="t">Cloud Computing</b>ผู้บริหารดูสถานะโรงงานหรือซัพพลายเชนได้จากทุกที่แบบ real-time</div>
+    <div class="card"><b class="t">Advanced Robotics</b>หุ่นยนต์รุ่นใหม่ที่ยืดหยุ่นขึ้น และทำงานข้างคนได้อย่างปลอดภัย (Cobots)</div>
+  </div>
+  <div class="case"><div class="tag">เคสในสไลด์ · Amazon Supply Chain 4.0</div>
+    <p><b>ปัญหา:</b> พนักงานเสียเวลาเดินหยิบของในคลัง (เป็นงานที่ไม่เพิ่มมูลค่า) พื้นที่จำกัด และดีมานด์ผันผวน</p>
+    <p><b>วิธีแก้:</b> (1) ใช้ระบบ Goods-to-Person ให้หุ่นยนต์ AMR/Kiva ยกชั้นวางมาหาคน แทนที่คนจะเดินไปหาของ (2) ใช้ AI พยากรณ์ แล้วส่งของไปรอที่คลังใกล้ลูกค้าก่อนลูกค้าสั่ง (Anticipatory Shipping) (3) ใช้ ASRS กับ Random Stow ให้ AI เลือกช่องเก็บ ทำให้ใช้พื้นที่คุ้มขึ้น</p>
+    <p><b>ผล:</b> Click-to-Ship จาก 3–4 ชั่วโมงเหลือไม่ถึง 15 นาที · ใช้พื้นที่คุ้มขึ้นราว 50% · ต้นทุนต่อออเดอร์ลดลงราว 20%</p>
+    <p><b>บทเรียน:</b> คำถามที่ควรถามคือ "ทำยังไงให้คนไม่ต้องเดิน" ไม่ใช่ "ทำยังไงให้คนเดินเร็วขึ้น" · เปลี่ยนจากตั้งรับเป็นเชิงรุก · ขยายกิจการได้โดยต้นทุนไม่โตตามเป็นเส้นตรง</p>
+  </div>
+
+  <h3 class="h">3. Operations Management คืออะไร</h3>
+  <p><b>OM = กิจกรรมที่สร้างมูลค่าในรูปสินค้าหรือบริการ โดยเปลี่ยน input ให้กลายเป็น output</b> การเปลี่ยนมี 5 แบบ ได้แก่ Physical (แปรรูป เช่น โรงงาน), Locational (ย้ายที่ เช่น ขนส่ง), Exchange (ซื้อขาย เช่น ค้าปลีก), Psychological (เปลี่ยนความรู้สึก เช่น บันเทิง) และ Informational (ให้ข้อมูล เช่น ที่ปรึกษา)</p>
+  <p>ในองค์กรจะมีฝ่ายหลัก 3 ฝ่ายทำงานคู่กันเสมอ คือ Operations, Finance/Accounting และ Marketing และมักเกิดความขัดแย้งแบบนี้:</p>
+  <div class="tw"><table>
+    <tr><th>ฝ่ายผลิตอยากได้ (เพื่อลดต้นทุน)</th><th>ฝ่ายการตลาดอยากได้ (เพื่อบริการลูกค้า)</th></tr>
+    <tr><td>ผลิตล็อตใหญ่ (Economy of Scale)</td><td>ผลิตล็อตเล็ก</td></tr>
+    <tr><td>สินค้าน้อยแบบ เป็นมาตรฐานเดียวกัน</td><td>สินค้าหลากหลาย</td></tr>
+    <tr><td>สต๊อกน้อย</td><td>สต๊อกเยอะ และมีกำลังผลิตสำรองไว้ตอบสนองได้เร็ว</td></tr>
+  </table></div>
+  <p class="small muted">งานของ OM คือหาจุดสมดุลระหว่างสองฝั่งนี้ และบทที่ 3–10 ทั้งหมดคือเครื่องมือที่ใช้หาจุดสมดุลนั้น</p>
+
+  <h3 class="h">4. สินค้า (Goods) ต่างจากบริการ (Services) ยังไง</h3>
+  <div class="tw"><table>
+    <tr><th>ประเด็น</th><th>สินค้า</th><th>บริการ</th></tr>
+    <tr><td>จับต้องได้ไหม</td><td>จับต้องได้ และเก็บเป็นสต๊อกได้</td><td>จับต้องไม่ได้ และเก็บเป็นสต๊อกไม่ได้</td></tr>
+    <tr><td>ตลาด</td><td>กว้าง ขายข้ามประเทศได้</td><td>มักเป็นตลาดท้องถิ่น</td></tr>
+    <tr><td>วัดคุณภาพจาก</td><td>สเปกของสินค้า (วัดได้ชัด)</td><td>ความพึงพอใจของลูกค้า (วัดยาก)</td></tr>
+    <tr><td>ผู้ผลิตกับลูกค้า</td><td>แยกกันชัดเจน</td><td>ผู้ให้บริการเจอลูกค้าโดยตรง</td></tr>
+    <tr><td>Feedback จากลูกค้า</td><td>ได้ช้า</td><td>ได้เร็ว</td></tr>
+    <tr><td>ทรัพยากรหลัก</td><td>เครื่องจักรและเทคโนโลยี</td><td>แรงงานคน</td></tr>
+  </table></div>
+
+  <h3 class="h">5. Productivity (ผลิตภาพ): วัดว่าใช้ทรัพยากรคุ้มแค่ไหน</h3>
+  <div class="fx"><div class="nm">สูตรหลัก</div>
+    <div class="eq">Productivity = Output ÷ Input</div>
+    <div class="tw"><table>
+      <tr><th>ตัวแปร</th><th>แปลว่า</th><th>เอาตัวเลขมาจากไหน</th></tr>
+      <tr><td class="v">Output</td><td>ผลผลิตที่ได้ (ชิ้น หรือมูลค่าเงิน)</td><td>ยอดผลิตหรือยอดขายในช่วงเวลานั้น</td></tr>
+      <tr><td class="v">Input</td><td>ทรัพยากรที่ใช้ (ชั่วโมงแรงงาน วัตถุดิบ เงิน)</td><td>Partial ใช้ทรัพยากรตัวเดียว · Multifactor แปลงทุกตัวเป็นเงินก่อนแล้วค่อยรวมกัน</td></tr>
+    </table></div>
+  </div>
+  <div class="ex"><div class="tag">ตัวอย่างจากสไลด์ 1 · Partial (Labor) Productivity</div>
+    <p>คนงาน 2 คน ทาสีโต๊ะได้ 24 ตัวใน 8 ชั่วโมง</p>
+    <div class="line">Input = 2 คน × 8 ชม. = 16 ชั่วโมงแรงงาน</div>
+    <div class="line">Productivity = 24 ÷ 16 = <span class="ans">1.5 ตัว/ชั่วโมงแรงงาน</span></div>
+  </div>
+  <div class="ex"><div class="tag">ตัวอย่างจากสไลด์ 2 · Multifactor Productivity (แปลงเป็นเงินก่อน)</div>
+    <p>ผลิต 200 ชิ้น ขายชิ้นละ $12 · วัตถุดิบชิ้นละ $6.50 · ใช้แรงงาน 40 ชม. ค่าแรงชั่วโมงละ $10</p>
+    <div class="line">Output = 200 × 12 = $2,400</div>
+    <div class="line">Input  = (200 × 6.50) + (40 × 10) = 1,300 + 400 = $1,700</div>
+    <div class="line">Productivity = 2,400 ÷ 1,700 = <span class="ans">1.41</span> (ใส่เงิน 1 บาท ได้ผลผลิตกลับมา 1.41 บาท)</div>
+  </div>
+  <div class="tw"><table>
+    <tr><th></th><th>ข้อดี</th><th>ข้อจำกัด</th></tr>
+    <tr><td><b>Partial</b></td><td>หาข้อมูลและคำนวณง่าย เห็นชัดว่าทรัพยากรตัวไหนควรปรับปรุง</td><td>ไม่เห็นภาพต้นทุนทั้งหมด</td></tr>
+    <tr><td><b>Multifactor / Total</b></td><td>เห็นภาพรวม และเห็นต้นทุนเป็นตัวเงิน</td><td>ตีมูลค่าบาง input ได้ยาก เช่น เครื่องจักรหรือพนักงานที่ใช้ร่วมกันหลายสินค้า</td></tr>
+  </table></div>
+
+  <h3 class="h">6. กลยุทธ์การผลิต 3 แบบ</h3>
+  <div class="tw"><table>
+    <tr><th>แบบ</th><th>ผลิตเมื่อไหร่</th><th>สต๊อก / ความหลากหลาย / ความเร็ว</th><th>ตัวอย่าง</th></tr>
+    <tr><td><b>Make-to-Stock (MTS)</b></td><td>ผลิตล่วงหน้าตามพยากรณ์ แล้วเก็บเป็นสินค้าสำเร็จรูป</td><td>สต๊อกเยอะ · แบบน้อย · ลูกค้าได้ของทันที</td><td>สินค้าอุปโภคบริโภค ชุดนักเรียน</td></tr>
+    <tr><td><b>Make-to-Order (MTO)</b></td><td>ผลิตหลังได้ออเดอร์เท่านั้น</td><td>สต๊อกน้อย · แบบหลากหลาย · ลูกค้ารอนาน</td><td>ชุดแต่งงาน หุ่นยนต์อุตสาหกรรม</td></tr>
+    <tr><td><b>Assemble-to-Order (ATO)</b></td><td>ผลิตชิ้นส่วนเก็บไว้ก่อนตามพยากรณ์ แล้วค่อยประกอบเมื่อได้ออเดอร์</td><td>เป็นลูกผสมของ MTS กับ MTO</td><td>คอมพิวเตอร์ เครื่องใช้ไฟฟ้า</td></tr>
+  </table></div>
+
+  <h3 class="h">ทดสอบความเข้าใจ</h3>
+  <details class="q"><summary>ร้านเบเกอรี่ทำเค้กวันเกิดตามแบบที่ลูกค้าสั่ง แต่เตรียมเนื้อเค้กไว้ล่วงหน้า เป็นกลยุทธ์แบบไหน</summary><div class="a">Assemble-to-Order เพราะชิ้นส่วน (เนื้อเค้ก) ทำไว้ก่อนตามพยากรณ์ แล้วค่อยแต่งหน้าตามออเดอร์ของลูกค้า</div></details>
+  <details class="q"><summary>พนักงาน 5 คนทำงาน 8 ชม. ผลิตได้ 400 ชิ้น Labor Productivity เท่าไหร่</summary><div class="a">Input = 5 × 8 = 40 ชม. → 400 ÷ 40 = <b>10 ชิ้น/ชั่วโมงแรงงาน</b></div></details>
+</section>
+
+<!-- ===================== M2 ===================== -->
+<section class="mod" id="m2" hidden>
+  <div class="mh"><span class="no">M2</span><h2>การบริหารคุณภาพ (Quality Management)</h2></div>
+  <div class="sub">คุณภาพคืออะไร · 8 มิติ · ลูกค้าภายในและภายนอก · QWL · คุณภาพการออกแบบกับคุณภาพตามแบบ · ต้นทุนคุณภาพ · 7 QC Tools</div>
+
+  <div class="tldr"><div class="k">สรุป 30 วินาที</div>
+    <b>คุณภาพ = สิ่งที่ลูกค้าต้องการ</b> เราต้องหาให้เจอว่าลูกค้าต้องการอะไร ส่วนสิ่งที่ลูกค้าไม่ต้องการ ทำดีแค่ไหนก็ไม่นับเป็นคุณภาพ · วัดได้ 8 มิติ · ต้นทุนคุณภาพมี 4 ก้อน การจ่ายเพื่อป้องกันถูกกว่าการตามแก้ของเสียเสมอ · มีเครื่องมือพื้นฐาน 7 อย่าง (7 QC Tools) และเครื่องมือตัวที่ 7 คือ Control Chart จะลงลึกในบทที่ 9</div>
+  <div class="link">เชื่อมกับบทอื่น: บทที่ 9 (SPC) วัดคุณภาพเป็นตัวเลข · บทที่ 10 (Lean) มองของเสีย (Defect) ว่าเป็นหนึ่งใน 8 ความสูญเปล่า และใช้ Jidoka/Poka-Yoke สร้างคุณภาพตั้งแต่ต้นทาง</div>
+
+  <h3 class="h">1. คุณภาพคืออะไร</h3>
+  <p>พูดง่าย ๆ คือ <b>ตรงกับสิ่งที่ลูกค้าต้องการ</b> ถ้าเพิ่มฟีเจอร์ที่ลูกค้าไม่ใช้ ต้นทุนเพิ่มแต่คุณภาพไม่เพิ่ม ปรมาจารย์ 3 คนนิยามไว้คนละมุม:</p>
+  <div class="g3">
+    <div class="card"><b class="t">Juran</b>"Fitness for use" เหมาะกับการใช้งานของลูกค้า</div>
+    <div class="card"><b class="t">Crosby</b>"Conformance to requirements" ตรงตามข้อกำหนด ถ้าไม่ตรง = ไม่มีคุณภาพ</div>
+    <div class="card"><b class="t">Deming</b>ต้องตอบความต้องการของลูกค้าทั้งวันนี้และในอนาคต</div>
+  </div>
+
+  <h3 class="h">2. 8 มิติของคุณภาพ (ยกตัวอย่างเป็นสมาร์ทโฟน)</h3>
+  <div class="tw"><table>
+    <tr><th>มิติ</th><th>ความหมาย</th><th>ตัวอย่าง</th></tr>
+    <tr><td>Performance</td><td>สมรรถนะหลัก</td><td>ความเร็วชิป คุณภาพกล้อง</td></tr>
+    <tr><td>Features</td><td>ฟีเจอร์เสริม</td><td>สแกนหน้า ชาร์จไร้สาย</td></tr>
+    <tr><td>Reliability</td><td>ความน่าเชื่อถือ ไม่เสียบ่อย</td><td>ไม่ค้าง ไม่รีสตาร์ทเอง</td></tr>
+    <tr><td>Durability</td><td>ความทนทาน ใช้ได้นาน</td><td>ใช้ได้ 4–5 ปี</td></tr>
+    <tr><td>Conformance</td><td>ตรงตามสเปกที่ประกาศ</td><td>แบตได้ความจุตามที่แจ้ง</td></tr>
+    <tr><td>Serviceability</td><td>ซ่อมหรือรับบริการง่าย</td><td>มีศูนย์บริการ ซ่อมเร็ว</td></tr>
+    <tr><td>Aesthetics</td><td>ความสวยงาม</td><td>ดีไซน์ สี วัสดุ</td></tr>
+    <tr><td>Perceived Quality</td><td>คุณภาพในสายตาลูกค้า</td><td>ภาพลักษณ์ของแบรนด์</td></tr>
+  </table></div>
+
+  <h3 class="h">3. ลูกค้าใน TQM มี 2 แบบ</h3>
+  <div class="g2">
+    <div class="card"><b class="t">ลูกค้าภายใน (Internal)</b>ตัวเราเอง หัวหน้า ลูกน้อง และแผนกถัดไปที่รับงานต่อจากเรา</div>
+    <div class="card"><b class="t">ลูกค้าภายนอก (External)</b>ผู้ซื้อหรือผู้ใช้ รวมถึงสังคมและสิ่งแวดล้อม (ต้องคิดถึงผลกระทบต่อสังคมด้วย)</div>
+  </div>
+  <p><b>Quality of Working Life (QWL) ของ Richard E. Walton (1975):</b> คุณภาพชีวิตการทำงานของพนักงานก็เป็นส่วนหนึ่งของคุณภาพ ประกอบด้วย ค่าตอบแทนที่เป็นธรรม · สภาพงานที่ปลอดภัยและถูกสุขลักษณะ · โอกาสใช้และพัฒนาความสามารถ · ความก้าวหน้าและความมั่นคง · การอยู่ร่วมกันในสังคมที่ทำงาน · สิทธิและระเบียบที่เป็นธรรม · สมดุลระหว่างงานกับชีวิต</p>
+
+  <h3 class="h">4. คุณภาพเกิดขึ้น 2 ช่วง</h3>
+  <div class="g2">
+    <div class="card"><b class="t">Quality of Design (ออกแบบให้ถูกตั้งแต่แรก)</b>หาความต้องการของลูกค้าจากการสังเกตผู้ใช้ แบบสอบถามหรือสัมภาษณ์ Focus Group ข้อมูล Call Center ข้อมูลบัตรสมาชิก และข้อร้องเรียน แล้วใช้ <b>QFD / House of Quality</b> แปลงความต้องการเป็นสเปกผ่านบ้าน 4 หลังต่อกัน: ความต้องการลูกค้า → ลักษณะการออกแบบ → ลักษณะกระบวนการ → ข้อกำหนดการผลิต</div>
+    <div class="card"><b class="t">Quality of Conformance (ผลิตให้ตรงตามแบบ)</b>ทำให้ของที่ผลิตจริงตรงกับแบบ ด้วยการทำมาตรฐาน (ผลิตภัณฑ์ กระบวนการ เวลา) การวางแผนและควบคุมการผลิต (บทที่ 4) SPC (บทที่ 9) และการบริหารซัพพลายเชน (บทที่ 8)</div>
+  </div>
+
+  <h3 class="h">5. ต้นทุนคุณภาพ (Cost of Quality)</h3>
+  <div class="tw"><table>
+    <tr><th>กลุ่ม</th><th>ประเภท</th><th>ความหมาย</th><th>ตัวอย่าง</th></tr>
+    <tr><td rowspan="2"><b>Cost of Good Quality</b><br><span class="small muted">จ่ายเพื่อให้ได้ของดี</span></td><td>Prevention</td><td>ป้องกันไม่ให้เกิดของเสีย</td><td>อบรมพนักงาน ออกแบบกระบวนการ บำรุงรักษาเชิงป้องกัน</td></tr>
+    <tr><td>Appraisal</td><td>ตรวจสอบและประเมิน</td><td>ตรวจรับวัตถุดิบ สุ่มตรวจ สอบเทียบเครื่องมือวัด</td></tr>
+    <tr><td rowspan="2"><b>Cost of Poor Quality</b><br><span class="small muted">จ่ายเพราะของเสีย</span></td><td>Internal Failure</td><td>เจอของเสียก่อนถึงมือลูกค้า</td><td>ของเสียในไลน์ งานแก้ (rework) ทิ้งเป็นเศษ (scrap)</td></tr>
+    <tr><td>External Failure</td><td>ของเสียหลุดไปถึงลูกค้าแล้ว</td><td>เคลม รับประกัน เรียกคืนสินค้า เสียชื่อเสียง</td></tr>
+  </table></div>
+  <div class="tip"><b>หลักคิด:</b> ยิ่งเจอของเสียช้า ยิ่งแพง ถ้าลงเงินกับ Prevention/Appraisal เพิ่มขึ้นเล็กน้อย จะลด Failure ได้มาก โดยเฉพาะ External Failure ซึ่งแพงที่สุดเพราะเสียทั้งเงินและชื่อเสียง</div>
+
+  <h3 class="h">6. 7 QC Tools: ใช้เครื่องมือไหนตอนไหน</h3>
+  <div class="tw"><table>
+    <tr><th>เครื่องมือ</th><th>ใช้ตอนที่อยากรู้ว่า…</th></tr>
+    <tr><td>Check Sheet</td><td>ปัญหาแต่ละแบบเกิดบ่อยแค่ไหน (ตารางขีดนับ)</td></tr>
+    <tr><td>Graph</td><td>ข้อมูลมีแนวโน้มไปทางไหน</td></tr>
+    <tr><td>Pareto Diagram</td><td>ปัญหาไหนสำคัญที่สุด (เรียงจากมากไปน้อย ใช้กฎ 80/20)</td></tr>
+    <tr><td>Cause &amp; Effect (Fishbone)</td><td>ปัญหานี้เกิดจากสาเหตุอะไรบ้าง (ไล่ตามหมวด 4M/5M)</td></tr>
+    <tr><td>Histogram</td><td>ข้อมูลกระจายตัวเป็นรูปร่างแบบไหน</td></tr>
+    <tr><td>Scatter Diagram</td><td>ตัวแปร 2 ตัวสัมพันธ์กันไหม</td></tr>
+    <tr><td>Control Chart</td><td>กระบวนการยังนิ่งอยู่ไหม (ลงรายละเอียดในบทที่ 9)</td></tr>
+  </table></div>
+
+  <h3 class="h">ทดสอบความเข้าใจ</h3>
+  <details class="q"><summary>ค่าอบรมพนักงานใหม่เรื่องวิธีเย็บให้ถูกต้อง เป็นต้นทุนประเภทไหน</summary><div class="a">Prevention Cost (อยู่ในกลุ่ม Cost of Good Quality)</div></details>
+  <details class="q"><summary>อยากรู้ว่าของเสีย 10 ประเภท ประเภทไหนควรแก้ก่อน ควรใช้เครื่องมืออะไร</summary><div class="a">Pareto Diagram เพราะเรียงปัญหาตามความถี่ แล้วแก้ไม่กี่ประเภทแรกที่คิดเป็นส่วนใหญ่ของปัญหาทั้งหมด</div></details>
+</section>
+
+<!-- ===================== M3 ===================== -->
+<section class="mod" id="m3" hidden>
+  <div class="mh"><span class="no">M3</span><h2>การพยากรณ์ความต้องการ (Demand Forecasting)</h2></div>
+  <div class="sub">ดูรูปแบบของข้อมูลก่อน แล้วค่อยเลือกสูตร · Naive / MA / WMA / Exponential Smoothing · Linear Regression · Seasonal Index · Causal</div>
+
+  <div class="tldr"><div class="k">สรุป 30 วินาที</div>
+    ขั้นแรกให้ดูว่ากราฟยอดขายมีรูปแบบแบบไหน แล้วค่อยเลือกสูตร · <b>แกว่งขึ้นลงรอบค่ากลาง (Horizontal)</b> → Naive, Moving Average, Weighted MA, Exponential Smoothing · <b>มีแนวโน้มขึ้นหรือลง (Trend)</b> → Linear Regression F<sub>t</sub> = a + bt · <b>ขึ้นลงตามฤดูกาล (Seasonal)</b> → Regression รายปี แล้วกระจายเป็นรายไตรมาสด้วย Seasonal Index · <b>ขึ้นกับตัวแปรอื่น</b> → Causal Y = a + bX · ตัวย่อที่ใช้ทั้งบท: <b>F</b> = Forecast (ค่าพยากรณ์), <b>A</b> = Actual (ยอดจริง), <b>t</b> = ลำดับงวดเวลา</div>
+  <div class="link">เชื่อมกับบทอื่น: ค่าพยากรณ์จากบทนี้ไปเป็นแถว Forecast ในตาราง MPS (บทที่ 4) และเป็นค่า D ในสูตร EOQ (บทที่ 5)</div>
+
+  <h3 class="h">1. กติกาพื้นฐานของการพยากรณ์ (ข้อสอบชอบถาม)</h3>
+  <ol>
+    <li>การพยากรณ์ <b>มีความคลาดเคลื่อนเสมอ</b></li>
+    <li>พยากรณ์ <b>ทั้งกลุ่มสินค้า</b> แม่นกว่าพยากรณ์รายชิ้น เพราะความคลาดเคลื่อนของแต่ละชิ้นหักล้างกัน</li>
+    <li>ยิ่ง <b>พยากรณ์ไกล</b> ยิ่งคลาดเคลื่อนมาก</li>
+    <li>ควร <b>เปรียบเทียบหลายเทคนิค</b> แล้วเลือกวิธีที่คลาดเคลื่อนน้อยที่สุด</li>
+  </ol>
+  <p>สิ่งที่ต้องพยากรณ์มีหลายแบบ เช่น ของที่ลูกค้าซื้อไปใช้หรือขายต่อ อะไหล่ ของที่ใช้ส่งเสริมการขาย และของที่ขายให้บริษัทในเครือ · ช่วงชีวิตของผลิตภัณฑ์ (Product Life Cycle) ก็มีผลต่อการเลือกเทคนิคด้วย</p>
+
+  <h3 class="h">2. เลือกเทคนิคจากรูปแบบของข้อมูล</h3>
+  <div class="tw"><table>
+    <tr><th>รูปแบบข้อมูล (Demand Pattern)</th><th>ลักษณะกราฟ</th><th>ใช้เทคนิค</th></tr>
+    <tr><td><b>Horizontal</b> (คงที่)</td><td>แกว่งขึ้นลงรอบค่ากลาง ไม่มีทิศทาง เช่น สินค้าอุปโภคทั่วไป</td><td>Naive · Moving Average · Weighted MA · Exponential Smoothing</td></tr>
+    <tr><td><b>Trend</b> (แนวโน้ม)</td><td>ค่อย ๆ ขึ้น หรือค่อย ๆ ลง ต่อเนื่องเป็นเวลานาน</td><td>Linear Regression (F<sub>t</sub> = a + bt)</td></tr>
+    <tr><td><b>Seasonal</b> (ฤดูกาล)</td><td>ขึ้นลงซ้ำเป็นรอบสั้นที่แน่นอน เช่น ทุกปีไตรมาส 3 ขายดี</td><td>Regression รายปี + Seasonal Index</td></tr>
+    <tr><td><b>Cyclical</b> (วัฏจักร)</td><td>หน้าตาคล้าย Seasonal แต่รอบยาวหลายปีและเดาจังหวะยาก เพราะเป็นไปตามเศรษฐกิจ</td><td>ใช้วิจารณญาณร่วมกับตัวแปรเศรษฐกิจ</td></tr>
+  </table></div>
+  <p><b>เทคนิคเชิงคุณภาพ</b> (ไม่มีสูตร ใช้ตอนไม่มีข้อมูลในอดีต เช่น สินค้าใหม่): ความเห็นผู้บริหารหรือผู้เชี่ยวชาญ · ความเห็นพนักงานขาย (อยู่ใกล้ลูกค้าที่สุด) · Historical Analogy (เทียบกับสินค้าคล้ายกันที่เคยขาย) · <b>Delphi Method</b> (ส่งแบบสอบถามวนให้ผู้เชี่ยวชาญตอบ สรุปผลส่งกลับให้ทุกคนอ่าน แล้วปรับความเห็นใหม่ ทำซ้ำหลายรอบจนความเห็นตรงกัน)</p>
+
+  <h3 class="h">3. ข้อมูลตัวอย่างที่ใช้ทั้งบท (ข้อมูลชุดเดียวกับในสไลด์)</h3>
+  <div class="tw"><table class="c num">
+    <tr><th>Period (t)</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>7</th><th>8</th></tr>
+    <tr><td>Actual Demand (A<sub>t</sub>)</td><td>1,000</td><td>980</td><td>1,100</td><td>900</td><td>1,200</td><td>1,050</td><td>990</td><td>1,000</td></tr>
+  </table></div>
+
+  <h4>3.1 Naive: งวดหน้าเท่ากับงวดที่แล้ว</h4>
+  <div class="fx"><div class="nm">Naive Method</div>
+    <div class="eq">F<sub>t</sub> = A<sub>t−1</sub></div>
+    <div class="tw"><table>
+      <tr><th>ตัวแปร</th><th>แปลว่า</th><th>เอามาจากไหน</th></tr>
+      <tr><td class="v">F<sub>t</sub></td><td>ค่าพยากรณ์ของงวด t (คำตอบ)</td><td>—</td></tr>
+      <tr><td class="v">A<sub>t−1</sub></td><td>ยอดขายจริงของงวดก่อนหน้า 1 งวด</td><td>ตารางยอดขายในโจทย์</td></tr>
+    </table></div>
+    <div class="keys"><b>วิธีคิด:</b> ไม่ต้องคำนวณ แค่ลอกยอดจริงของงวดก่อนมาใส่ เช่น F<sub>2</sub> = A<sub>1</sub> = 1,000 และ F<sub>5</sub> = A<sub>4</sub> = 900</div>
+  </div>
+
+  <h4>3.2 Moving Average (MA): เฉลี่ยยอดจริง n งวดล่าสุด</h4>
+  <div class="fx"><div class="nm">Moving Average</div>
+    <div class="eq">F<sub>t</sub> = (A<sub>t−1</sub> + A<sub>t−2</sub> + … + A<sub>t−n</sub>) ÷ n</div>
+    <div class="tw"><table>
+      <tr><th>ตัวแปร</th><th>แปลว่า</th><th>เอามาจากไหน</th></tr>
+      <tr><td class="v">F<sub>t</sub></td><td>ค่าพยากรณ์ของงวด t</td><td>—</td></tr>
+      <tr><td class="v">A<sub>t−1</sub> … A<sub>t−n</sub></td><td>ยอดจริงของงวดที่ผ่านมาล่าสุด n งวด (ย้อนหลัง 1 งวด, 2 งวด, …, n งวด)</td><td>ตารางยอดขาย</td></tr>
+      <tr><td class="v">n</td><td>จำนวนงวดที่เอามาเฉลี่ย</td><td>โจทย์กำหนด เช่น "MA 2 สัปดาห์" แปลว่า n = 2</td></tr>
+    </table></div>
+    <div class="keys"><b>กดเครื่องคิดเลข:</b> บวกยอดจริง n ตัวล่าสุด แล้ว ÷ n <b>ไม่มีการคูณอะไรทั้งสิ้น</b> · พอเลื่อนไปงวดถัดไป ให้ทิ้งตัวเก่าสุดแล้วเติมตัวใหม่เข้ามา จึงเรียกว่า "เคลื่อนที่"</div>
+  </div>
+  <div class="ex"><div class="tag">ตัวอย่างจากสไลด์</div>
+    <div class="line">MA 2 งวด:  F<sub>3</sub> = (A<sub>2</sub> + A<sub>1</sub>) ÷ 2 = (980 + 1,000) ÷ 2 = <span class="ans">990</span></div>
+    <div class="line">MA 2 งวด:  F<sub>4</sub> = (1,100 + 980) ÷ 2 = <span class="ans">1,040</span></div>
+    <div class="line">MA 3 งวด:  F<sub>4</sub> = (1,100 + 980 + 1,000) ÷ 3 = 3,080 ÷ 3 = <span class="ans">1,026.7 ≈ 1,027</span></div>
+  </div>
+
+  <h4>3.3 Weighted Moving Average (WMA): ให้งวดล่าสุดมีน้ำหนักมากกว่า</h4>
+  <div class="fx"><div class="nm">Weighted Moving Average</div>
+    <div class="eq">F<sub>t</sub> = W<sub>t−1</sub>A<sub>t−1</sub> + W<sub>t−2</sub>A<sub>t−2</sub> + … + W<sub>t−n</sub>A<sub>t−n</sub></div>
+    <div class="tw"><table>
+      <tr><th>ตัวแปร</th><th>แปลว่า</th><th>เอามาจากไหน</th></tr>
+      <tr><td class="v">A<sub>t−1</sub> …</td><td>ยอดจริงของงวดก่อนหน้า</td><td>ตารางยอดขาย</td></tr>
+      <tr><td class="v">W<sub>t−1</sub> …</td><td>น้ำหนัก (weight) ของยอดแต่ละงวด ต้อง <b>รวมกันได้ 1 (100%)</b> และงวดที่ใกล้ปัจจุบันที่สุดได้น้ำหนักมากที่สุด</td><td>โจทย์กำหนด</td></tr>
+    </table></div>
+    <div class="keys"><b>กดเครื่องคิดเลข:</b> คูณน้ำหนักกับยอดจริงของงวดนั้นทีละคู่ แล้วบวกผลคูณทั้งหมด · ระวังจับคู่ให้ถูก น้ำหนักมากที่สุดต้องคู่กับงวดล่าสุด</div>
+  </div>
+  <div class="ex"><div class="tag">ตัวอย่างจากสไลด์ · หา F<sub>5</sub> โดยใช้น้ำหนัก 40%, 30%, 20%, 10%</div>
+    <div class="line">F<sub>5</sub> = 0.4×A<sub>4</sub> + 0.3×A<sub>3</sub> + 0.2×A<sub>2</sub> + 0.1×A<sub>1</sub></div>
+    <div class="line">   = 0.4×900 + 0.3×1,100 + 0.2×980 + 0.1×1,000</div>
+    <div class="line">   = 360 + 330 + 196 + 100 = <span class="ans">986</span></div>
+  </div>
+
+  <h4>3.4 Exponential Smoothing (ES): แก้ค่าพยากรณ์เดิมด้วยส่วนที่พลาดไป</h4>
+  <div class="fx"><div class="nm">Exponential Smoothing</div>
+    <div class="eq">F<sub>t</sub> = F<sub>t−1</sub> + α(A<sub>t−1</sub> − F<sub>t−1</sub>)</div>
+    <div class="eq">หรือเขียนอีกแบบ: F<sub>t</sub> = (1 − α)F<sub>t−1</sub> + αA<sub>t−1</sub></div>
+    <div class="tw"><table>
+      <tr><th>ตัวแปร</th><th>แปลว่า</th><th>เอามาจากไหน</th></tr>
+      <tr><td class="v">F<sub>t−1</sub></td><td>ค่าพยากรณ์ของงวดก่อน</td><td>งวดแรกโจทย์มักให้มา (ในสไลด์ให้ F<sub>4</sub> = 1,020) งวดต่อ ๆ ไปใช้ค่าที่เราเพิ่งคำนวณได้</td></tr>
+      <tr><td class="v">A<sub>t−1</sub></td><td>ยอดจริงของงวดก่อน</td><td>ตารางยอดขาย</td></tr>
+      <tr><td class="v">α (alpha)</td><td>Smoothing Factor มีค่า 0–1 ยิ่งสูงยิ่งไวต่อยอดขายล่าสุด</td><td>โจทย์กำหนด ในทางปฏิบัติใช้วิธีลองหลายค่า (trial and error) แล้วเลือกค่าที่คลาดเคลื่อนน้อยที่สุด</td></tr>
+    </table></div>
+    <div class="keys"><b>กดเครื่องคิดเลข 3 ขั้น:</b> ① ยอดจริง − พยากรณ์เดิม ② คูณด้วย α ③ บวกกลับเข้ากับพยากรณ์เดิม</div>
+  </div>
+  <div class="ex"><div class="tag">ตัวอย่างจากสไลด์ · α = 0.2 เริ่มจาก F<sub>4</sub> = 1,020</div>
+    <div class="line">F<sub>5</sub> = 1,020 + 0.2×(900 − 1,020) = 1,020 + 0.2×(−120) = 1,020 − 24 = <span class="ans">996</span></div>
+    <div class="line">F<sub>6</sub> = 996 + 0.2×(1,200 − 996) = 996 + 40.8 = <span class="ans">1,036.8 ≈ 1,037</span></div>
+    <div class="line">F<sub>7</sub> = 1,036.8 + 0.2×(1,050 − 1,036.8) = <span class="ans">1,039.4 ≈ 1,040</span></div>
+    <div class="line">ลองทำ α = 0.4: F<sub>5</sub> = 1,020 + 0.4×(−120) = <span class="ans">972</span></div>
+  </div>
+
+  <div class="calc noprint"><div class="ct">ฝึกเช็คคำตอบ · Exponential Smoothing <span>(ในห้องสอบต้องกดเอง)</span></div>
+    <div class="fields">
+      <div><label for="es-f">F(t−1) พยากรณ์งวดก่อน</label><input id="es-f" type="number" value="1020"></div>
+      <div><label for="es-a">A(t−1) ยอดจริงงวดก่อน</label><input id="es-a" type="number" value="900"></div>
+      <div><label for="es-al">α</label><input id="es-al" type="number" value="0.2" step="0.05"></div>
+    </div>
+    <div class="out" id="es-out"></div>
+  </div>
+
+  <h4>3.5 วัดความคลาดเคลื่อนเพื่อเลือกวิธีที่ดีที่สุด</h4>
+  <div class="fx"><div class="nm">Forecast Error</div>
+    <div class="eq">Error<sub>t</sub> = A<sub>t</sub> − F<sub>t</sub></div>
+    <p class="small" style="margin:6px 0 0">ค่าบวกแปลว่าพยากรณ์ต่ำกว่ายอดจริง ค่าลบแปลว่าพยากรณ์สูงเกินไป เช่น ES α=0.2 งวดที่ 5: 1,200 − 996 = 204 · ถ้าจะเทียบหลายวิธี ให้เอาค่าสัมบูรณ์ของ error มาเฉลี่ย วิธีไหนได้ค่าเฉลี่ยต่ำที่สุดคือวิธีที่ดีที่สุด</p>
+  </div>
+  <div class="tw"><table class="c num">
+    <tr><th>Period</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>7</th><th>8</th></tr>
+    <tr><td>Actual</td><td>1,000</td><td>980</td><td>1,100</td><td>900</td><td>1,200</td><td>1,050</td><td>990</td><td>1,000</td></tr>
+    <tr><td>Naive</td><td></td><td>1,000</td><td>980</td><td>1,100</td><td>900</td><td>1,200</td><td>1,050</td><td>990</td></tr>
+    <tr><td>MA 2</td><td></td><td></td><td>990</td><td>1,040</td><td>1,000</td><td>1,050</td><td>1,125</td><td>1,020</td></tr>
+    <tr><td>MA 3</td><td></td><td></td><td></td><td>1,027</td><td>993</td><td>1,067</td><td>1,050</td><td>1,080</td></tr>
+    <tr><td>WMA (.4/.3/.2/.1)</td><td></td><td></td><td></td><td></td><td>986</td><td>1,068</td><td>1,070</td><td>1,041</td></tr>
+    <tr><td>ES α=0.2</td><td></td><td></td><td></td><td>1,020</td><td>996</td><td>1,037</td><td>1,040</td><td>1,030</td></tr>
+    <tr><td>ES α=0.4</td><td></td><td></td><td></td><td>1,020</td><td>972</td><td>1,063</td><td>1,058</td><td>1,031</td></tr>
+  </table></div>
+
+  <h3 class="h">4. ข้อมูลมีแนวโน้ม (Trend): Linear Regression</h3>
+  <div class="fx"><div class="nm">สมการเส้นแนวโน้ม</div>
+    <div class="eq">F<sub>t</sub> = a + bt</div>
+    <div class="eq">b = [nΣty − (Σt)(Σy)] ÷ [nΣt² − (Σt)²]</div>
+    <div class="eq">a = [Σy − bΣt] ÷ n</div>
+    <div class="tw"><table>
+      <tr><th>ตัวแปร</th><th>แปลว่า</th><th>เอามาจากไหน</th></tr>
+      <tr><td class="v">t</td><td>ลำดับงวดเวลา 1, 2, 3, …</td><td>เรียงเลขงวดเอง</td></tr>
+      <tr><td class="v">y</td><td>ยอดจริงของงวดนั้น</td><td>ตารางยอดขาย</td></tr>
+      <tr><td class="v">n</td><td>จำนวนงวดข้อมูลทั้งหมด</td><td>นับจำนวนแถว</td></tr>
+      <tr><td class="v">b</td><td>ความชัน: ยอดขายเพิ่มขึ้นกี่หน่วยต่องวด</td><td>คำนวณจากสูตร <b>ต้องหา b ก่อน</b></td></tr>
+      <tr><td class="v">a</td><td>จุดตัดแกน y (ค่าตอน t = 0)</td><td>คำนวณ <b>หลังจากได้ b แล้ว</b></td></tr>
+      <tr><td class="v">Σ</td><td>ผลรวมของทุกแถว (Sigma)</td><td>บวกทั้งคอลัมน์</td></tr>
+    </table></div>
+    <div class="keys"><b>ขั้นตอน:</b> ① ทำตาราง 4 คอลัมน์ t | t² | y | ty ② บวกแต่ละคอลัมน์ให้ได้ Σt, Σt², Σy, Σty ③ แทนค่าหา b ④ แทนค่าหา a ⑤ แทน t ของงวดที่ต้องการลงใน a + bt · <b>ระวัง:</b> (Σt)² คือบวกก่อนแล้วค่อยยกกำลังสอง ส่วน Σt² คือยกกำลังสองทีละตัวแล้วค่อยบวก สองค่านี้ไม่เท่ากัน</div>
+  </div>
+  <div class="ex"><div class="tag">ตัวอย่างจากสไลด์ · ยอดขาย 10 สัปดาห์ ให้พยากรณ์สัปดาห์ที่ 11 และ 12</div>
+    <div class="tw"><table class="c num">
+      <tr><th>t</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>7</th><th>8</th><th>9</th><th>10</th><th>Σ</th></tr>
+      <tr><td>y</td><td>600</td><td>624</td><td>622</td><td>630</td><td>640</td><td>644</td><td>650</td><td>658</td><td>655</td><td>670</td><td class="hl">6,393</td></tr>
+      <tr><td>t²</td><td>1</td><td>4</td><td>9</td><td>16</td><td>25</td><td>36</td><td>49</td><td>64</td><td>81</td><td>100</td><td class="hl">385</td></tr>
+      <tr><td>ty</td><td>600</td><td>1,248</td><td>1,866</td><td>2,520</td><td>3,200</td><td>3,864</td><td>4,550</td><td>5,264</td><td>5,895</td><td>6,700</td><td class="hl">35,707</td></tr>
+    </table></div>
+    <div class="line">Σt = 55 → (Σt)² = 3,025 · n = 10</div>
+    <div class="line">b = [(10×35,707) − (55×6,393)] ÷ [(10×385) − 3,025] = (357,070 − 351,615) ÷ 825 = 5,455 ÷ 825 = <span class="ans">6.61</span></div>
+    <div class="line">a = [6,393 − (6.61×55)] ÷ 10 = (6,393 − 363.55) ÷ 10 = <span class="ans">602.9</span></div>
+    <div class="line">สมการ F<sub>t</sub> = 602.9 + 6.61t → F<sub>11</sub> = 602.9 + 72.71 = <span class="ans">≈ 676</span> · F<sub>12</sub> = 602.9 + 79.32 = <span class="ans">≈ 682</span></div>
+  </div>
+
+  <h3 class="h">5. ข้อมูลมีฤดูกาล (Seasonal): Regression รายปี + Seasonal Index</h3>
+  <div class="fx"><div class="nm">Seasonal Index และการกระจายยอดรายไตรมาส</div>
+    <div class="eq">Seasonal Index (SI) = ค่าเฉลี่ยของไตรมาสนั้น ÷ ค่าเฉลี่ยรวมทุกไตรมาส</div>
+    <div class="eq">F<sub>ไตรมาส</sub> = (F<sub>ทั้งปี</sub> ÷ 4) × SI<sub>ไตรมาสนั้น</sub></div>
+    <div class="tw"><table>
+      <tr><th>ตัวแปร</th><th>แปลว่า</th><th>เอามาจากไหน</th></tr>
+      <tr><td class="v">F<sub>ทั้งปี</sub></td><td>ยอดพยากรณ์ของทั้งปีถัดไป</td><td>ทำ Linear Regression กับยอดรวมรายปี (t = ปีที่ 1, 2, 3, …)</td></tr>
+      <tr><td class="v">SI</td><td>ไตรมาสนี้ขายได้กี่เท่าของไตรมาสเฉลี่ย (มากกว่า 1 = ขายดีกว่าปกติ)</td><td>คำนวณจากข้อมูลรายไตรมาสย้อนหลัง · ผลรวม SI ทั้ง 4 ไตรมาสต้องได้ ≈ 4</td></tr>
+    </table></div>
+    <div class="keys"><b>ขั้นตอน:</b> ① รวมยอดแต่ละปี ② ทำ Regression กับยอดรายปีเพื่อหา F ของปีหน้า ③ หาร 4 จะได้ "ไตรมาสเฉลี่ย" ④ หา SI ของแต่ละไตรมาส ⑤ คูณไตรมาสเฉลี่ยด้วย SI</div>
+  </div>
+  <div class="ex"><div class="tag">ตัวอย่างจากสไลด์ · ยอดขาย 4 ปี ให้พยากรณ์ปีที่ 5 รายไตรมาส</div>
+    <div class="tw"><table class="c num">
+      <tr><th>ไตรมาส</th><th>ปี 1</th><th>ปี 2</th><th>ปี 3</th><th>ปี 4</th><th>ค่าเฉลี่ย</th><th>SI</th></tr>
+      <tr><td>Q1</td><td>37</td><td>37</td><td>45</td><td>50</td><td>42.25</td><td>0.31</td></tr>
+      <tr><td>Q2</td><td>136</td><td>143</td><td>147</td><td>150</td><td>144</td><td>1.06</td></tr>
+      <tr><td>Q3</td><td>254</td><td>267</td><td>270</td><td>285</td><td>269</td><td>1.97</td></tr>
+      <tr><td>Q4</td><td>77</td><td>88</td><td>95</td><td>100</td><td>90</td><td>0.66</td></tr>
+      <tr><td>รวมทั้งปี</td><td>504</td><td>535</td><td>557</td><td>585</td><td class="hl">136.31</td><td>≈ 4</td></tr>
+    </table></div>
+    <div class="line">ค่าเฉลี่ยรวม = (504+535+557+585) ÷ 16 = 2,181 ÷ 16 = 136.31</div>
+    <div class="line">SI<sub>Q1</sub> = 42.25 ÷ 136.31 = 0.31 · SI<sub>Q3</sub> = 269 ÷ 136.31 = 1.97</div>
+    <div class="line">Regression รายปี (t = 1–4, y = 504, 535, 557, 585): Σt=10, Σt²=30, Σy=2,181, Σty=5,585</div>
+    <div class="line">b = (4×5,585 − 10×2,181) ÷ (4×30 − 10²) = 530 ÷ 20 = 26.5 · a = (2,181 − 26.5×10) ÷ 4 = 479</div>
+    <div class="line">F<sub>ปี5</sub> = 479 + 26.5×5 = <span class="ans">611.5</span> → ไตรมาสเฉลี่ย = 611.5 ÷ 4 = 152.875</div>
+    <div class="line">Q1 = 152.875×0.31 = <span class="ans">47.39</span> · Q2 = ×1.06 = <span class="ans">162.05</span> · Q3 = ×1.97 = <span class="ans">301.16</span> · Q4 = ×0.66 = <span class="ans">100.90</span></div>
+    <p class="small muted">หมายเหตุ: ในสไลด์พิมพ์ว่า "479 + 26.5(4)" แต่ที่ถูกคือ ×5 (ปีที่ 5) ซึ่งให้ผล 611.5 ตรงกับเฉลย</p>
+  </div>
+
+  <h3 class="h">6. Causal Model: พยากรณ์จากตัวแปรอื่นที่เกี่ยวข้อง</h3>
+  <div class="fx"><div class="nm">Causal Regression</div>
+    <div class="eq">Y = a + bX</div>
+    <div class="eq">b = [nΣXY − (ΣX)(ΣY)] ÷ [nΣX² − (ΣX)²] · a = [ΣY − bΣX] ÷ n</div>
+    <div class="tw"><table>
+      <tr><th>ตัวแปร</th><th>แปลว่า</th><th>ตัวอย่าง</th></tr>
+      <tr><td class="v">X</td><td>ตัวแปรอิสระ (Independent) คือตัวที่เป็นเหตุ</td><td>อายุโรงงาน ราคาไก่ รายได้ประชากร</td></tr>
+      <tr><td class="v">Y</td><td>ตัวแปรตาม (Dependent) คือสิ่งที่อยากพยากรณ์</td><td>ค่าบำรุงรักษา ความต้องการซื้อไก่</td></tr>
+    </table></div>
+    <div class="keys"><b>วิธีคิด:</b> สูตรเหมือน Trend ทุกอย่าง แค่เปลี่ยน t เป็น X · ตารางใช้คอลัมน์ X | X² | Y | XY</div>
+  </div>
+  <div class="ex"><div class="tag">ตัวอย่างจากสไลด์ · ค่าบำรุงรักษา (ล้านบาท) เทียบกับอายุโรงงาน (ปี)</div>
+    <div class="tw"><table class="c num">
+      <tr><th>X (อายุ)</th><td>36</td><td>12</td><td>24</td><td>38</td><td>14</td><td>24</td><td class="hl">ΣX = 148</td></tr>
+      <tr><th>Y (ค่าบำรุง)</th><td>100</td><td>42</td><td>75</td><td>100</td><td>40</td><td>70</td><td class="hl">ΣY = 427</td></tr>
+      <tr><th>X²</th><td>1,296</td><td>144</td><td>576</td><td>1,444</td><td>196</td><td>576</td><td class="hl">ΣX² = 4,232</td></tr>
+      <tr><th>XY</th><td>3,600</td><td>504</td><td>1,800</td><td>3,800</td><td>560</td><td>1,680</td><td class="hl">ΣXY = 11,944</td></tr>
+    </table></div>
+    <div class="line">b = (6×11,944 − 148×427) ÷ (6×4,232 − 148²) = (71,664 − 63,196) ÷ (25,392 − 21,904) = 8,468 ÷ 3,488 = <span class="ans">2.428</span></div>
+    <div class="line">a = (427 − 2.428×148) ÷ 6 = <span class="ans">11.28</span></div>
+    <div class="line">อายุ 40 ปี: Y = 11.28 + 2.428×40 = <span class="ans">108.39</span> · อายุ 50 ปี: Y = <span class="ans">132.67</span> ล้านบาท</div>
+  </div>
+
+  <h3 class="h">7. การพยากรณ์ยุค AI</h3>
+  <p>วิธีดั้งเดิมอย่าง MA ดูแค่ยอดขายในอดีต จึงพลาดง่ายตอนตลาดผันผวน AI ช่วยได้ 3 เรื่อง: <b>Multi-Source Data Fusion</b> (เอาข้อมูลภายนอกมารวม เช่น สภาพอากาศ เทรนด์โซเชียล วันหยุด ดัชนีเศรษฐกิจ ราคาคู่แข่ง) · <b>Advanced ML</b> (Random Forest, XGBoost, LSTM จับความสัมพันธ์ที่ไม่เป็นเส้นตรงได้) · <b>Continuous Learning / AutoML</b> (โมเดลปรับตัวเองเมื่อมีข้อมูลใหม่) · ความท้าทายคือ <b>Garbage In, Garbage Out</b> (ข้อมูลแย่ ผลก็แย่) และ <b>Explainable AI</b> (ผู้บริหารไม่กล้าตัดสินใจตามโมเดลที่เป็นกล่องดำ)</p>
+
+  <h3 class="h">ทดสอบความเข้าใจ</h3>
+  <details class="q"><summary>จากข้อมูลตัวอย่าง จงหา F<sub>6</sub> ด้วย MA 3 งวด</summary><div class="a">F<sub>6</sub> = (A<sub>5</sub>+A<sub>4</sub>+A<sub>3</sub>) ÷ 3 = (1,200+900+1,100) ÷ 3 = 3,200 ÷ 3 = <b>1,066.7 ≈ 1,067</b> (ตรงกับตาราง)</div></details>
+  <details class="q"><summary>F<sub>t−1</sub> = 500, A<sub>t−1</sub> = 560, α = 0.3 จงหา F<sub>t</sub></summary><div class="a">500 + 0.3×(560−500) = 500 + 18 = <b>518</b></div></details>
+  <details class="q"><summary>ยอดขายเพิ่มขึ้นทุกเดือนต่อเนื่อง 2 ปี ควรใช้ Moving Average ไหม เพราะอะไร</summary><div class="a">ไม่ควร เพราะ MA เป็นค่าเฉลี่ยของอดีต เมื่อข้อมูลมี Trend ค่าพยากรณ์จะตามหลังยอดจริงเสมอ (ต่ำกว่าจริงตลอด) ควรใช้ Linear Regression</div></details>
+</section>
+
+<!-- ===================== M4 ===================== -->
+<section class="mod" id="m4" hidden>
+  <div class="mh"><span class="no">M4</span><h2>การวางแผนและควบคุมการผลิต (PP&amp;C / S&amp;OP)</h2></div>
+  <div class="sub">ลำดับชั้นของแผน · Planning Horizon · Time Fence · Level กับ Chase · ตาราง MPS และ MRP พร้อมวิธีกรอกทีละช่อง</div>
+
+  <div class="tldr"><div class="k">สรุป 30 วินาที</div>
+    แผนการผลิตไล่จากใหญ่ไปเล็ก: แผนธุรกิจ → แผนการผลิตรวม → <b>MPS</b> (สินค้าแต่ละตัวจะผลิตงวดไหน) → <b>MRP</b> (ชิ้นส่วนแต่ละตัวต้องสั่งงวดไหน) → สั่งซื้อ → ผลิตจริง · ทั้ง MPS และ MRP ใช้หลักเดียวกัน คือ <b>ไล่ยอดคงเหลือทีละงวด ถ้าจะติดลบให้เติมของเข้าเป็นล็อต แล้วถอยหลังตาม Lead Time เพื่อหางวดที่ต้องสั่ง</b></div>
+  <div class="link">เชื่อมกับบทอื่น: แถว Forecast มาจากบทที่ 3 · Lot Size, Lot-for-Lot และ Lead Time เป็นเรื่องเดียวกับบทที่ 5 · แนวคิด Pull ของ Uniqlo ต่อยอดไปเป็น Kanban ในบทที่ 10</div>
+
+  <h3 class="h">1. ลำดับชั้นของแผน (บนลงล่าง)</h3>
+  <ol class="steps">
+    <li><b>Business Plan</b> (1–2 ปี) จะขายอะไร ให้ใคร จุดขายคืออะไร ต้องใช้ทุนเท่าไหร่ คาดผลตอบแทนเท่าไหร่</li>
+    <li><b>Aggregate Production Planning</b> วางแผนระดับ "กลุ่มสินค้า" ให้ดีมานด์กับกำลังการผลิตสมดุลกัน</li>
+    <li><b>Master Production Scheduling (MPS)</b> วางแผนระดับ "สินค้าแต่ละตัว" ว่าต้องผลิตเท่าไหร่ ในงวดไหน</li>
+    <li><b>Material Requirement Planning (MRP)</b> แตกเป็นชิ้นส่วนตาม BOM ทำคู่กับ Capacity Requirements Planning (เช็คว่ากำลังการผลิตพอไหม)</li>
+    <li><b>Purchasing</b> สั่งซื้อและติดตามวัตถุดิบ</li>
+    <li><b>Production</b> ผลิตจริงและควบคุมหน้างาน</li>
+  </ol>
+
+  <h3 class="h">2. Planning Horizon: ต้องวางแผนล่วงหน้าไกลแค่ไหน</h3>
+  <div class="fx"><div class="nm">Planning Horizon</div>
+    <div class="eq">Planning Horizon = ผลรวม Lead Time ของเส้นทางที่ยาวที่สุดใน BOM</div>
+    <div class="keys"><b>ตัวอย่างจากสไลด์:</b> ชิ้นส่วน G → F → D → A ต้องทำต่อกันเป็นทอด ๆ ใช้เวลา 5 + 3 + 2 + 2 = <span class="ans">12 สัปดาห์</span> จึงต้องวางแผนล่วงหน้าอย่างน้อย 12 สัปดาห์ ถ้าดูแค่ Lead Time ของสินค้าสำเร็จรูปตัวเดียว จะสั่งของไม่ทัน</div>
+  </div>
+
+  <h3 class="h">3. Planning Time Fence: 3 โซนของความยืดหยุ่น</h3>
+  <div class="tw"><table>
+    <tr><th>โซน</th><th>ช่วงเวลา</th><th>ความหมาย</th></tr>
+    <tr><td><b>1 · Frozen</b></td><td>ตั้งแต่ปัจจุบันถึง <b>Demand Time Fence (DTF)</b></td><td>จองเครื่องจักร คน และวัตถุดิบให้ออเดอร์จริงแล้ว ถ้าเปลี่ยนแผนจะแพงมาก · <b>ในตารางใช้ยอด Customer Order</b></td></tr>
+    <tr><td><b>2 · Slushy</b></td><td>หลัง DTF ถึง <b>Planning Time Fence (PTF)</b></td><td>จองไว้บางส่วน ยังปรับได้บ้าง · <b>ในตารางใช้ยอด Forecast</b></td></tr>
+    <tr><td><b>3 · Liquid</b></td><td>หลัง PTF ไปแล้ว</td><td>เปลี่ยนแผนได้โดยแทบไม่มีต้นทุน</td></tr>
+  </table></div>
+  <p class="small muted">ก่อนทำ MPS ต้องตกลงกับลูกค้าไว้ 3 เรื่อง คือ Time Fence (ลูกค้าแก้ออเดอร์ได้ถึงเมื่อไหร่) · เงื่อนไขการสั่ง (สั่งขั้นต่ำ, Lot Size คงที่ หรือ Lot-for-Lot) · Lead Time</p>
+
+  <h3 class="h">4. กลยุทธ์บริหารกำลังการผลิต</h3>
+  <div class="tw"><table>
+    <tr><th>กลยุทธ์</th><th>ทำยังไง</th><th>ต้นทุนหรือความเสี่ยง</th></tr>
+    <tr><td><b>Level Production</b></td><td>ผลิตวันละเท่ากันทุกวัน ใช้สต๊อกรับมือดีมานด์ที่ขึ้นลง</td><td>ดีมานด์ต่ำ → ต้องเก็บสต๊อกเยอะ · ดีมานด์สูงเกินสต๊อก → เสียยอดขาย</td></tr>
+    <tr><td><b>Chase Production</b></td><td>ปรับกำลังผลิตตามดีมานด์ ด้วยการทำ OT จ้างคนเพิ่ม หรือลดคน</td><td>ต้นทุนจ้างและเลิกจ้าง · เครื่องจักรว่างตอนดีมานด์ต่ำ · คนใหม่ยังไม่ชำนาญ</td></tr>
+    <tr><td><b>อื่น ๆ</b></td><td>Outsourcing จ้างคนนอกผลิต · ใช้พนักงานพาร์ตไทม์</td><td>คุมคุณภาพยากขึ้น</td></tr>
+  </table></div>
+
+  <h3 class="h">5. ตาราง MPS: ตัวอย่างจริงจากสไลด์ พร้อมวิธีกรอก</h3>
+  <p>โจทย์: สินค้า A · <b>Lot Size = 50</b> · <b>DTF = 3</b> · <b>PTF = 8</b> · <b>Lead Time = 2 งวด</b> · สต๊อกตั้งต้น (PAB) = 50</p>
+  <div class="tw"><table class="c num">
+    <tr><th>Period</th><th>0</th><th>1</th><th>2</th><th>3 │DTF</th><th>4</th><th>5</th><th>6</th><th>7</th><th>8 │PTF</th><th>9</th></tr>
+    <tr><td>Forecast</td><td></td><td>20</td><td>22</td><td>21</td><td>25</td><td>24</td><td>23</td><td>21</td><td>21</td><td>25</td></tr>
+    <tr><td>Customer Order</td><td></td><td>19</td><td>17</td><td>15</td><td>11</td><td>9</td><td>5</td><td>2</td><td>1</td><td>0</td></tr>
+    <tr><td>Projected Available Balance</td><td>50</td><td>31</td><td>14</td><td>49</td><td>24</td><td>0</td><td>27</td><td>6</td><td>35</td><td>10</td></tr>
+    <tr><td>MPS Receipt</td><td></td><td></td><td></td><td class="hl">50</td><td></td><td></td><td class="hl">50</td><td></td><td class="hl">50</td><td></td></tr>
+    <tr><td>MPS Issue</td><td></td><td class="ok">50</td><td></td><td></td><td class="ok">50</td><td></td><td class="ok">50</td><td></td><td></td><td></td></tr>
+  </table></div>
+  <div class="fx"><div class="nm">ความหมายของแต่ละแถว และสูตร</div>
+    <div class="tw"><table>
+      <tr><th>แถว</th><th>แปลว่า</th><th>เอามาจากไหน</th></tr>
+      <tr><td class="v">Forecast</td><td>ยอดพยากรณ์</td><td>โจทย์ให้มา (มาจากบทที่ 3)</td></tr>
+      <tr><td class="v">Customer Order</td><td>ออเดอร์จริงที่ลูกค้ายืนยันแล้ว</td><td>โจทย์ให้มา</td></tr>
+      <tr><td class="v">PAB</td><td>Projected Available Balance คือของที่คาดว่าจะเหลือตอนสิ้นงวด</td><td>คำนวณ</td></tr>
+      <tr><td class="v">MPS Receipt</td><td>ของที่ต้อง "รับเข้า" ในงวดนั้น</td><td>คำนวณ (เป็นจำนวนเท่าของ Lot Size)</td></tr>
+      <tr><td class="v">MPS Issue</td><td>งวดที่ต้อง "สั่งผลิต" (ปล่อยออเดอร์) ให้ของมาทันงวดรับเข้า</td><td>งวด Receipt − Lead Time</td></tr>
+    </table></div>
+    <div class="eq">Demand<sub>t</sub> = Customer Order (ถ้า t ≤ DTF) · Forecast (ถ้า t &gt; DTF)</div>
+    <div class="eq">PAB<sub>t</sub> = PAB<sub>t−1</sub> + Receipt<sub>t</sub> − Demand<sub>t</sub></div>
+    <div class="eq">งวด Issue = งวด Receipt − Lead Time</div>
+  </div>
+  <h4>วิธีกรอกทีละช่อง (ทำซ้ำทุกงวด จากซ้ายไปขวา)</h4>
+  <ol class="steps">
+    <li><b>เลือก Demand:</b> งวดที่ 1 ถึง DTF (งวด 1–3) ใช้ <b>Customer Order</b> · งวดที่เลย DTF (งวด 4 เป็นต้นไป) ใช้ <b>Forecast</b></li>
+    <li><b>คำนวณยอดชั่วคราว</b> = PAB งวดก่อน − Demand งวดนี้</li>
+    <li><b>ถ้ายอดชั่วคราวติดลบ</b> ให้ใส่ MPS Receipt = 1 Lot (50) ถ้าบวกแล้วยังติดลบ ให้เพิ่มเป็น 2 Lot, 3 Lot ไปเรื่อย ๆ · ถ้าไม่ติดลบก็ไม่ต้องรับของเข้า</li>
+    <li><b>คำนวณ PAB จริง</b> = PAB งวดก่อน + Receipt − Demand</li>
+    <li><b>ถอยหลังหา Issue:</b> ทุกงวดที่มี Receipt ให้ถอยไปตาม Lead Time (2 งวด) แล้วใส่ MPS Issue ที่งวดนั้น</li>
+  </ol>
+  <div class="tw"><table class="c num">
+    <tr><th>งวด</th><th>ใช้ Demand</th><th>ยอดชั่วคราว</th><th>ติดลบ?</th><th>Receipt</th><th>PAB</th><th>Issue ที่งวด</th></tr>
+    <tr><td>1</td><td>CO = 19</td><td>50 − 19 = 31</td><td>ไม่</td><td>–</td><td>31</td><td></td></tr>
+    <tr><td>2</td><td>CO = 17</td><td>31 − 17 = 14</td><td>ไม่</td><td>–</td><td>14</td><td></td></tr>
+    <tr><td>3</td><td>CO = 15</td><td>14 − 15 = −1</td><td class="hl">ติดลบ</td><td>50</td><td>14+50−15 = 49</td><td>3 − 2 = <b>1</b></td></tr>
+    <tr><td>4</td><td>F = 25</td><td>49 − 25 = 24</td><td>ไม่</td><td>–</td><td>24</td><td></td></tr>
+    <tr><td>5</td><td>F = 24</td><td>24 − 24 = 0</td><td>ไม่ (0 ไม่ถือว่าติดลบ)</td><td>–</td><td>0</td><td></td></tr>
+    <tr><td>6</td><td>F = 23</td><td>0 − 23 = −23</td><td class="hl">ติดลบ</td><td>50</td><td>0+50−23 = 27</td><td>6 − 2 = <b>4</b></td></tr>
+    <tr><td>7</td><td>F = 21</td><td>27 − 21 = 6</td><td>ไม่</td><td>–</td><td>6</td><td></td></tr>
+    <tr><td>8</td><td>F = 21</td><td>6 − 21 = −15</td><td class="hl">ติดลบ</td><td>50</td><td>6+50−21 = 35</td><td>8 − 2 = <b>6</b></td></tr>
+    <tr><td>9</td><td>F = 25</td><td>35 − 25 = 10</td><td>ไม่</td><td>–</td><td>10</td><td></td></tr>
+  </table></div>
+  <p><b>คำตอบ:</b> ต้องสั่งผลิตในงวด <span class="ans">1, 4 และ 6 ครั้งละ 50 หน่วย</span> (ตรงกับเฉลยในสไลด์)</p>
+  <div class="tip"><b>จุดที่พลาดบ่อย:</b> ① งวดใน DTF ต้องใช้ Customer Order แม้ Forecast จะมากกว่า ② Receipt กับ Issue อยู่คนละงวดกัน ห่างกันเท่ากับ Lead Time ③ ถ้า PAB = 0 พอดี ยังไม่ต้องสั่ง (ถ้าโจทย์มี Safety Stock เกณฑ์จะเปลี่ยนเป็น "ต่ำกว่า SS" แทน "ติดลบ")</div>
+
+  <h3 class="h">6. ตาราง MRP: แตก MPS ลงไปเป็นชิ้นส่วน</h3>
+  <p>ต่อจากโจทย์เดิม: สินค้า 1 ชิ้นต้องใช้ <b>วัสดุ B 1 ชิ้น</b> และ <b>วัสดุ C 2 ชิ้น</b> (ดูจาก BOM) · ใช้สินค้า K ในสไลด์ซึ่งมี MPS Issue ชุดเดียวกัน คือ 50 หน่วยในงวด 1, 4, 6</p>
+  <div class="fx"><div class="nm">แถวใน MRP และสูตร</div>
+    <div class="tw"><table>
+      <tr><th>แถว</th><th>แปลว่า</th><th>เอามาจากไหน</th></tr>
+      <tr><td class="v">Gross Requirement</td><td>ความต้องการรวมของชิ้นส่วนนี้</td><td>= MPS Issue ของสินค้าแม่ × จำนวนที่ใช้ต่อชิ้น (จาก BOM) <b>ในงวดเดียวกัน</b></td></tr>
+      <tr><td class="v">Scheduled Receipts</td><td>ของที่สั่งไปแล้วและกำลังจะมาถึง</td><td>โจทย์ให้มา</td></tr>
+      <tr><td class="v">PAB</td><td>ยอดคงเหลือที่คาดไว้</td><td>= PAB ก่อน + Scheduled Receipts + Planned Receipt − Gross</td></tr>
+      <tr><td class="v">Net Requirement</td><td>ของที่ยังขาด</td><td>= ขนาดที่ติดลบ (ถ้าไม่ติดลบ = 0)</td></tr>
+      <tr><td class="v">Planned Order Receipts</td><td>แผนรับของเข้า</td><td>ปัดขึ้นเป็นจำนวนเท่าของ Lot Size (Lot-for-Lot = เท่ากับ Net · Minimum Order = อย่างน้อยเท่าจำนวนขั้นต่ำ)</td></tr>
+      <tr><td class="v">Planned Order Releases</td><td>แผนปล่อยใบสั่ง</td><td>= Planned Receipt ที่ถอยหลังไปตาม Lead Time</td></tr>
+    </table></div>
+  </div>
+  <div class="ex"><div class="tag">วัสดุ B (ใช้ 1 ต่อ 1) · Lot Size 20 · Lead Time 2 · คงเหลือตั้งต้น 100</div>
+    <div class="tw"><table class="c num">
+      <tr><th>Period</th><th>0</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>7</th><th>8</th><th>9</th></tr>
+      <tr><td>Gross Requirement</td><td></td><td>50</td><td>0</td><td>0</td><td>50</td><td>0</td><td>50</td><td>0</td><td>0</td><td>0</td></tr>
+      <tr><td>Scheduled Receipts</td><td></td><td></td><td>20</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+      <tr><td>PAB</td><td>100</td><td>50</td><td>70</td><td>70</td><td>20</td><td>20</td><td>10</td><td>10</td><td>10</td><td>10</td></tr>
+      <tr><td>Net Requirement</td><td></td><td></td><td></td><td></td><td></td><td></td><td class="hl">30</td><td></td><td></td><td></td></tr>
+      <tr><td>Planned Order Receipts</td><td></td><td></td><td></td><td></td><td></td><td></td><td class="hl">40</td><td></td><td></td><td></td></tr>
+      <tr><td>Planned Order Releases</td><td></td><td></td><td></td><td></td><td class="ok">40</td><td></td><td></td><td></td><td></td><td></td></tr>
+    </table></div>
+    <div class="line">งวด 6: 20 − 50 = −30 → ขาด 30 · Lot 20 ต้องใช้ 2 ล็อต = 40 → PAB = 20 + 40 − 50 = 10</div>
+    <div class="line">ปล่อยใบสั่งที่งวด 6 − 2 = <span class="ans">งวด 4 จำนวน 40</span></div>
+  </div>
+  <div class="ex"><div class="tag">วัสดุ C (ใช้ 2 ต่อ 1) · Lot Size 150 · Lead Time 1 · คงเหลือตั้งต้น 100</div>
+    <div class="tw"><table class="c num">
+      <tr><th>Period</th><th>0</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>7</th><th>8</th><th>9</th></tr>
+      <tr><td>Gross Requirement (50×2)</td><td></td><td>100</td><td>0</td><td>0</td><td>100</td><td>0</td><td>100</td><td>0</td><td>0</td><td>0</td></tr>
+      <tr><td>PAB</td><td>100</td><td>0</td><td>0</td><td>0</td><td>50</td><td>50</td><td>100</td><td>100</td><td>100</td><td>100</td></tr>
+      <tr><td>Net Requirement</td><td></td><td></td><td></td><td></td><td class="hl">100</td><td></td><td class="hl">50</td><td></td><td></td><td></td></tr>
+      <tr><td>Planned Order Receipts</td><td></td><td></td><td></td><td></td><td class="hl">150</td><td></td><td class="hl">150</td><td></td><td></td><td></td></tr>
+      <tr><td>Planned Order Releases</td><td></td><td></td><td></td><td class="ok">150</td><td></td><td class="ok">150</td><td></td><td></td><td></td><td></td></tr>
+    </table></div>
+    <div class="line">งวด 4: 0 − 100 = −100 → รับ 150 → PAB 50 · ปล่อยใบสั่งงวด 4 − 1 = <span class="ans">งวด 3</span></div>
+    <div class="line">งวด 6: 50 − 100 = −50 → รับ 150 → PAB 100 · ปล่อยใบสั่งงวด 6 − 1 = <span class="ans">งวด 5</span></div>
+  </div>
+
+  <div class="case"><div class="tag">เคส · Uniqlo "Ariake Project" (เปลี่ยนจาก Push เป็น Pull)</div>
+    <p>เดิมผลิตล่วงหน้า 6–9 เดือนตามพยากรณ์ (Push) · เปลี่ยนมา <b>ติด RFID ทุกชิ้น</b> ให้เห็นสต๊อกแบบ real-time → <b>AI Demand Sensing</b> เชื่อมกับ APS/ERP สั่งเติมของอัตโนมัติ → <b>แบ่งการผลิตเป็น 2 ช่วง</b>: ผลิตรอบแรก 50–60% ของพยากรณ์ ส่วนที่เหลือเก็บเป็นผ้าดิบไว้ รอสัญญาณยอดขายจริงของสีและไซซ์ก่อนค่อยตัด (Reactive Production) · ผล: เติมของจากหลายเดือนเหลือไม่กี่วันถึง 2 สัปดาห์ · ขายได้ราคาเต็มมากขึ้น · นับสต๊อกเร็วขึ้น 10 เท่า · <b>บทเรียน:</b> "ข้อมูลแทนสต๊อกได้" ความคล่องตัวสำคัญกว่าการพยากรณ์ให้แม่นเป๊ะ</p>
+  </div>
+  <div class="case"><div class="tag">เคส · NatureBlend Beverage (ใช้ทุกเครื่องมือในบทนี้พร้อมกัน)</div>
+    <p>ผลไม้ออกตามฤดู (เน่าเสียง่าย) แต่ดีมานด์พุ่งช่วงปลายปี → ใช้ <b>Aggregate Plan</b> ผลิตหัวเชื้อแช่แข็งไว้กลางปี · ห้ามเปลี่ยนแผนในโซน <b>DTF</b> เพื่อกันวัตถุดิบเสีย · ใช้ <b>MRP + BOM</b> กับ <b>Planning Horizon</b> ที่ครอบคลุมขวดแก้วนำเข้า (Lead Time 8 สัปดาห์) ฝ่ายจัดซื้อจึงสั่งของได้ทัน</p>
+  </div>
+
+  <div class="calc noprint"><div class="ct">ฝึกเช็คคำตอบ · MPS อัตโนมัติ <span>(กรอกตัวเลขคั่นด้วยจุลภาค)</span></div>
+    <div class="fields">
+      <div><label for="mps-f">Forecast</label><input id="mps-f" type="text" value="20,22,21,25,24,23,21,21,25"></div>
+      <div><label for="mps-c">Customer Order</label><input id="mps-c" type="text" value="19,17,15,11,9,5,2,1,0"></div>
+      <div><label for="mps-oh">PAB ตั้งต้น</label><input id="mps-oh" type="number" value="50"></div>
+      <div><label for="mps-lot">Lot Size</label><input id="mps-lot" type="number" value="50"></div>
+      <div><label for="mps-dtf">DTF</label><input id="mps-dtf" type="number" value="3"></div>
+      <div><label for="mps-lt">Lead Time</label><input id="mps-lt" type="number" value="2"></div>
+    </div>
+    <div class="out" id="mps-out"></div>
+  </div>
+
+  <h3 class="h">ทดสอบความเข้าใจ</h3>
+  <details class="q"><summary>ถ้าวัสดุ B เปลี่ยนเป็น Lot-for-Lot จะปล่อยใบสั่งเท่าไหร่ งวดไหน</summary><div class="a">งวด 6 ขาด 30 → Lot-for-Lot รับเข้า 30 พอดี (PAB = 0) → ปล่อยใบสั่ง <b>30 ชิ้นที่งวด 4</b></div></details>
+  <details class="q"><summary>ทำไมงวด 3 ในตาราง MPS ใช้ 15 (Customer Order) แทน 21 (Forecast)</summary><div class="a">เพราะงวด 3 ยังอยู่ในโซน DTF ซึ่งเป็นโซนที่จองทรัพยากรให้ออเดอร์จริงแล้ว จึงวางแผนตามออเดอร์จริง</div></details>
+</section>
+
+<!-- ===================== M5 ===================== -->
+<section class="mod" id="m5" hidden>
+  <div class="mh"><span class="no">M5</span><h2>การบริหารสินค้าคงคลัง (Inventory Management)</h2></div>
+  <div class="sub">สต๊อกมากไปก็ไม่ดี น้อยไปก็ไม่พอ · ต้นทุน 3 ตัว · วิธีสั่ง 3 แบบ · EOQ · ส่วนลดตามปริมาณ · จุดสั่งซื้อ · Safety Stock · ABC</div>
+
+  <div class="tldr"><div class="k">สรุป 30 วินาที</div>
+    <b>สต๊อกมากไป</b> = เงินจม ค่าเก็บแพง ของเสื่อม · <b>สต๊อกน้อยไป</b> = ของขาด เสียยอดขาย · ต้นทุนมี 3 ตัว คือ <b>Ordering</b> (ค่าสั่งต่อครั้ง), <b>Carrying</b> (ค่าเก็บ) และ <b>Shortage</b> (ค่าเสียหายตอนของขาด) · คำถามหลักมี 2 ข้อ: <b>สั่งครั้งละเท่าไหร่?</b> ตอบด้วย EOQ = √(2DO ÷ Ci) · <b>สั่งตอนไหน?</b> ตอบด้วย ROP = d×L + SS</div>
+  <div class="link">เชื่อมกับบทอื่น: ค่า D มาจากพยากรณ์ในบทที่ 3 · Lot Size และ Lead Time ใช้ในตาราง MPS/MRP บทที่ 4 · บทที่ 10 (Lean) มองว่าสต๊อกส่วนเกินเป็นความสูญเปล่า (I ใน TIMWOODS)</div>
+
+  <h3 class="h">1. สต๊อกคืออะไร มีกี่แบบ มีไว้ทำไม</h3>
+  <div class="g2">
+    <div class="card"><b class="t">5 ประเภท</b>วัตถุดิบ (Raw Materials) · งานระหว่างผลิต (WIP) · สินค้าสำเร็จรูป (Finished Goods) · สินค้าระหว่างกระจาย (Distribution) · อื่น ๆ เช่น อะไหล่และวัสดุซ่อมบำรุง (MRO)</div>
+    <div class="card"><b class="t">ประโยชน์ 4 ข้อ</b>รับมือดีมานด์ที่ขึ้นลง · รักษาอัตราการผลิตให้คงที่ · ได้ส่วนลดจากการซื้อเยอะ · กันของขาดเมื่อซัพพลายเออร์ส่งช้าหรือออเดอร์พุ่ง</div>
+  </div>
+  <div class="tw"><table>
+    <tr><th>ต้นทุน</th><th>คืออะไร</th><th>ตัวอย่างจากสไลด์</th></tr>
+    <tr><td><b>Ordering Cost</b> (O)</td><td>ค่าใช้จ่ายที่เกิด <b>ทุกครั้งที่สั่ง 1 ครั้ง</b></td><td>ค่าจ้างพนักงานจัดซื้อ ค่าสื่อสาร ค่าขนส่ง ค่าตรวจรับและเอกสาร ค่าศุลกากร</td></tr>
+    <tr><td><b>Carrying Cost</b> (C×i หรือ H)</td><td>ค่าเก็บรักษาต่อชิ้นต่อปี</td><td>ค่าคลังและดูแล ต้นทุนเงินทุนที่จมอยู่ ค่าประกัน ของเสื่อมหรือสูญหาย</td></tr>
+    <tr><td><b>Shortage Cost</b></td><td>ความเสียหายเมื่อของขาด</td><td>เสียยอดขาย ไลน์ผลิตหยุด ค่าปรับ</td></tr>
+  </table></div>
+
+  <h3 class="h">2. วิธีสั่ง 3 แบบ</h3>
+  <div class="g3">
+    <div class="card"><b class="t">Lot-for-Lot (LFL)</b>สั่งเท่าที่ต้องใช้พอดี แต่ละครั้งไม่เท่ากัน เหมาะกับของแพงหรือเน่าเสียง่าย และระบบ Lean/JIT</div>
+    <div class="card"><b class="t">Fixed Order Quantity (FOQ)</b>สั่งจำนวนเท่าเดิม ในรอบเวลาเท่าเดิม ง่ายเพราะตกลงครั้งเดียว แต่มักทำให้ของเกินหรือขาด เพราะไม่ได้ขยับตามการใช้จริง</div>
+    <div class="card"><b class="t">Economic Order Quantity (EOQ)</b>คำนวณจำนวนที่ทำให้ต้นทุนสั่งซื้อรวมกับต้นทุนเก็บต่ำที่สุด ต้องใช้คนที่คำนวณเป็น</div>
+  </div>
+
+  <h3 class="h">3. EOQ: สั่งครั้งละเท่าไหร่ถึงถูกที่สุด</h3>
+  <p><b>หลักคิด:</b> ถ้าสั่งครั้งละเยอะ ก็สั่งไม่กี่ครั้ง ค่าสั่งต่อปีจึงต่ำ แต่ต้องเก็บของเยอะ ค่าเก็บต่อปีจึงสูง · ถ้าสั่งครั้งละน้อย ก็กลับกัน · ต้นทุนสองก้อนนี้วิ่งสวนกัน (Cost Trade-off) <b>จุดที่ต้นทุนรวมต่ำสุดคือจุดที่ "ค่าสั่งต่อปี = ค่าเก็บต่อปี" พอดี</b></p>
+  <div class="fx"><div class="nm">ต้นทุนต่อปี และ EOQ</div>
+    <div class="eq">Annual Ordering Cost = (D ÷ Q) × O</div>
+    <div class="eq">Annual Carrying Cost = (Q ÷ 2) × C × i</div>
+    <div class="eq">Total Cost (TC) = (D ÷ Q)×O + (Q ÷ 2)×C×i</div>
+    <div class="eq">EOQ = Q* = √( 2DO ÷ Ci )</div>
+    <div class="tw"><table>
+      <tr><th>ตัวแปร</th><th>แปลว่า (หน่วย)</th><th>เอามาจากไหน</th></tr>
+      <tr><td class="v">D</td><td>Demand ความต้องการใช้ต่อปี (ชิ้น/ปี)</td><td>โจทย์ หรือยอดพยากรณ์ (บทที่ 3) · ถ้าโจทย์ให้เป็นรายเดือน ต้อง ×12 ก่อน</td></tr>
+      <tr><td class="v">O</td><td>Ordering cost ค่าสั่งต่อครั้ง (บาท/ครั้ง)</td><td>โจทย์ (ไม่ใช่ราคาสินค้า)</td></tr>
+      <tr><td class="v">C</td><td>Cost ราคาสินค้าต่อชิ้น (บาท/ชิ้น)</td><td>ราคาซื้อจากซัพพลายเออร์</td></tr>
+      <tr><td class="v">i</td><td>อัตราค่าเก็บต่อปี เป็น % ของราคาสินค้า</td><td>โจทย์ · ต้องแปลงเป็นทศนิยมก่อน เช่น 25% = 0.25</td></tr>
+      <tr><td class="v">C×i (หรือ H)</td><td>ค่าเก็บต่อชิ้นต่อปี (บาท/ชิ้น/ปี)</td><td>ถ้าโจทย์ให้ "ค่าเก็บ 180 บาท/ชิ้น/ปี" มาเลย ให้ใช้ H = 180 แทน C×i ได้ทันที</td></tr>
+      <tr><td class="v">Q ÷ 2</td><td>สต๊อกเฉลี่ย (ของลดจาก Q ลงไปถึง 0 อย่างสม่ำเสมอ ค่าเฉลี่ยจึงเป็นครึ่งหนึ่ง)</td><td>—</td></tr>
+      <tr><td class="v">D ÷ Q</td><td>จำนวนครั้งที่สั่งต่อปี</td><td>—</td></tr>
+    </table></div>
+    <div class="keys"><b>กดเครื่องคิดเลข:</b> 2 × D × O = ตัวบน → C × i = ตัวล่าง → ตัวบน ÷ ตัวล่าง → กด √ · <b>เช็คคำตอบ:</b> ที่ Q* ค่าสั่งต่อปีต้องเท่ากับค่าเก็บต่อปี · <b>คำถามที่มักตามมา:</b> สั่งกี่ครั้งต่อปี = D ÷ Q* · สั่งทุกกี่วัน = 365 ÷ (D ÷ Q*)</div>
+  </div>
+  <div class="ex"><div class="tag">ตัวอย่างที่ 1 จากสไลด์ · D = 8,000 · O = $25 · C = $10 · i = 25%</div>
+    <div class="line">Q* = √(2 × 8,000 × 25 ÷ (10 × 0.25)) = √(400,000 ÷ 2.5) = √160,000 = <span class="ans">400 ชิ้น</span></div>
+    <div class="line">ค่าสั่ง = (8,000 ÷ 400) × 25 = 500 · ค่าเก็บ = (400 ÷ 2) × 10 × 0.25 = 500 · TC = <span class="ans">$1,000</span></div>
+    <div class="tw"><table class="c num">
+      <tr><th>Q</th><th>200</th><th>300</th><th class="hl">400</th><th>500</th><th>600</th><th>800</th><th>1,000</th></tr>
+      <tr><td>ค่าสั่ง DO/Q</td><td>1,000</td><td>667</td><td class="hl">500</td><td>400</td><td>333</td><td>250</td><td>200</td></tr>
+      <tr><td>ค่าเก็บ (Q/2)Ci</td><td>250</td><td>375</td><td class="hl">500</td><td>625</td><td>750</td><td>1,000</td><td>1,250</td></tr>
+      <tr><td>รวม</td><td>1,250</td><td>1,042</td><td class="ok">1,000</td><td>1,025</td><td>1,083</td><td>1,250</td><td>1,450</td></tr>
+    </table></div>
+    <p class="small muted">ตารางนี้คือ "ขั้นที่ 4 ประเมินทางเลือก" ในสไลด์ จะเห็นว่า Q = 400 ให้ต้นทุนรวมต่ำสุด และเป็นจุดที่ค่าสั่ง = ค่าเก็บพอดี</p>
+  </div>
+  <div class="ex"><div class="tag">ตัวอย่างที่ 2 จากสไลด์ · D = 10,000 · C = 25 บาท · O = 500 บาท · i = 10%</div>
+    <div class="line">1) Q* = √(2 × 10,000 × 500 ÷ (25 × 0.10)) = √(10,000,000 ÷ 2.5) = √4,000,000 = <span class="ans">2,000 หน่วย</span></div>
+    <div class="line">2) สั่งกี่ครั้งต่อปี = 10,000 ÷ 2,000 = <span class="ans">5 ครั้ง</span> (ทุก 365 ÷ 5 = 73 วัน)</div>
+    <div class="line">3) ค่าสั่งต่อปี = 5 × 500 = <span class="ans">2,500 บาท</span></div>
+    <div class="line">4) ค่าเก็บต่อปี = (2,000 ÷ 2) × 25 × 0.1 = <span class="ans">2,500 บาท</span></div>
+    <div class="line">5) ต้นทุนรวม = 2,500 + 2,500 = <span class="ans">5,000 บาท/ปี</span></div>
+  </div>
+  <div class="calc noprint"><div class="ct">ฝึกเช็คคำตอบ · EOQ</div>
+    <div class="fields">
+      <div><label for="eoq-d">D ต่อปี</label><input id="eoq-d" type="number" value="10000"></div>
+      <div><label for="eoq-o">O ต่อครั้ง</label><input id="eoq-o" type="number" value="500"></div>
+      <div><label for="eoq-c">C ต่อชิ้น</label><input id="eoq-c" type="number" value="25"></div>
+      <div><label for="eoq-i">i (%)</label><input id="eoq-i" type="number" value="10"></div>
+    </div>
+    <div class="out" id="eoq-out"></div>
+  </div>
+
+  <h3 class="h">4. Quantity Discount Model: ซื้อเยอะได้ราคาถูกลง</h3>
+  <p>ถ้ามีส่วนลดตามปริมาณ EOQ อาจไม่ใช่คำตอบที่ถูกที่สุดอีกต่อไป จึงต้อง <b>บวกค่าสินค้าทั้งปี (C × D) เข้าไปในต้นทุนรวมด้วย</b></p>
+  <div class="fx"><div class="nm">ต้นทุนรวมเมื่อมีส่วนลด</div>
+    <div class="eq">TC = (D ÷ Q)×O + (Q ÷ 2)×C×i + C×D</div>
+    <div class="keys"><b>ขั้นตอน:</b> ① คำนวณ EOQ ด้วยราคาของแต่ละช่วงส่วนลด ② ถ้า EOQ ต่ำกว่าจำนวนขั้นต่ำของช่วงนั้น ให้ใช้ "จำนวนขั้นต่ำ" แทน (ถ้า EOQ เกินเพดานของช่วง ให้ใช้เพดาน) ③ คำนวณ TC ของทุกตัวเลือก ④ เลือกตัวที่ TC ต่ำสุด</div>
+  </div>
+  <div class="ex"><div class="tag">ตัวอย่างจากสไลด์ · ร้านตุ๊กตา D = 2,300 · O = $50 · i = 20%</div>
+    <div class="tw"><table class="c num">
+      <tr><th>ช่วง</th><th>ราคา C</th><th>EOQ = √(2×2,300×50 ÷ (C×0.2))</th><th>Q ที่ใช้จริง</th><th>ค่าสั่ง</th><th>ค่าเก็บ</th><th>ค่าสินค้า C×D</th><th>TC</th></tr>
+      <tr><td>1–499</td><td>5.0</td><td>479.58</td><td>479.58</td><td>239.79</td><td>239.79</td><td>11,500</td><td>11,979.58</td></tr>
+      <tr><td>500–999</td><td>4.5</td><td>505.53</td><td>505.53</td><td>227.49</td><td>227.49</td><td>10,350</td><td>10,804.97</td></tr>
+      <tr><td>1,000+</td><td>4.0</td><td>536.19 (ต่ำกว่า 1,000)</td><td class="hl">1,000</td><td>115.00</td><td>400.00</td><td>9,200</td><td class="ok">9,715.00</td></tr>
+    </table></div>
+    <div class="line">ช่วง 1,000+: ค่าสั่ง = (2,300 ÷ 1,000) × 50 = 115 · ค่าเก็บ = (1,000 ÷ 2) × 4 × 0.2 = 400</div>
+    <p><b>คำตอบ:</b> สั่งครั้งละ <span class="ans">1,000 ชิ้น</span> ต้นทุนรวมต่ำสุด $9,715 แม้ค่าเก็บจะสูงขึ้น แต่ค่าสินค้าที่ประหยัดได้มากกว่า</p>
+  </div>
+
+  <h3 class="h">5. Reorder Point (ROP): สั่งของตอนไหน</h3>
+  <div class="fx"><div class="nm">จุดสั่งซื้อใหม่</div>
+    <div class="eq">R = d × L</div>
+    <div class="eq">ถ้ามี Safety Stock: R = (d × L) + SS</div>
+    <div class="tw"><table>
+      <tr><th>ตัวแปร</th><th>แปลว่า</th><th>เอามาจากไหน</th></tr>
+      <tr><td class="v">R</td><td>Reorder Point ระดับสต๊อกที่ต้องกดสั่งทันที</td><td>คำตอบ</td></tr>
+      <tr><td class="v">d</td><td>อัตราการใช้ต่อวัน (ชิ้น/วัน)</td><td>โจทย์ หรือ D ÷ จำนวนวันทำงานต่อปี</td></tr>
+      <tr><td class="v">L</td><td>Lead Time จำนวนวันที่รอของหลังสั่ง</td><td>โจทย์ หรือประวัติการส่งของของซัพพลายเออร์</td></tr>
+      <tr><td class="v">SS</td><td>Safety Stock สต๊อกกันชน</td><td>โจทย์ มักให้มาเป็น "ของใช้ X วัน" ก็คือ d × X</td></tr>
+    </table></div>
+    <div class="keys"><b>หน่วยต้องตรงกัน:</b> d เป็นต่อวัน L ก็ต้องเป็นวัน ถ้า L ให้มาเป็นสัปดาห์ ต้องแปลงก่อน</div>
+  </div>
+  <div class="ex"><div class="tag">ตัวอย่างจากสไลด์ · โรงงานขนมจีน</div>
+    <p>ใช้แป้งวันละ 10 ถุง สั่งแล้วรอ 2 วัน</p>
+    <div class="line">R = 10 × 2 = <span class="ans">20 ถุง</span> (เหลือ 20 ถุงเมื่อไหร่ ต้องสั่งทันที)</div>
+    <div class="line">เผื่อ Safety Stock 1 วัน (10 ถุง): R = (10 × 2) + 10 = <span class="ans">30 ถุง</span></div>
+  </div>
+  <p><b>ปริมาณ Safety Stock</b> ตั้งตามความไม่แน่นอน เช่น ซัพพลายเออร์ส่งไม่ตรงเวลาบ่อยแค่ไหน ส่งช้ากี่วัน และดีมานด์เกินแผนแค่ไหน</p>
+
+  <h3 class="h">6. การตรวจนับ และการจัดกลุ่ม ABC</h3>
+  <div class="g2">
+    <div class="card"><b class="t">Physical Inventory Counting</b>ปิดบัญชีแล้วนับทั้งหมดพร้อมกัน (เช่น ทุกครึ่งปี) ห้ามเบิกจ่ายระหว่างนับ แม่นยำ แต่ต้องหยุดขายหรือหยุดผลิต</div>
+    <div class="card"><b class="t">Cycle Counting</b>นับทีละส่วนหมุนเวียนทุกวัน ไม่ต้องหยุดงาน แต่ยุ่งยากถ้าของกระจายอยู่หลายที่ · มี Two-Bin System และ Visual Control ช่วยให้เห็นระดับของด้วยตา</div>
+  </div>
+  <div class="fx"><div class="nm">ABC Analysis</div>
+    <div class="eq">มูลค่าการใช้ต่อปี = จำนวนที่ใช้ต่อปี × ราคาต่อหน่วย</div>
+    <div class="keys"><b>ขั้นตอนตามสไลด์:</b> ① ทำตารางจำนวนกับราคา ② คูณหามูลค่าต่อปี ③ เรียงจากมากไปน้อย ④ คิด % สะสม (Cumulative %) ⑤ แบ่งกลุ่ม · <b>เกณฑ์ที่นิยมใช้</b> (ถ้าโจทย์ไม่กำหนด): กลุ่ม A ≈ 70–80% ของมูลค่า แต่มีแค่ราว 10–20% ของรายการ ต้องคุมเข้มที่สุด · กลุ่ม B ≈ 15–25% · กลุ่ม C ≈ 5% ของมูลค่า แต่มีจำนวนรายการเยอะที่สุด คุมหลวม ๆ ได้</div>
+  </div>
+
+  <h3 class="h">ทดสอบความเข้าใจ</h3>
+  <details class="q"><summary>ถ้า D เพิ่มเป็น 4 เท่า EOQ จะเปลี่ยนเป็นกี่เท่า</summary><div class="a">EOQ แปรผันตาม √D จึงเพิ่มเป็น √4 = <b>2 เท่า</b> ไม่ใช่ 4 เท่า</div></details>
+  <details class="q"><summary>โจทย์ทบทวนในสไลด์: D = 300, O = 2,200 บาท, ค่าเก็บ H = 180 บาท/ชิ้น/ปี จงหา EOQ</summary><div class="a">Q* = √(2×300×2,200 ÷ 180) = √7,333.33 = <b>85.6 ชิ้น</b> (โจทย์ให้ H มาโดยตรง จึงไม่ต้องคูณ C×i) · ถ้ามีส่วนลด 1,400 / 1,100 / 900 บาท ให้คำนวณ TC ทุกช่วง จะได้สั่ง 90 ชิ้นที่ราคา 900 ถูกที่สุด (TC ≈ 285,433)</div></details>
+</section>
+
+<!-- ===================== M6 ===================== -->
+<section class="mod" id="m6" hidden>
+  <div class="mh"><span class="no">M6</span><h2>Work Study: ศึกษาวิธีการทำงาน (Method Study) และศึกษาเวลา (Time Study)</h2></div>
+  <div class="sub">ECRS · ยศาสตร์ · Normal Time · Allowance · Standard Time · เป้าผลผลิตต่อวัน</div>
+
+  <div class="tldr"><div class="k">สรุป 30 วินาที</div>
+    ขั้นแรกหา "วิธีทำงานที่ดีที่สุด" ด้วย Method Study (ใช้หลัก <b>ECRS</b>: ตัดทิ้ง, รวม, สลับลำดับ, ทำให้ง่าย) · จากนั้นหา "เวลาที่ควรใช้" ด้วย Time Study โดยจับเวลาจริง → ปรับด้วยจังหวะการทำงาน (Rating) ได้เป็น <b>Normal Time</b> → บวกเวลาเผื่อ ได้เป็น <b>Standard Time = ΣNT ÷ (1 − allowance)</b> → เป้าต่อวัน = เวลาทำงาน ÷ ST</div>
+  <div class="link">เชื่อมกับบทอื่น: Standard Time ของแต่ละงานย่อยคือค่า t ที่บทที่ 7 เอาไปรวมเป็น Σt เพื่อจัดสายการผลิต · ECRS เป็นแนวคิดเดียวกับการตัดความสูญเปล่าในบทที่ 10</div>
+
+  <h3 class="h">1. Method Study 8 ขั้น</h3>
+  <ol class="steps">
+    <li><b>เลือกงานที่มีปัญหา</b> เช่น เป็นคอขวด ของเสียเยอะ OT สูง พนักงานเครียดหรือลาออกบ่อย ท่าทางไม่เหมาะ หรือมีอุบัติเหตุ</li>
+    <li><b>สังเกตและบันทึก</b> ใช้ 7 QC Tools จากบทที่ 2 ช่วย</li>
+    <li><b>วิเคราะห์</b> วิธีการและเครื่องมือที่ใช้อยู่ตอนนี้</li>
+    <li><b>ออกแบบใหม่ด้วย ECRS</b> (ดูตารางด้านล่าง)</li>
+    <li><b>วัดผล</b> เทียบก่อนกับหลังปรับปรุง</li>
+    <li><b>กำหนดมาตรฐานใหม่</b> เช่น เวลามาตรฐาน และเป้าผลผลิต</li>
+    <li><b>ขยายผล</b> ให้ทุกคนที่ทำงานนี้ใช้วิธีเดียวกัน</li>
+    <li><b>ติดตามต่อเนื่อง</b> อบรมซ้ำเมื่อมีคนใหม่หรือเทคโนโลยีเปลี่ยน</li>
+  </ol>
+  <div class="tw"><table>
+    <tr><th>ECRS</th><th>ทำอะไร</th><th>ตัวอย่างในสไลด์</th></tr>
+    <tr><td><b>E</b>liminate</td><td>ตัดขั้นตอนที่ไม่เพิ่มมูลค่า</td><td>เลิกตรวจคุณภาพซ้ำ 3 รอบที่ไม่จำเป็น</td></tr>
+    <tr><td><b>C</b>ombine</td><td>รวมขั้นตอนเข้าด้วยกัน</td><td>รวมจุดรับอ้อยหลายจุดเป็นจุดเดียว เพื่อใช้รถบรรทุกคันใหญ่</td></tr>
+    <tr><td><b>R</b>earrange</td><td>สลับลำดับขั้นตอน</td><td>ถอดประตูรถออกก่อนประกอบภายใน ทำให้เข้าถึงง่ายขึ้น</td></tr>
+    <tr><td><b>S</b>implify</td><td>ทำให้ง่ายขึ้น</td><td>ใช้ jig หรือ fixture ช่วยลดความล้าของร่างกายและสายตา</td></tr>
+  </table></div>
+  <p><b>หลักยศาสตร์ (Ergonomics):</b> ท่าทางเป็นธรรมชาติและระยะเอื้อมพอดี · แสงและอากาศเพียงพอ · วางเครื่องมือในจุดที่หยิบง่าย · พื้นที่ทำงานพอ · มีตัวช่วยมองสำหรับงานละเอียด</p>
+
+  <h3 class="h">2. Time Study 7 ขั้น</h3>
+  <ol class="steps">
+    <li>เลือกงานที่จะศึกษา (ปรับวิธีทำงานและฝึกคนให้ชำนาญก่อน · อย่าเลือกคนที่เพิ่งเริ่มงาน หรือคนที่เก่งเป็นพิเศษ มาเป็นตัวแทน)</li>
+    <li>แบ่งงานเป็นงานย่อยที่มีจุดเริ่มและจุดจบชัดเจน</li>
+    <li>กรอกข้อมูลในแบบฟอร์ม (แผนก, สินค้า, ขั้นตอน, พนักงาน, วันที่, หมายเลขนาฬิกา, เวลาเริ่ม-จบ)</li>
+    <li>จับเวลาหลายรอบโดยรบกวนงานให้น้อยที่สุด และให้ผู้ประเมินที่มีประสบการณ์ให้คะแนน <b>Rating Factor</b></li>
+    <li>คำนวณ <b>Normal Time</b></li>
+    <li>กำหนด <b>Allowance</b> (เวลาเผื่อ)</li>
+    <li>คำนวณ <b>Standard Time</b> และเป้าผลผลิต</li>
+  </ol>
+  <p class="small muted">อุปกรณ์ที่ใช้: นาฬิกาจับเวลา แบบฟอร์มบันทึกเวลา กล้องวิดีโอ แผ่นกระดานรองเขียน</p>
+
+  <div class="fx"><div class="nm">สูตร Time Study</div>
+    <div class="eq">NT<sub>i</sub> = T̄<sub>i</sub> × RF<sub>i</sub> × f<sub>i</sub></div>
+    <div class="eq">ST = ΣNT ÷ (1 − A)</div>
+    <div class="eq">Output per day = Available time ÷ ST</div>
+    <div class="tw"><table>
+      <tr><th>ตัวแปร</th><th>แปลว่า</th><th>เอามาจากไหน</th></tr>
+      <tr><td class="v">T̄<sub>i</sub></td><td>เวลาเฉลี่ยที่จับได้ของงานย่อย i</td><td>จับเวลาหลายรอบ บวกกันแล้วหารจำนวนรอบ</td></tr>
+      <tr><td class="v">RF<sub>i</sub></td><td>Rating Factor ค่าประสิทธิภาพการทำงาน เช่น 0.80 แปลว่าพนักงานทำช้ากว่าคนปกติ 20% และ 1.10 แปลว่าเร็วกว่าปกติ 10%</td><td>ผู้ประเมินที่ผ่านการฝึกให้คะแนนด้วยสายตา ไม่มีสูตรคำนวณ · ในโจทย์จะให้มา</td></tr>
+      <tr><td class="v">f<sub>i</sub></td><td>ความถี่ ถ้างานย่อยนั้นทำ 1 ครั้งต่อ 5 ชิ้น f = 1/5</td><td>โจทย์ (ในแบบฟอร์มเป็นคอลัมน์ "ความถี่" เช่น 1/1 หรือ 1/5)</td></tr>
+      <tr><td class="v">NT</td><td>Normal Time เวลาของคนทำงานปกติ ยังไม่รวมเวลาพัก</td><td>คำนวณ</td></tr>
+      <tr><td class="v">A</td><td>Allowance เวลาเผื่อรวม = เผื่อส่วนตัว + เผื่อความล้า (พื้นฐาน + ผันแปร) + เผื่อความล่าช้า</td><td>โจทย์ให้เป็น % ต้องแปลงเป็นทศนิยม (15% = 0.15)</td></tr>
+      <tr><td class="v">ST</td><td>Standard Time เวลามาตรฐานต่อ 1 ชิ้น</td><td>คำตอบ</td></tr>
+    </table></div>
+    <div class="keys"><b>ระวัง:</b> สูตรของวิชานี้คือ <b>หาร (1 − A)</b> ไม่ใช่คูณ (1 + A) ถ้ามี A = 15% ให้หาร 0.85 ถ้าคูณ 1.15 จะได้ค่าต่ำกว่าเล็กน้อย</div>
+  </div>
+  <div class="ex"><div class="tag">ตัวอย่างจากสไลด์ · งานเย็บปกเสื้อเด็ก (A = 15%, ทำงานวันละ 480 นาที)</div>
+    <div class="tw"><table class="c num">
+      <tr><th>งานย่อย</th><th>T̄ (นาที)</th><th>RF</th><th>ความถี่</th><th>NT = T̄ × RF × f</th></tr>
+      <tr><td>A ติดผ้ากาวแข็ง</td><td>0.466</td><td>0.80</td><td>1/1</td><td>0.373</td></tr>
+      <tr><td>B เย็บติดปก</td><td>0.251</td><td>1.00</td><td>1/1</td><td>0.251</td></tr>
+      <tr><td>C ตัดด้าย ตรวจ</td><td>0.100</td><td>0.85</td><td>1/1</td><td>0.085</td></tr>
+      <tr><td>D มัดรวม</td><td>0.945</td><td>0.90</td><td>1/5</td><td>(0.945×0.90)÷5 = 0.170</td></tr>
+      <tr><td colspan="4">ΣNT</td><td class="hl">0.879</td></tr>
+    </table></div>
+    <div class="line">ST = 0.879 ÷ (1 − 0.15) = 0.879 ÷ 0.85 = <span class="ans">1.034 นาที/ชิ้น</span></div>
+    <div class="line">เป้าต่อวัน = 480 ÷ 1.034 = 464.2 → <span class="ans">464 ชิ้น/วัน</span></div>
+  </div>
+  <div class="calc noprint"><div class="ct">ฝึกเช็คคำตอบ · Standard Time</div>
+    <div class="fields">
+      <div><label for="ts-nt">ΣNT (นาที)</label><input id="ts-nt" type="number" value="0.879" step="0.001"></div>
+      <div><label for="ts-a">Allowance (%)</label><input id="ts-a" type="number" value="15"></div>
+      <div><label for="ts-t">เวลาทำงานต่อวัน (นาที)</label><input id="ts-t" type="number" value="480"></div>
+    </div>
+    <div class="out" id="ts-out"></div>
+  </div>
+
+  <h3 class="h">ทดสอบความเข้าใจ</h3>
+  <details class="q"><summary>จับเวลาเฉลี่ยได้ 2.0 นาที RF = 110% ความถี่ 1/1 Allowance 20% จงหา ST</summary><div class="a">NT = 2.0 × 1.10 = 2.2 → ST = 2.2 ÷ 0.8 = <b>2.75 นาที/ชิ้น</b></div></details>
+</section>
+
+<!-- ===================== M7 ===================== -->
+<section class="mod" id="m7" hidden>
+  <div class="mh"><span class="no">M7</span><h2>Line Balancing: จัดสมดุลสายการผลิต</h2></div>
+  <div class="sub">Cycle Time · Takt Time · Cd · จำนวนสถานี N · Efficiency · Balance Delay · Idle Time</div>
+
+  <div class="tldr"><div class="k">สรุป 30 วินาที</div>
+    สายการผลิตเดินได้เร็วเท่ากับ <b>สถานีที่ช้าที่สุด (คอขวด)</b> เท่านั้น เป้าหมายคือแบ่งงานให้ทุกสถานีใช้เวลาใกล้กันที่สุด · ① <b>Cd = เวลาที่มี ÷ จำนวนที่ต้องผลิต</b> ② <b>N = Σt ÷ Cd</b> (ปัดขึ้นเสมอ) ③ จัดงานเข้าสถานีตามลำดับก่อนหลัง โดยห้ามเกิน Cd ④ <b>E = Σt ÷ (N × Cd)</b> ⑤ Balance Delay = 1 − E</div>
+  <div class="link">เชื่อมกับบทอื่น: ค่า t แต่ละงานมาจาก Standard Time ในบทที่ 6 · Cd ก็คือ <b>Takt Time</b> ในบทที่ 10</div>
+
+  <h3 class="h">1. ศัพท์ที่ต้องแยกให้ออก</h3>
+  <div class="g2">
+    <div class="card"><b class="t">Cycle Time (เวลาที่ทำได้จริง)</b>เวลาเฉลี่ยในการผลิต 1 หน่วย กำหนดโดยสถานีที่ช้าที่สุด</div>
+    <div class="card"><b class="t">Takt Time (จังหวะที่ลูกค้าต้องการ)</b>= เวลาผลิตที่มี ÷ จำนวนที่ลูกค้าต้องการ · ถ้า Cycle Time &gt; Takt Time แปลว่าผลิตไม่ทันดีมานด์</div>
+  </div>
+
+  <h3 class="h">2. ขั้นตอนและสูตร</h3>
+  <div class="fx"><div class="nm">สูตร Line Balancing</div>
+    <div class="eq">C<sub>d</sub> = Available production time ÷ Required output</div>
+    <div class="eq">N<sub>min</sub> = Σt ÷ C<sub>d</sub>   (ปัดขึ้นเป็นจำนวนเต็มเสมอ)</div>
+    <div class="eq">Efficiency E = Σt ÷ (N × C<sub>d</sub>)</div>
+    <div class="eq">Balance Delay = 1 − E  ·  Idle time = (N × C<sub>d</sub>) − Σt</div>
+    <div class="tw"><table>
+      <tr><th>ตัวแปร</th><th>แปลว่า</th><th>เอามาจากไหน</th></tr>
+      <tr><td class="v">C<sub>d</sub></td><td>Desired Cycle Time เวลาสูงสุดที่แต่ละสถานีใช้ได้</td><td>เวลาทำงาน (แปลงหน่วยให้ตรงก่อน เช่น 8 ชม. = 480 นาที = 28,800 วินาที) ÷ จำนวนที่ต้องการ</td></tr>
+      <tr><td class="v">t</td><td>เวลาของแต่ละงานย่อย</td><td>ตารางในโจทย์ (มาจาก Time Study)</td></tr>
+      <tr><td class="v">Σt</td><td>เวลารวมของทุกงาน</td><td>บวกทั้งคอลัมน์ t</td></tr>
+      <tr><td class="v">N</td><td>จำนวนสถานี · สูตรให้ค่าต่ำสุดตามทฤษฎี ส่วน N จริงดูจากการจัดสถานี</td><td>ใช้ <b>N จริง</b> ในสูตร Efficiency</td></tr>
+      <tr><td class="v">Idle time</td><td>เวลาว่างรวมทุกสถานีต่อ 1 ชิ้น</td><td>คำนวณ</td></tr>
+    </table></div>
+    <div class="keys"><b>วิธีจัดงานเข้าสถานี (ขั้นที่ 4):</b> ① วาด Precedence Diagram (งานไหนต้องทำก่อนงานไหน) ② เปิดสถานีที่ 1 แล้วเลือกงานที่ "งานก่อนหน้าเสร็จหมดแล้ว" และ "ใส่แล้วเวลารวมไม่เกิน Cd" (ถ้ามีหลายงานให้เลือก ให้เลือกงานที่ใช้เวลานานที่สุดก่อน) ③ ใส่ต่อจนใส่ไม่ได้แล้วจึงเปิดสถานีใหม่ ④ Cycle Time จริง = เวลาของสถานีที่มากที่สุด</div>
+  </div>
+
+  <div class="ex"><div class="tag">ตัวอย่างที่ 1 จากสไลด์ · แฮมเบอร์เกอร์ 480 ชิ้น เปิด 11:00–19:00 (8 ชม.)</div>
+    <div class="tw"><table class="c num">
+      <tr><th>งาน</th><th>รายละเอียด</th><th>ต้องทำหลัง</th><th>t (นาที)</th></tr>
+      <tr><td>A</td><td>รับออเดอร์</td><td>–</td><td>0.1</td></tr>
+      <tr><td>B</td><td>เตรียมไส้เบอร์เกอร์</td><td>A</td><td>1.0</td></tr>
+      <tr><td>C</td><td>เตรียมขนมปัง</td><td>A</td><td>0.7</td></tr>
+      <tr><td>D</td><td>ประกอบ</td><td>B, C</td><td>0.5</td></tr>
+      <tr><td>E</td><td>ใส่ภาชนะส่งมอบ</td><td>D</td><td>0.2</td></tr>
+      <tr><td colspan="3">Σt</td><td class="hl">2.5</td></tr>
+    </table></div>
+    <div class="line">① C<sub>d</sub> = (8 × 60) ÷ 480 = <span class="ans">1 นาที/ชิ้น</span></div>
+    <div class="line">② N = 2.5 ÷ 1 = 2.5 → ปัดขึ้น <span class="ans">3 สถานี</span></div>
+    <div class="line">③ สถานี 1: A + C = 0.8 · สถานี 2: B = 1.0 · สถานี 3: D + E = 0.7 (ไม่มีสถานีไหนเกิน 1)</div>
+    <div class="line">④ E = 2.5 ÷ (3 × 1) = <span class="ans">83.33%</span> · Balance Delay = 16.67% · Idle = 3 − 2.5 = 0.5 นาที</div>
+  </div>
+  <div class="ex"><div class="tag">ตัวอย่างที่ 2 จากสไลด์ · ประกอบชิ้นส่วนรถยนต์ 40 ชิ้นใน 8 ชม. (9 งาน, Σt = 65 นาที)</div>
+    <div class="line">C<sub>d</sub> = 480 ÷ 40 = 12 นาที · N = 65 ÷ 12 = 5.42 → <span class="ans">6 สถานี</span></div>
+    <div class="line">E = 65 ÷ (6 × 12) = 65 ÷ 72 = <span class="ans">90.28%</span> · เวลาไม่สมดุล = 72 − 65 = <span class="ans">7 นาที</span></div>
+  </div>
+  <div class="ex"><div class="tag">ตัวอย่างที่ 3 จากสไลด์ · ของเล่น 192 ชิ้นใน 8 ชม. (10 งาน, Σt = 720 วินาที)</div>
+    <div class="line">C<sub>d</sub> = (8 × 3,600) ÷ 192 = 150 วินาที · N = 720 ÷ 150 = 4.8 → <span class="ans">5 สถานี</span></div>
+    <div class="line">E = 720 ÷ (5 × 150) = <span class="ans">96%</span> · Balance Delay 4% = 0.04 × 750 = <span class="ans">30 วินาที</span></div>
+  </div>
+  <div class="ex"><div class="tag">Take-home (ภาษาอังกฤษในสไลด์) · 30 units/hour, Σt = 435 วินาที</div>
+    <div class="line">C<sub>d</sub> = 3,600 ÷ 30 = 120 วินาที · N = 435 ÷ 120 = 3.6 → 4 สถานี</div>
+    <div class="tw"><table class="c num">
+      <tr><th>Station</th><th>งานที่จัด</th><th>เวลารวม</th><th>Idle (Cd = 120)</th></tr>
+      <tr><td>1</td><td>H, C, A</td><td>120</td><td>0</td></tr>
+      <tr><td>2</td><td>B, D, G</td><td>98</td><td>22</td></tr>
+      <tr><td>3</td><td>E, F</td><td>110</td><td>10</td></tr>
+      <tr><td>4</td><td>I, J, K</td><td>107</td><td>13</td></tr>
+    </table></div>
+    <div class="line">Idle = 4 × 120 − 435 = <span class="ans">45 วินาที</span> · E = 435 ÷ 480 = <span class="ans">90.6%</span> · Balance delay = <span class="ans">9.4%</span></div>
+  </div>
+  <div class="calc noprint"><div class="ct">ฝึกเช็คคำตอบ · Line Balancing</div>
+    <div class="fields">
+      <div><label for="lb-time">เวลาที่มี (หน่วยเดียวกับ t)</label><input id="lb-time" type="number" value="480"></div>
+      <div><label for="lb-q">จำนวนที่ต้องผลิต</label><input id="lb-q" type="number" value="40"></div>
+      <div><label for="lb-sum">Σt</label><input id="lb-sum" type="number" value="65"></div>
+      <div><label for="lb-n">N จริง (เว้นว่าง = ใช้ค่าจากสูตร)</label><input id="lb-n" type="number" placeholder="auto"></div>
+    </div>
+    <div class="out" id="lb-out"></div>
+  </div>
+
+  <h3 class="h">3. ประโยชน์ของ Line Balancing</h3>
+  <p>ลดเวลารอคอยที่สูญเปล่า · ภาระงานเป็นธรรม · ได้ผลผลิตสูงสุดจากกำลังที่มี · ลดสต๊อกงานระหว่างผลิต (WIP) · สายการผลิตยืดหยุ่นขึ้นเมื่อพนักงานทำได้หลายงาน · เครื่องจักรเดินต่อเนื่อง</p>
+
+  <h3 class="h">ทดสอบความเข้าใจ</h3>
+  <details class="q"><summary>ทำไม N ต้องปัดขึ้นเสมอ แม้ได้ 5.1</summary><div class="a">ถ้าปัดลงเหลือ 5 สถานี งานรวมจะเกินความจุ (5 × Cd &lt; Σt) บางสถานีจะต้องใช้เวลาเกิน Cd และผลิตไม่ทันเป้า</div></details>
+  <details class="q"><summary>จัดสถานีจริงได้ 7 สถานี แต่สูตรบอก 6 ควรใช้ N เท่าไหร่ในสูตร Efficiency</summary><div class="a">ใช้ <b>N จริง = 7</b> เพราะ Efficiency ต้องวัดจากสายการผลิตที่จัดได้จริง</div></details>
+</section>
+
+<!-- ===================== M8 ===================== -->
+<section class="mod" id="m8" hidden>
+  <div class="mh"><span class="no">M8</span><h2>Logistics และ Supply Chain Management</h2></div>
+  <div class="sub">ความหมาย · 3 ยุค · 10 กิจกรรมหลัก · ตัวชี้วัด · 4 กระแส · Bullwhip Effect · ซัพพลายเชนยั่งยืน</div>
+
+  <div class="tldr"><div class="k">สรุป 30 วินาที</div>
+    Logistics คือการ <b>เคลื่อนย้าย จัดเก็บ และกระจายสินค้า</b> จากแหล่งผลิตไปถึงจุดที่ต้องการใช้ รวมทั้งการไหลย้อนกลับและข้อมูลที่เกี่ยวข้อง · มีกิจกรรมหลัก 10 อย่าง · ซัพพลายเชนต้องจัดการ <b>4 กระแส</b> คือ สินค้า เงิน ข้อมูล และของคืน · ปัญหาคลาสสิกคือ <b>Bullwhip Effect</b> ที่ดีมานด์แกว่งแรงขึ้นเรื่อย ๆ เมื่อย้อนขึ้นไปทางต้นน้ำ</div>
+  <div class="link">เชื่อมกับบทอื่น: บทนี้คือปลายทางของสายงานที่เริ่มจากบทที่ 3 · Inventory Management (บทที่ 5) และ Forecasting (บทที่ 3) นับเป็น 2 ใน 10 กิจกรรมโลจิสติกส์ · หัวข้อรายงานกลุ่ม (JIT, Warehousing, Reverse Logistics ฯลฯ) มาจากบทนี้ทั้งหมด</div>
+
+  <h3 class="h">1. ที่มาและความหมาย</h3>
+  <p>คำว่า Logistics มาจากงานส่งกำลังบำรุงของกองทัพอังกฤษก่อนสงครามโลกครั้งที่ 1 (ถนน ราง ท่าเรือ คลัง การขนส่ง) · วิวัฒนาการมี <b>3 ยุค</b>: Physical Distribution → Integrated Logistics Management → Supply Chain Management</p>
+  <p><b>นิยาม:</b> กิจกรรมการจัดหาสินค้าและบริการ ครอบคลุมการเคลื่อนย้าย การจัดเก็บ และการกระจายสินค้าจากแหล่งผลิตไปยังจุดที่มีความต้องการ ต้องวางแผน ปฏิบัติ และควบคุมทั้งการไหลไปข้างหน้าและย้อนกลับ รวมถึงบริการและข้อมูลที่เกี่ยวข้อง</p>
+
+  <h3 class="h">2. 10 กิจกรรมโลจิสติกส์หลัก</h3>
+  <div class="tw"><table>
+    <tr><th>กิจกรรม</th><th>สาระสำคัญ</th></tr>
+    <tr><td>1. Customer Service</td><td>ผูกกับ 4P: <b>Product</b> (เคลื่อนย้ายและเก็บง่าย บรรจุภัณฑ์ปกป้องสินค้า หลัก "6 Rights") · <b>Price</b> (คุมต้นทุนคลังและขนส่ง ใช้การขนส่งหลายรูปแบบ) · <b>Promotion</b> (เตรียมของและรถให้พร้อมช่วงโปรโมชัน) · <b>Place</b> (เครือข่ายกระจายสินค้า ทำเลร้านและศูนย์กระจายสินค้า)</td></tr>
+    <tr><td>2. Procurement &amp; Purchasing</td><td><b>Purchasing</b> = งานธุรกรรม (ออก PO, รับแจ้งส่งของ, รับของ, บันทึกใบแจ้งหนี้, จ่ายเงิน) · <b>Procurement</b> = กว้างกว่า (กำหนดสเปก, หาข้อมูลตลาดซัพพลายเออร์, เจรจา, ซื้อ, ติดตามการส่งมอบ)</td></tr>
+    <tr><td>3. International Logistics</td><td>นำเข้าและส่งออก ขนส่งข้ามประเทศ</td></tr>
+    <tr><td>4. Warehouse Management</td><td>วัตถุประสงค์ของคลัง: เก็บสำรอง · สนับสนุนการผลิต · รวมสินค้าให้เต็มคันก่อนส่ง (Consolidation) · ผสมสินค้า (Product Mixing) · ทำหน้าที่ศูนย์กระจายสินค้า · บริการลูกค้า</td></tr>
+    <tr><td>5. Material Handling &amp; Packaging</td><td>อุปกรณ์ขนถ่าย: แฮนด์ลิฟต์ โฟล์คลิฟต์ สายพาน รถลาก · บรรจุภัณฑ์ต้องชั่งกัน: การตลาดอยากให้สวยดึงดูด โลจิสติกส์อยากให้แพ็คง่าย ปกป้องของดี เคลื่อนย้ายและเก็บง่าย และบางประเทศบังคับข้อความบนฉลากตามกฎหมาย</td></tr>
+    <tr><td>6. Inventory Management</td><td>ดูบทที่ 5</td></tr>
+    <tr><td>7. Transportation Management</td><td>เลือกรูปแบบและเส้นทางขนส่ง</td></tr>
+    <tr><td>8. IT Logistics</td><td>ระบบข้อมูล ติดตามสถานะ</td></tr>
+    <tr><td>9. Location Selection</td><td>เลือกทำเลโรงงาน คลัง ศูนย์กระจายสินค้า</td></tr>
+    <tr><td>10. Forecasting</td><td>ดูบทที่ 3</td></tr>
+  </table></div>
+
+  <h3 class="h">3. ตัวชี้วัดโลจิสติกส์พื้นฐาน</h3>
+  <div class="fx"><div class="nm">ต้นทุนโลจิสติกส์รวม</div>
+    <div class="eq">Total Logistics Cost = Transportation + Warehousing + Inventory Carrying + Administration</div>
+  </div>
+  <div class="g2">
+    <div class="card"><b class="t">Order Fulfilment / Delivery Reliability</b>มีของพร้อมส่ง · ส่งตรงเวลาและครบจำนวน (Fill Rate) · Lead Time สม่ำเสมอ</div>
+    <div class="card"><b class="t">Service Reliability</b>บริการเสริม (แพ็ค ติดฉลาก ติดราคา) · ของไม่เสียหาย · ส่งไม่ผิด · เอกสารถูกต้อง · ติดตามสถานะได้แม่นยำ</div>
+  </div>
+
+  <h3 class="h">4. โครงสร้างซัพพลายเชนและ 4 กระแส</h3>
+  <p><b>ต้นน้ำ</b> (ซัพพลายเออร์หลายชั้น) → <b>บริษัทหลัก</b> → <b>ปลายน้ำ</b> (ผู้ค้าส่ง → ผู้ค้าปลีก → ผู้บริโภค) · ตัวอย่างในสไลด์: ฟาร์มมะเขือเทศ → โรงงานซอส / ประมง → โรงงานกระป๋อง → ผู้ค้าส่ง → ผู้ค้าปลีก → ลูกค้า</p>
+  <div class="g2">
+    <div class="card"><b class="t">Primary Product Flow</b>สินค้าไหลไปข้างหน้า และเพิ่มมูลค่าระหว่างทาง</div>
+    <div class="card"><b class="t">Primary Cash Flow</b>เงินไหลย้อนกลับ ควรแบ่งผลประโยชน์อย่างเป็นธรรม</div>
+    <div class="card"><b class="t">Information Flow</b>ข้อมูลต้องเร็ว ถูกต้อง และปลอดภัย</div>
+    <div class="card"><b class="t">Reverse Product Flow</b>สินค้าคืน ซ่อม หรือแก้ไข</div>
+  </div>
+
+  <h3 class="h">5. Bullwhip Effect</h3>
+  <p>ปรากฏการณ์ที่ลูกค้าซื้อเพิ่มขึ้นนิดเดียว แต่ร้านค้าปลีกสั่งเพิ่มมากกว่านั้น ผู้ค้าส่งสั่งเพิ่มยิ่งกว่า และโรงงานผลิตเพิ่มมากที่สุด เหมือนสะบัดแส้ที่ปลายแส้แกว่งแรงกว่าด้ามจับ <b>สาเหตุ 4 ข้อ:</b></p>
+  <ol>
+    <li><b>Lead Time ไม่แน่นอน</b> ทุกฝ่ายจึงเผื่อสต๊อกกันชนของตัวเองซ้อนกัน</li>
+    <li><b>ความคลาดเคลื่อนของพยากรณ์</b> ถูกส่งต่อและสะสมเป็นทอด ๆ</li>
+    <li><b>Order Batching</b> สั่งเป็นล็อตใหญ่เกินกว่าที่ใช้จริง</li>
+    <li><b>ราคาและโปรโมชัน</b> ทำให้คนซื้อกักตุน แล้วดีมานด์ตกฮวบหลังจบโปร</li>
+  </ol>
+  <p class="small muted">วิธีแก้ที่เชื่อมกับบทอื่น: แชร์ข้อมูลยอดขายจริง (เช่น RFID ของ Uniqlo ในบทที่ 4) · ลดขนาดล็อตและใช้ Pull (บทที่ 10) · ลด Lead Time</p>
+
+  <h3 class="h">6. ซัพพลายเชนที่ยั่งยืน</h3>
+  <div class="g3">
+    <div class="card"><b class="t">Green</b>จัดหาอย่างยั่งยืน ใช้พลังงานคุ้มค่า ลดของเสียและการปล่อยมลพิษ</div>
+    <div class="card"><b class="t">Transparent</b>ตรวจสอบย้อนกลับได้ทั้งแหล่งที่มา การผลิต และการกำจัดของเสีย</div>
+    <div class="card"><b class="t">Circular</b>นำทรัพยากรกลับมาใช้ซ้ำหรือรีไซเคิล ให้เหลือของเสียน้อยที่สุด</div>
+  </div>
+  <div class="case"><div class="tag">เคสไทยในสไลด์</div>
+    <p><b>BJC:</b> ซัพพลายเออร์ต้องได้ Green Industry · ทำสัญญากับเกษตรกรที่ได้ GAP · อบรม ESG · ใช้กระดาษ FSC และแก้วกับอลูมิเนียมรีไซเคิล · ใช้พลังงานแสงอาทิตย์</p>
+    <p><b>HomePro:</b> แคมเปญเทิร์นของเก่า · omni-channel ช่วยลดการเดินทาง · เครือข่ายรีไซเคิล · พัฒนาทักษะพนักงานและจ้างงานอย่างครอบคลุม · ศูนย์ซ่อมสินค้าหมดประกันและนำไปขายต่อ</p>
+  </div>
+
+  <h3 class="h">ทดสอบความเข้าใจ</h3>
+  <details class="q"><summary>งานขอใบเสนอราคา เจรจาราคา และคัดเลือกซัพพลายเออร์ เป็น Purchasing หรือ Procurement</summary><div class="a">Procurement เพราะเป็นงานเชิงกลยุทธ์ที่กว้างกว่าการออกใบสั่งซื้อ</div></details>
+  <details class="q"><summary>ร้านจัดโปรลด 50% หนึ่งสัปดาห์ แล้วโรงงานเห็นออเดอร์พุ่งตามด้วยออเดอร์หายไป เป็นสาเหตุไหนของ Bullwhip</summary><div class="a">Price/Promotion ทำให้ลูกค้ากักตุนของ แล้วดีมานด์ตกหลังจบโปร</div></details>
+</section>
+
+<!-- ===================== M9 ===================== -->
+<section class="mod" id="m9" hidden>
+  <div class="mh"><span class="no">M9</span><h2>Statistical Process Control (SPC)</h2></div>
+  <div class="sub">บทเสริม 26 ก.ย. 2026 (คุณ Wiarchai W.) · ตามคู่มือ AIAG-VDA SPC 1st Ed. 2026 · สอนตั้งแต่ศูนย์ ไม่ต้องมีพื้นฐานสถิติ</div>
+
+  <div class="tldr"><div class="k">สรุป 30 วินาที</div>
+    SPC ใช้ตอบคำถามว่า <b>"ตอนนี้กระบวนการยังทำงานเหมือนปกติไหม"</b> · Control Chart ไม่ได้ดูว่าชิ้นงานผ่านสเปกไหม แต่ดูว่ากระบวนการเปลี่ยนไปจากเดิมหรือยัง · เส้น UCL/LCL คำนวณจากข้อมูลของกระบวนการเอง (±3σ) · ดัชนี <b>Pm, Pp, Cp, Cw</b> ใช้สูตรหน้าตาเดียวกันคือ (USL − LSL) ÷ 6σ ต่างกันแค่ <b>σ มาจากไหน</b> และ <b>อยู่ขั้นไหนของกระบวนการ</b> · ก่อนใช้สูตรพวกนี้ต้องเช็คว่าข้อมูลเป็นรูประฆังคว่ำ (Normal) ก่อน</div>
+  <div class="link">เชื่อมกับบทอื่น: Control Chart คือ 1 ใน 7 QC Tools ของบทที่ 2 · หน้า Reference ของบทที่ 10 (Lean) ก็มีสูตร Cp/Cpk และ I-chart ชุดเดียวกับบทนี้ · Six Sigma ใน Lean + DMAIC ใช้ SPC ลดความผันแปร</div>
+
+  <h3 class="h">1. เริ่มจากศูนย์: เปรียบเทียบกับการวัดไข้</h3>
+  <p>ถ้าวัดอุณหภูมิร่างกายทุกวัน ค่าจะแกว่งเล็กน้อย เช่น 36.6, 37.0, 36.8 ซึ่งเป็น <b>ความผันแปรปกติ (Common Cause)</b> ที่เกิดจากสาเหตุเล็ก ๆ จำนวนมาก ห้ามไปปรับแก้ แต่ถ้าวันหนึ่งขึ้นเป็น 39°C แปลว่ามี <b>สาเหตุพิเศษ (Special Cause)</b> ต้องหาต้นเหตุ · Control Chart ทำหน้าที่แยกสองแบบนี้ออกจากกัน เป้าหมายคือทำให้กระบวนการ <b>คาดการณ์ได้ (predictable) และควบคุมได้ (controllable)</b></p>
+  <div class="tw"><table>
+    <tr><th></th><th>Specification Limit (USL / LSL)</th><th>Control Limit (UCL / LCL)</th></tr>
+    <tr><td>มาจาก</td><td>ลูกค้าหรือแบบ (Customer/Design) คือสิ่งที่ "ต้องการ"</td><td>ข้อมูลของกระบวนการ (Process Data) คือสิ่งที่ "ทำได้จริง"</td></tr>
+    <tr><td>ใช้ตัดสิน</td><td>ชิ้นงาน Pass หรือ Fail</td><td>กระบวนการ Stable หรือ Unstable</td></tr>
+  </table></div>
+  <div class="tip"><b>จุดที่คนงงบ่อยที่สุด:</b> กระบวนการอาจ "นิ่ง" แต่นิ่งอยู่นอกสเปก (Stable แต่ผลิตของเสียตลอด) หรืออาจ "ไม่นิ่ง" แต่บังเอิญยังอยู่ในสเปก จึงต้องดูทั้งสองอย่างคู่กัน</div>
+
+  <h3 class="h">2. โครงสร้างของ Control Chart และวิธีเก็บข้อมูล</h3>
+  <p>ส่วนประกอบ: <b>Center Line</b> (ค่าเฉลี่ยของกระบวนการ) · <b>UCL / LCL</b> (±3σ) · จุดข้อมูลเรียงตามลำดับเวลา · หมายเหตุเหตุการณ์พิเศษ</p>
+  <p><b>Rational Subgroup:</b> เก็บข้อมูลเป็นกลุ่มย่อย โดยให้ชิ้นงานในกลุ่มเดียวกันผลิตภายใต้สภาพใกล้เคียงกันที่สุด เช่น ทุก 1 ชั่วโมงเก็บ 5 ชิ้นที่ผลิตติดกัน เพื่อแยกความผันแปรออกเป็น 2 ชั้น</p>
+  <div class="g2">
+    <div class="card"><b class="t">Within-subgroup (σ<sub>within</sub>)</b>ความผันแปรระยะสั้นภายในกลุ่ม สะท้อนความแม่นของเครื่องจักรและวิธีการ</div>
+    <div class="card"><b class="t">Between-subgroup</b>ความผันแปรที่เปลี่ยนตามเวลา เช่น เครื่องมือสึก เปลี่ยนกะ เปลี่ยนล็อตวัตถุดิบ ตั้งเครื่องใหม่ หรือสภาพแวดล้อม</div>
+  </div>
+  <p><b>Total (Overall) Variation = Within + Between</b></p>
+  <div class="tw"><table>
+    <tr><th>ข้อมูล</th><th>กราฟ</th></tr>
+    <tr><td><b>Variable</b> (วัดค่าต่อเนื่อง เช่น ความยาว น้ำหนัก)</td><td>X̄-R · X̄-S · Median-R · I-MR (ข้อมูลทีละตัว)</td></tr>
+    <tr><td><b>Attribute</b> (นับ ผ่าน/ไม่ผ่าน หรือนับจุดบกพร่อง)</td><td>p · np · c · u</td></tr>
+  </table></div>
+
+  <h3 class="h">3. สร้าง X̄-R Chart</h3>
+  <ol class="steps">
+    <li>กำหนดขนาดกลุ่ม (n) และความถี่ เช่น n = 5 จำนวน 25 กลุ่ม</li>
+    <li>แต่ละกลุ่มหา <b>X̄</b> (ค่าเฉลี่ยของกลุ่ม) และ <b>R</b> (ค่ามากสุด − ค่าน้อยสุดในกลุ่ม)</li>
+    <li>หา <b>X̿</b> = ค่าเฉลี่ยของ X̄ ทุกกลุ่ม และ <b>R̄</b> = ค่าเฉลี่ยของ R ทุกกลุ่ม</li>
+    <li>คำนวณเส้นควบคุมด้วยค่าคงที่จากตาราง</li>
+    <li>พล็อตจุดแล้วดูสัญญาณผิดปกติ · <b>ดู R chart ก่อน</b> (ความกระจายนิ่งไหม) แล้วจึงแปลผล X̄ chart</li>
+  </ol>
+  <div class="fx"><div class="nm">X̄-R Control Limits</div>
+    <div class="eq">X̄ chart:  CL = X̿ · UCL = X̿ + A<sub>2</sub>R̄ · LCL = X̿ − A<sub>2</sub>R̄</div>
+    <div class="eq">R chart:  CL = R̄ · UCL = D<sub>4</sub>R̄ · LCL = D<sub>3</sub>R̄</div>
+    <div class="eq">σ<sub>within</sub> = R̄ ÷ d<sub>2</sub></div>
+    <div class="tw"><table class="c num">
+      <tr><th>n</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>7</th><th>8</th><th>9</th><th>10</th></tr>
+      <tr><td>A<sub>2</sub></td><td>1.880</td><td>1.023</td><td>0.729</td><td class="hl">0.577</td><td>0.483</td><td>0.419</td><td>0.373</td><td>0.337</td><td>0.308</td></tr>
+      <tr><td>D<sub>3</sub></td><td>0</td><td>0</td><td>0</td><td class="hl">0</td><td>0</td><td>0.076</td><td>0.136</td><td>0.184</td><td>0.223</td></tr>
+      <tr><td>D<sub>4</sub></td><td>3.267</td><td>2.575</td><td>2.282</td><td class="hl">2.114</td><td>2.004</td><td>1.924</td><td>1.864</td><td>1.816</td><td>1.777</td></tr>
+      <tr><td>d<sub>2</sub></td><td>1.128</td><td>1.693</td><td>2.059</td><td class="hl">2.326</td><td>2.534</td><td>2.704</td><td>2.847</td><td>2.970</td><td>3.078</td></tr>
+    </table></div>
+    <div class="keys"><b>ค่าคงที่ไม่ต้องคำนวณเอง</b> เปิดตารางตาม n แล้วเอามาใช้ได้เลย (ในห้องสอบโจทย์มักให้มา) · <b>I-MR chart</b> (ข้อมูลทีละตัว): X̄ ± 3(MR̄ ÷ 1.128) โดย MR = ผลต่างระหว่างค่าที่อยู่ติดกัน และ 1.128 คือ d<sub>2</sub> ที่ n = 2</div>
+  </div>
+  <div class="ex"><div class="tag">ข้อมูลจริงจากไฟล์ Xbar_R_Acceptance_SPC_25x5 (25 กลุ่ม × 5 ชิ้น, สเปก 19.8–20.2)</div>
+    <div class="line">X̿ = 20.0003 · R̄ = 0.05438 · n = 5 → A<sub>2</sub> = 0.577, D<sub>4</sub> = 2.114, D<sub>3</sub> = 0, d<sub>2</sub> = 2.326</div>
+    <div class="line">UCL<sub>X̄</sub> = 20.0003 + 0.577 × 0.05438 = 20.0003 + 0.03138 = <span class="ans">20.0317</span></div>
+    <div class="line">LCL<sub>X̄</sub> = 20.0003 − 0.03138 = <span class="ans">19.9689</span></div>
+    <div class="line">UCL<sub>R</sub> = 2.114 × 0.05438 = <span class="ans">0.1150</span> · LCL<sub>R</sub> = 0</div>
+    <div class="line">σ<sub>within</sub> = 0.05438 ÷ 2.326 = <span class="ans">0.02338</span></div>
+  </div>
+  <div class="calc noprint"><div class="ct">ฝึกเช็คคำตอบ · X̄-R</div>
+    <div class="fields">
+      <div><label for="xr-x">X̿</label><input id="xr-x" type="number" value="20.0003" step="0.0001"></div>
+      <div><label for="xr-r">R̄</label><input id="xr-r" type="number" value="0.05438" step="0.00001"></div>
+      <div><label for="xr-n">n (2–10)</label><input id="xr-n" type="number" value="5" min="2" max="10"></div>
+    </div>
+    <div class="out" id="xr-out"></div>
+  </div>
+
+  <h3 class="h">4. ดูสัญญาณผิดปกติ (Special Cause Criteria)</h3>
+  <div class="tw"><table>
+    <tr><th>เกณฑ์</th><th>AIAG 2005</th><th>AIAG-VDA 2026</th></tr>
+    <tr><td>1 จุดหลุดนอก ±3σ</td><td>✓</td><td>✓</td></tr>
+    <tr><td>2 ใน 3 จุดติดกัน เกิน ±2σ (ฝั่งเดียวกัน)</td><td>✓</td><td>✓</td></tr>
+    <tr><td>4 ใน 5 จุดติดกัน เกิน ±1σ</td><td>✓</td><td>✓</td></tr>
+    <tr><td>จุดติดกันอยู่ฝั่งเดียวของเส้นกลาง</td><td>7 จุด</td><td class="hl">9 จุด</td></tr>
+    <tr><td>15 จุดติดกันอยู่ใน ±1σ (นิ่งผิดธรรมชาติ)</td><td>✓</td><td>✓</td></tr>
+    <tr><td>6 จุดขึ้นหรือลงต่อเนื่อง · 14 จุดสลับขึ้นลง · 8 จุดนอก ±1σ</td><td>✓</td><td>ไม่อยู่ในชุดหลักแล้ว</td></tr>
+  </table></div>
+  <p class="small">แนวคิดใหม่ของคู่มือ 2026: <b>เจอสัญญาณแล้วไม่จำเป็นต้องหยุดเครื่องทันที</b> ให้ดูก่อนว่าเป็นพฤติกรรมที่คาดไว้แล้วหรือเปล่า (เช่น มีดสึกแบบคาดเดาได้) ถ้าใช่ ให้เปลี่ยนไปใช้กราฟที่เหมาะกว่า เช่น Acceptance Chart แทนที่จะปล่อยให้ Shewhart chart ส่งสัญญาณเตือนซ้ำ ๆ</p>
+
+  <h3 class="h">5. Time-Dependent Process Model A–D</h3>
+  <div class="tw"><table>
+    <tr><th>Model</th><th>ค่าเฉลี่ย</th><th>ความกระจาย</th><th>ตัวอย่าง</th><th>กราฟที่แนะนำ</th><th>ต้องทำอะไร</th></tr>
+    <tr><td><b>A</b> (A1 Normal / A2 ไม่ Normal)</td><td>คงที่</td><td>คงที่</td><td>นิ่ง คาดการณ์ได้</td><td>Shewhart (A2 ใช้ Pearson) · ตัวอย่างน้อย ความถี่ต่ำ</td><td>รักษาไว้ และลดความถี่สุ่มได้</td></tr>
+    <tr><td><b>B</b></td><td>คงที่</td><td>เปลี่ยน</td><td>fixture หลวม แรงสั่น วัสดุ แรงดัน อุณหภูมิ</td><td>Shewhart · ตัวอย่างมากขึ้น</td><td>หาว่าทำไมความกระจายเปลี่ยน</td></tr>
+    <tr><td><b>C</b></td><td>เปลี่ยน (drift)</td><td>คงที่</td><td>มีดหรือเครื่องมือสึก (Tool Wear) · R chart นิ่ง แต่ X̄ มี trend</td><td>Acceptance · ความถี่สูงขึ้น</td><td>ชดเชย รีเซ็ต หรือวางแผนเปลี่ยนเครื่องมือ</td></tr>
+    <tr><td><b>D</b></td><td>เปลี่ยน</td><td>เปลี่ยน</td><td>หลายสาเหตุซ้อนกัน เช่น tool wear ร่วมกับแรงสั่น</td><td>Acceptance · ตัวอย่างมาก ความถี่สูง</td><td>วิเคราะห์ต้นเหตุหลายปัจจัย และคุมเข้มขึ้น</td></tr>
+  </table></div>
+
+  <h3 class="h">6. เช็คก่อนว่าข้อมูลเป็น Normal ไหม (Anderson-Darling Test)</h3>
+  <p>สูตร Cp/Cpk แบบมาตรฐาน <b>สมมติว่าข้อมูลเป็นรูประฆังคว่ำ (Normal Distribution)</b> ถ้าข้อมูลไม่ใช่รูปนี้ ตัวเลขที่ได้จะหลอกเรา จึงต้องทดสอบก่อน โดยโปรแกรมจะคำนวณค่า A² แล้วแปลงเป็น p-value (ไม่ต้องคำนวณเอง)</p>
+  <div class="fx"><div class="nm">กฎการอ่านผล (ต้องจำให้ได้)</div>
+    <div class="eq">p-value &gt; α (0.05) → "Fail to reject H0" → ถือว่าเป็น Normal ได้ → ใช้สูตรปกติ</div>
+    <div class="eq">p-value ≤ α → มีหลักฐานว่าไม่ Normal → ใช้วิธี GGM หรือ Z-score/Bothe</div>
+    <div class="keys">ห้ามพูดว่า "พิสูจน์แล้วว่าเป็น Normal" ให้พูดว่า "ยังไม่มีหลักฐานว่าไม่ Normal" (ไฟล์ Excel ของอาจารย์เตือนเรื่องนี้ไว้)</div>
+  </div>
+  <div class="ex"><div class="tag">เทียบ 2 ไฟล์จริง</div>
+    <p><b>Pm_Pmk_50:</b> N = 50, A² = 0.183, p = <b>0.912</b> &gt; 0.05 → Normal ✓</p>
+    <p><b>CLT 30 Data (ทอยลูกเต๋า):</b> ข้อมูลรายตัว p = <b>0.044</b> &lt; 0.05 → ไม่ Normal (ลูกเต๋าออกแต่ละเลขเท่า ๆ กัน จึงไม่ใช่รูประฆัง) · แต่ถ้าเอา <b>ค่าเฉลี่ยของหลายลูก</b> มาพล็อต จะเริ่มเป็นรูประฆัง นี่คือ <b>Central Limit Theorem</b> และเป็นเหตุผลที่ X̄ chart ที่ใช้ค่าเฉลี่ยกลุ่มเชื่อถือได้ แม้ข้อมูลรายตัวจะไม่ Normal</p>
+  </div>
+
+  <h3 class="h">7. ดัชนีความสามารถ: Pm → Pp → Cp และ Cw</h3>
+  <p>ดัชนีทั้งหมด <b>ใช้สูตรหน้าตาเดียวกัน</b> สิ่งที่ต่างกันมีแค่ ① σ ที่ใช้ และ ② กระบวนการอยู่ขั้นไหน</p>
+  <div class="tw"><table>
+    <tr><th>ขั้น</th><th>ดัชนี</th><th>σ ที่ใช้</th><th>จุดประสงค์</th><th>ตัวอย่างที่เก็บ</th></tr>
+    <tr><td>1. Machine Performance</td><td><b>Pm / Pmk</b></td><td>StDev ของข้อมูลเครื่องจักรที่ผลิตต่อเนื่อง ตรึงปัจจัยอื่นใน 4M ให้คงที่</td><td>ปล่อยเครื่องจักรใหม่เข้าไลน์</td><td>n = 100 ตาม DIN ISO 22514-3 (นิยมใช้ 50–100 ชิ้นติดกัน)</td></tr>
+    <tr><td>2. Preliminary Process Performance</td><td><b>Pp / Ppk</b></td><td>σ<sub>overall</sub> (ค่า s ของข้อมูลทุกตัว) เมื่อมีปัจจัย 5M ครบแต่ยังเก็บช่วงสั้น</td><td>ปล่อยกระบวนการเข้าผลิตจริง</td><td>25 กลุ่ม × 5 = 125 ค่า เรียงตามลำดับเวลา</td></tr>
+    <tr><td>3. Ongoing</td><td><b>Cp / Cpk</b></td><td>σ<sub>overall</sub></td><td>ติดตามกระบวนการ · <b>ใช้ชื่อ Cp/Cpk ได้เฉพาะเมื่อ Stable</b> ถ้าไม่ Stable ต้องเรียก Pp/Ppk</td><td>ข้อมูลระยะยาว</td></tr>
+    <tr><td>เสริม · Within Capability</td><td><b>Cw / Cwk</b></td><td>σ<sub>within</sub> = R̄/d<sub>2</sub> (หรือ s̄/c<sub>4</sub>)</td><td>ความแม่นระยะสั้นที่ดีที่สุดที่ทำได้ (คือ Cp/Cpk ของคู่มือปี 2005 เดิม)</td><td>จากข้อมูลแบบกลุ่มย่อย</td></tr>
+  </table></div>
+  <div class="fx"><div class="nm">สูตรกลาง (แทนตัว σ ตามตารางด้านบน)</div>
+    <div class="eq">Cp (หรือ Pp, Pm, Cw) = (USL − LSL) ÷ (6σ)</div>
+    <div class="eq">Cpu = (USL − X̄) ÷ (3σ) · Cpl = (X̄ − LSL) ÷ (3σ)</div>
+    <div class="eq">Cpk (หรือ Ppk, Pmk, Cwk) = MIN(Cpu, Cpl)</div>
+    <div class="tw"><table>
+      <tr><th>ตัวแปร</th><th>แปลว่า</th><th>เอามาจากไหน</th></tr>
+      <tr><td class="v">USL / LSL</td><td>สเปกบนและสเปกล่าง</td><td>แบบหรือข้อกำหนดของลูกค้า</td></tr>
+      <tr><td class="v">X̄ (μ)</td><td>ค่าเฉลี่ยของข้อมูล</td><td>เฉลี่ยข้อมูลทั้งหมด</td></tr>
+      <tr><td class="v">σ</td><td>ค่าเบี่ยงเบนมาตรฐาน</td><td>เลือกตามขั้นในตาราง</td></tr>
+      <tr><td class="v">6σ</td><td>ความกว้างของกระบวนการ (±3σ)</td><td>—</td></tr>
+    </table></div>
+    <div class="keys"><b>แปลความหมาย:</b> Cp ดูแค่ "ความกว้าง" ว่ากระบวนการแคบกว่าสเปกไหม · Cpk ดู "ความกว้าง + การอยู่กลางสเปก" ถ้า Cp สูงแต่ Cpk ต่ำ แปลว่ากระบวนการแม่นแต่เยื้องศูนย์ ให้ปรับศูนย์ (re-center) · เกณฑ์ที่นิยม: ≥ 1.33 ถือว่าใช้ได้ และอุตสาหกรรมยานยนต์มักต้องการ ≥ 1.67</div>
+  </div>
+  <div class="ex"><div class="tag">ตัวอย่าง 1 · ไฟล์ Pm_Pmk_50 (Machine Performance)</div>
+    <div class="line">LSL = 90 · USL = 120 · Target = 100 · N = 50 · X̄ = 100.073 · s = 6.014</div>
+    <div class="line">Pm  = (120 − 90) ÷ (6 × 6.014) = 30 ÷ 36.084 = <span class="ans">0.831</span></div>
+    <div class="line">Pmu = (120 − 100.073) ÷ (3 × 6.014) = 19.927 ÷ 18.042 = <span class="ans">1.104</span></div>
+    <div class="line">Pml = (100.073 − 90) ÷ 18.042 = 10.073 ÷ 18.042 = <span class="ans">0.558</span></div>
+    <div class="line">Pmk = MIN(1.104, 0.558) = <span class="ans">0.558</span></div>
+    <p class="small">อ่านผล: ต่ำกว่า 1.33 มาก จึงยังปล่อยเครื่องเข้าไลน์ไม่ได้ ในสไลด์หน้า Decision ระบุว่า ถ้า Pm ต่ำ ให้ลดความผันแปรของเครื่อง · ถ้า Pm ดีแต่ Pmk ต่ำ ให้ปรับศูนย์ · ถ้ามี trend ให้ดูเรื่อง warm-up หรือการสึก</p>
+  </div>
+  <div class="ex"><div class="tag">ตัวอย่าง 2 · ไฟล์ Xbar_R 25×5 (ดัชนีเดียวกันแต่ใช้ σ ต่างกัน)</div>
+    <div class="line">USL − LSL = 0.4 · X̄ = 20.0003 · σ<sub>overall</sub> = 0.02083 · σ<sub>within</sub> = 0.02338</div>
+    <div class="line">ใช้ σ<sub>overall</sub>: (0.4) ÷ (6 × 0.02083) = <span class="ans">3.20</span> · min[(20.2−20.0003), (20.0003−19.8)] ÷ (3 × 0.02083) = <span class="ans">3.20</span></div>
+    <div class="line">ใช้ σ<sub>within</sub>: Cw = 0.4 ÷ (6 × 0.02338) = <span class="ans">2.85</span> · Cwk ≈ <span class="ans">2.85</span></div>
+    <p class="small"><b>บทเรียนสำคัญ:</b> ในไฟล์นี้ช่อง "Stable?" ขึ้นว่า <b>NOT STABLE</b> ดังนั้นค่า 3.20 ต้องรายงานเป็น <b>Pp / Ppk</b> จะเรียกว่า Cp/Cpk ไม่ได้ แม้ตัวเลขจะเท่ากันก็ตาม ความเสถียรเป็นตัวกำหนดชื่อดัชนี</p>
+  </div>
+  <div class="calc noprint"><div class="ct">ฝึกเช็คคำตอบ · Cp/Cpk (ใส่ σ ให้ถูกกับขั้น)</div>
+    <div class="fields">
+      <div><label for="cp-l">LSL</label><input id="cp-l" type="number" value="90"></div>
+      <div><label for="cp-u">USL</label><input id="cp-u" type="number" value="120"></div>
+      <div><label for="cp-m">X̄</label><input id="cp-m" type="number" value="100.073" step="0.001"></div>
+      <div><label for="cp-s">σ</label><input id="cp-s" type="number" value="6.014" step="0.001"></div>
+    </div>
+    <div class="out" id="cp-out"></div>
+  </div>
+
+  <h3 class="h">8. Acceptance Control Chart (ใช้กับ Model C/D)</h3>
+  <div class="fx"><div class="nm">เส้นควบคุมแบบ Acceptance (ตามไฟล์ Excel)</div>
+    <div class="eq">k<sub>A</sub> = Z<sub>(1−p)</sub> + Z<sub>(P_A)</sub> ÷ √n</div>
+    <div class="eq">UCL = USL − k<sub>A</sub>σ<sub>within</sub> · LCL = LSL + k<sub>A</sub>σ<sub>within</sub></div>
+    <div class="keys">ต่างจาก Shewhart ตรงที่ <b>วัดระยะเข้ามาจากสเปก</b> ไม่ได้วัดออกจากค่าเฉลี่ย จึงปล่อยให้ค่าเฉลี่ย drift ได้ ตราบที่ยังไม่เสี่ยงหลุดสเปก · p = ความเสี่ยงหลุดสเปกที่ยอมรับได้ (0.01) · P<sub>A</sub> = โอกาสที่ต้องการให้ตรวจจับได้ (0.99) · ไฟล์ตัวอย่าง: k<sub>A</sub> = 2.326 + 2.326 ÷ √5 = 3.367 → UCL = 20.2 − 3.367 × 0.02338 = 20.121 · LCL = 19.879</div>
+  </div>
+
+  <h3 class="h">9. Attribute Control Charts (ข้อมูลนับ)</h3>
+  <p><b>Defective</b> (ชิ้นเสีย) = ชิ้นที่ไม่ผ่าน 1 ชิ้นนับได้มากสุด 1 · <b>Defect</b> (ข้อบกพร่อง) = 1 ชิ้นอาจมีหลายจุด</p>
+  <div class="fx"><div class="nm">สูตรพื้นฐาน (Normal approximation, Z = 3 · ถ้า LCL ติดลบให้ใช้ 0)</div>
+    <div class="tw"><table>
+      <tr><th>กราฟ</th><th>นับอะไร</th><th>n ต้องคงที่ไหม</th><th>เส้นกลาง</th><th>UCL / LCL</th><th>Distribution</th></tr>
+      <tr><td><b>p</b></td><td>สัดส่วนชิ้นเสีย</td><td>เปลี่ยนได้</td><td>p̄ = ชิ้นเสียรวม ÷ ชิ้นที่ตรวจรวม</td><td class="mono">p̄ ± 3√(p̄(1−p̄)/n)</td><td>Binomial</td></tr>
+      <tr><td><b>np</b></td><td>จำนวนชิ้นเสีย</td><td>คงที่</td><td>np̄</td><td class="mono">np̄ ± 3√(np̄(1−p̄))</td><td>Binomial</td></tr>
+      <tr><td><b>c</b></td><td>จำนวนข้อบกพร่อง</td><td>โอกาสเกิดคงที่</td><td>c̄</td><td class="mono">c̄ ± 3√c̄</td><td>Poisson</td></tr>
+      <tr><td><b>u</b></td><td>ข้อบกพร่องต่อหน่วย</td><td>เปลี่ยนได้</td><td>ū = ข้อบกพร่องรวม ÷ หน่วยรวม</td><td class="mono">ū ± 3√(ū/n)</td><td>Poisson</td></tr>
+    </table></div>
+    <div class="keys">คู่มือ 2026 แนะนำให้คำนวณเส้นควบคุมจาก Binomial/Poisson โดยตรง ส่วนสูตรด้านบน (Normal approximation) ใช้ได้เมื่อเงื่อนไขเหมาะสม และเป็นสูตรที่ใช้กดเครื่องคิดเลขได้</div>
+  </div>
+  <div class="ex"><div class="tag">ตัวอย่างฝึก (โจทย์สมมติ ไม่ได้มาจากสไลด์)</div>
+    <div class="line">ตรวจวันละ 100 ชิ้น 20 วัน เจอชิ้นเสียรวม 80 ชิ้น → p̄ = 80 ÷ 2,000 = 0.04</div>
+    <div class="line">3√(0.04 × 0.96 ÷ 100) = 3 × 0.0196 = 0.0588 → UCL = <span class="ans">0.0988</span> · LCL = 0.04 − 0.0588 &lt; 0 → <span class="ans">0</span></div>
+  </div>
+
+  <h3 class="h">ทดสอบความเข้าใจ</h3>
+  <details class="q"><summary>Cp = 2.0 แต่ Cpk = 0.8 แปลว่าอะไร ควรแก้อะไรก่อน</summary><div class="a">กระบวนการแคบกว่าสเปกมาก แต่ค่าเฉลี่ยเยื้องไปชิดขอบสเปกด้านหนึ่ง ควร <b>ปรับศูนย์ (re-center)</b> ก่อน ยังไม่ต้องลดความผันแปร</div></details>
+  <details class="q"><summary>เก็บข้อมูลมา 6 เดือน ได้ดัชนี 1.5 แต่ Control Chart มีจุดหลุดหลายจุด ต้องรายงานว่าอะไร</summary><div class="a">รายงานเป็น <b>Pp/Ppk = 1.5</b> เพราะกระบวนการไม่ Stable จะเรียก Cp/Cpk ไม่ได้</div></details>
+  <details class="q"><summary>ตรวจชิ้นงานที่แต่ละชิ้นมีรอยขีดข่วนได้หลายจุด และขนาดล็อตที่ตรวจไม่เท่ากันทุกวัน ควรใช้กราฟอะไร</summary><div class="a"><b>u chart</b> เพราะนับข้อบกพร่อง (defect) และ n เปลี่ยนได้</div></details>
+</section>
+
+<!-- ===================== M10 ===================== -->
+<section class="mod" id="m10" hidden>
+  <div class="mh"><span class="no">M10</span><h2>Lean Manufacturing</h2></div>
+  <div class="sub">บทเสริม 27 ก.ย. 2026 · LEAN MASTER &amp; FACILITATOR PROGRAM "Learn to See" · TPS · 5 หลักการ · 3M และ TIMWOODS · Takt · Little's Law · VSM · 5S / Kanban / Poka-Yoke / SMED · OEE</div>
+
+  <div class="tldr"><div class="k">สรุป 30 วินาที</div>
+    Lean คือ <b>ระบบบริหารที่ตัดทุกอย่างที่ลูกค้าไม่ยอมจ่ายเงินให้</b> ไม่ใช่แค่กล่องเครื่องมือ · เริ่มจากนิยาม Value จากมุมลูกค้า → มองทั้งสาย (Value Stream) → ทำให้งานไหล (Flow) → ผลิตเท่าที่ถูกใช้ไป (Pull) → ปรับปรุงไม่หยุด (Perfection) · ตัวเลขหลักที่ต้องใช้: <b>Takt = เวลาที่มี ÷ ดีมานด์</b> · <b>Capacity = เวลาที่มี ÷ CT</b> · <b>WIP = Throughput × Lead Time</b> · <b>OEE = A × P × Q</b></div>
+  <div class="link">เชื่อมกับบทอื่น: Takt Time คือ C<sub>d</sub> ในบทที่ 7 · สต๊อก (I) และของเสีย (D) เชื่อมกับบทที่ 5 และบทที่ 2 · Pull และ Kanban ต่อยอดจากเคส Uniqlo ในบทที่ 4 · Lean ลด "ความสูญเปล่า" ส่วน Six Sigma/SPC (บทที่ 9) ลด "ความผันแปร"</div>
+
+  <h3 class="h">1. จาก Craft สู่ Lean</h3>
+  <div class="tw"><table>
+    <tr><th>ยุค</th><th>จุดเด่น</th><th>จุดอ่อน</th></tr>
+    <tr><td>Craft Production</td><td>ช่างฝีมือ ทำตามสั่งได้สูง</td><td>ผลิตได้น้อย ต้นทุนสูง Lead Time นาน</td></tr>
+    <tr><td>Mass Production / Ford</td><td>ชิ้นส่วนสับเปลี่ยนได้ งานมาตรฐาน สายพานเคลื่อนที่ ผลิตได้มาก (High Volume / Low Variety)</td><td>สต๊อกสูง คิวยาว ทำงานแยกเป็นไซโล ของเสียไหลไปไกลก่อนจะเจอ แต่ละแผนกดีแค่ในส่วนตัวเอง</td></tr>
+    <tr><td>Toyota Production System (TPS)</td><td>เกิดจากข้อจำกัด: ตลาดเล็ก สินค้าหลากหลาย ทุนน้อย · Taiichi Ohno และ Eiji Toyoda</td><td>—</td></tr>
+  </table></div>
+  <div class="fx"><div class="nm">TPS House (ต้องวาดได้)</div>
+    <div class="eq">หลังคา: Best Quality · Lowest Cost · Shortest Lead Time · Safety · Morale</div>
+    <div class="eq">เสาซ้าย JIT: Takt Time · Continuous Flow · Pull System</div>
+    <div class="eq">เสาขวา Jidoka: Detect Abnormality → Stop &amp; Fix → Built-in Quality</div>
+    <div class="eq">ฐาน: Stability · Standardized Work · Heijunka (เกลี่ยงาน) · Kaizen</div>
+    <div class="keys"><b>JIT</b> = Right Item, Right Quantity, Right Time · <b>Jidoka</b> = เจอของเสียแล้วหยุดทันที ไม่ส่งต่อ: Detect → Stop → Correct → Prevent · <b>Standardized Work</b> = มี Standard ก่อน จึงเห็น Gap จึงเห็นปัญหา จึงทำ Kaizen ได้ (ประกอบด้วย Standard Time, Standard Sequence, Standard WIP) · <b>Kaizen</b> = ทุกวัน ทุกคน ทุกที่ · Lean Master ไม่ใช่นักสะสมเครื่องมือ ต้องคิดเป็นระบบ</div>
+  </div>
+
+  <h3 class="h">2. 5 หลักการของ Lean</h3>
+  <ol class="steps">
+    <li><b>Value</b> นิยามคุณค่าจากมุมลูกค้า (VOC → CTQ → Process Requirement → Control) · ลูกค้ามี 3 แบบ: External (OEM/แบรนด์), Internal (กระบวนการถัดไป), End User</li>
+    <li><b>Value Stream</b> มองตั้งแต่รับออเดอร์ถึงส่งของ ไม่ใช่มองแค่แผนกเดียว · <b>Optimize the whole, not the silo</b> ("ยุ่ง" ไม่ได้แปลว่า "มีประสิทธิภาพ")</li>
+    <li><b>Flow</b> ลดการหยุดและเริ่มใหม่ ลด Batch ลดการส่งต่อ · Flow สะดุดเพราะ กำลังผลิตไม่สมดุล Batch ใหญ่ Setup นาน ปัญหาคุณภาพ เครื่องเสีย ข้อมูลช้า</li>
+    <li><b>Pull</b> ลูกค้าใช้ไป → ส่งสัญญาณ → เติมเท่าที่ใช้ (ต่างจาก Push: พยากรณ์ → ผลิต → เก็บ) · Pull ไม่ได้แปลว่า "ผลิตช้าลง" แต่แปลว่า "ผลิตตามการใช้จริง"</li>
+    <li><b>Perfection</b> Standard 1 → Kaizen → Standard 2 → Kaizen → … ไม่มีจุดจบ</li>
+  </ol>
+  <div class="g3">
+    <div class="card"><b class="t">VA · Value Added</b>ผ่าน 3 เกณฑ์: ลูกค้ายอมจ่าย · เปลี่ยนรูป ขนาด หรือหน้าที่ของสินค้า · ทำถูกตั้งแต่ครั้งแรก เช่น การตัดตามสเปก</div>
+    <div class="card"><b class="t">NNVA · Necessary Non-VA</b>ไม่เพิ่มมูลค่า แต่ยังต้องทำ เช่น การตรวจที่กฎหมายหรือลูกค้าบังคับ</div>
+    <div class="card"><b class="t">NVA · Non-Value Added</b>ไม่เพิ่มมูลค่า และไม่จำเป็น ควรตัดทิ้ง เช่น การรอ การทำงานซ้ำ</div>
+  </div>
+
+  <h3 class="h">3. ความสูญเปล่า: 3M และ 8 Wastes (TIMWOODS)</h3>
+  <p><b>Lean Iceberg:</b> สิ่งที่เห็นบนผิวน้ำคือ ของเสีย ความล่าช้า ต้นทุน แต่ต้นเหตุจริงอยู่ใต้น้ำ คือ Muda, Mura, Muri, มาตรฐานไม่ดี และ Flow ไม่ดี</p>
+  <div class="g3">
+    <div class="card"><b class="t">Muda (ความสูญเปล่า)</b>ใช้ทรัพยากรไปแต่ไม่เกิดคุณค่า</div>
+    <div class="card"><b class="t">Mura (ไม่สม่ำเสมอ)</b>ดีมานด์ ภาระงาน หรือวิธีทำงานแกว่งแบบ "งานล้นสลับกับว่าง" เช่น ขนาดล็อตไม่เท่ากัน ตารางผลิตเปลี่ยนบ่อย</div>
+    <div class="card"><b class="t">Muri (ภาระเกิน)</b>คนทำ OT ต่อเนื่อง เครื่องเดินเกินขีด ระบบไม่มีเวลาฟื้นตัว ทำให้เกิดของเสีย ความเสี่ยงด้านความปลอดภัย เครื่องเสีย และคนหมดไฟ</div>
+  </div>
+  <p><b>ห่วงโซ่เหตุและผล:</b> Mura (ดีมานด์แกว่ง) → Muri (เร่งทำ OT) → Muda (ของเสีย งานแก้ การรอ) · ต้องแก้ที่ต้นเหตุ ไม่ใช่ไล่แก้แต่อาการ</p>
+  <div class="tw"><table>
+    <tr><th>TIMWOODS</th><th>ความหมาย</th><th>คำถามที่ใช้หาหน้างาน</th></tr>
+    <tr><td><b>T</b>ransportation</td><td>ขนย้ายของหรือข้อมูลโดยไม่เพิ่มคุณค่า</td><td>ขนไปวางพักแล้วขนต่อไหม · layout ขวาง Flow ไหม · มีการส่งต่อกี่ครั้ง</td></tr>
+    <tr><td><b>I</b>nventory</td><td>สต๊อกและ WIP เกิน ซึ่ง <b>ซ่อนปัญหาไว้</b> (ของเสีย เครื่องเสีย setup นาน ความไม่สมดุล)</td><td>WIP กองอยู่ตรงไหน · มีไว้เผื่อปัญหาอะไร</td></tr>
+    <tr><td><b>M</b>otion</td><td>คนเคลื่อนไหวเกินจำเป็น เช่น ค้นหา เอื้อม ก้ม เดิน</td><td>ใช้ Spaghetti Diagram · สังเกตที่สถานีงาน · 5S</td></tr>
+    <tr><td><b>W</b>aiting</td><td>รอวัตถุดิบ รอเครื่อง รอ QC รออนุมัติ รอเปลี่ยนรุ่น รอข้อมูล · <b>Lead Time ส่วนใหญ่เป็นเวลารอ</b></td><td>คนหรือของกำลัง "หยุด" เพื่อรออะไร</td></tr>
+    <tr><td><b>O</b>verproduction</td><td>ผลิตก่อนหรือมากกว่าที่ลูกค้าต้องการ <b>ถือเป็นความสูญเปล่าที่ร้ายที่สุด</b> เพราะทำให้เกิดสต๊อก การขนย้าย การใช้พื้นที่ ของเสียที่ซ่อนอยู่ และเงินจม</td><td>"ผลิตชิ้นนี้ไปให้ใคร ลูกค้าต้องใช้เมื่อไหร่"</td></tr>
+    <tr><td><b>O</b>verprocessing</td><td>ทำเกินกว่าที่ลูกค้าต้องการ เช่น ผิวเรียบเกินสเปก หรือต้องอนุมัติหลายชั้น</td><td>ลูกค้าต้องการสิ่งนี้จริงไหม</td></tr>
+    <tr><td><b>D</b>efect</td><td>ของเสีย งานแก้ → ล่าช้า เสียกำลังผลิต เสียต้นทุนและลูกค้า</td><td>Lean ตอบด้วย Build Quality at Source ไม่ใช่เพิ่มการตรวจ</td></tr>
+    <tr><td><b>S</b>kills</td><td>ไม่ได้ใช้ความรู้และไอเดียของพนักงาน</td><td>"คนหน้างานรู้ปัญหาอะไรที่ผู้บริหารยังไม่รู้"</td></tr>
+  </table></div>
+
+  <h3 class="h">4. ตัวเลขพื้นฐานของสายการผลิต</h3>
+  <div class="fx"><div class="nm">สูตรหลักของบท Lean</div>
+    <div class="eq">Cycle Time (CT) = เวลาระหว่างชิ้นงานที่ออกมาสองชิ้นติดกัน</div>
+    <div class="eq">Lead Time (LT) = Finish Time − Start Time = Processing Time + Waiting Time</div>
+    <div class="eq">Available Time = Shift Time − Planned Break (− Meeting)</div>
+    <div class="eq">Takt Time = Available Production Time ÷ Customer Demand</div>
+    <div class="eq">Capacity = Available Time ÷ Cycle Time</div>
+    <div class="eq">Little's Law: WIP = Throughput × Lead Time  →  Lead Time = WIP ÷ Throughput</div>
+    <div class="tw"><table>
+      <tr><th>ตัวแปร</th><th>แปลว่า</th><th>เอามาจากไหน / ข้อควรระวัง</th></tr>
+      <tr><td class="v">CT</td><td>ทำได้จริงชิ้นละกี่วินาที</td><td>จับเวลาจากหน้างาน</td></tr>
+      <tr><td class="v">Takt</td><td>ลูกค้าต้องการ 1 ชิ้นทุกกี่วินาที (Customer Clock)</td><td>ใช้ <b>เวลาผลิตที่มีจริง</b> ไม่ใช่เวลาตามปฏิทิน · ใช้ <b>ดีมานด์จริง</b> ไม่ใช่ค่าพยากรณ์</td></tr>
+      <tr><td class="v">Throughput</td><td>อัตราที่ของออกจากระบบ (ชิ้น/วัน)</td><td>ถูกจำกัดด้วยคอขวด</td></tr>
+      <tr><td class="v">WIP</td><td>งานที่ค้างอยู่ในระบบ</td><td>นับจากหน้างาน (ในแผนที่ VSM คือรูปสามเหลี่ยม)</td></tr>
+      <tr><td class="v">C/O</td><td>Changeover Time จากชิ้นดีชิ้นสุดท้ายของรุ่น A ถึงชิ้นดีชิ้นแรกของรุ่น B</td><td>C/O ยาว → ต้องผลิต Batch ใหญ่ → WIP มาก → Lead Time ยาว</td></tr>
+    </table></div>
+    <div class="keys"><b>อ่านผล:</b> CT &lt; Takt แปลว่าผลิตทัน · CT &gt; Takt แปลว่าเป็น <b>คอขวด</b> ผลิตไม่ทัน · Bottleneck คือกระบวนการที่กำลังผลิตต่ำกว่าดีมานด์ ส่วน Constraint คือข้อจำกัดใดก็ได้ที่คุมผลงานของทั้งระบบ (อาจเป็นเครื่อง คน นโยบาย ตลาด หรือวัตถุดิบ)</div>
+  </div>
+  <div class="ex"><div class="tag">ตัวอย่างจากสไลด์ · Takt และ Capacity</div>
+    <div class="line">กะ 480 นาที − พัก 60 = 420 นาที × 60 = 25,200 วินาที · ดีมานด์ 420 ชิ้น/กะ</div>
+    <div class="line">Takt = 25,200 ÷ 420 = <span class="ans">60 วินาที/ชิ้น</span> · ถ้า CT = 45 → ผลิตทัน · ถ้า CT = 75 → ไม่ทัน</div>
+    <div class="line">Capacity (CT 45) = 25,200 ÷ 45 = <span class="ans">560 ชิ้น/กะ</span></div>
+  </div>
+  <div class="ex"><div class="tag">แบบฝึกหัดในสไลด์ · EOT Cutting</div>
+    <div class="line">กะ 8 ชม. = 480 นาที − พัก 45 − ประชุม 15 = 420 นาที = 25,200 วินาที</div>
+    <div class="line">ดีมานด์ 600 ชิ้น/กะ → Takt = 25,200 ÷ 600 = <span class="ans">42 วินาที/ชิ้น</span></div>
+    <div class="line">CT จริง 50 วินาที &gt; 42 → <span class="ans">ผลิตไม่ทัน</span></div>
+  </div>
+  <div class="ex"><div class="tag">Mini case ในสไลด์ · หาคอขวด (ดีมานด์ 480 ชิ้น/กะ · เวลาที่มี 25,200 วินาที)</div>
+    <div class="line">Takt = 25,200 ÷ 480 = 52.5 วินาที/ชิ้น</div>
+    <div class="tw"><table class="c num">
+      <tr><th>Process</th><th>CT (วินาที)</th><th>Capacity = 25,200 ÷ CT</th><th>เทียบ Takt 52.5</th></tr>
+      <tr><td>Beamhouse</td><td>50</td><td>504</td><td>ทัน</td></tr>
+      <tr><td>Finishing</td><td>72</td><td>350</td><td class="hl">คอขวด (350 &lt; 480)</td></tr>
+      <tr><td>Cutting</td><td>45</td><td>560</td><td>ทัน</td></tr>
+    </table></div>
+    <p class="small muted">หมายเหตุ: ในสไลด์พิมพ์ Capacity ของ Beamhouse เป็น 520 แต่ถ้าคำนวณจริงจะได้ 25,200 ÷ 50 = 504 ซึ่งไม่เปลี่ยนคำตอบ Finishing ยังเป็นคอขวดอยู่ดี และ Throughput ของทั้งสายจะเท่ากับกำลังของคอขวด ≈ 350</p>
+  </div>
+  <div class="ex"><div class="tag">Little's Law จากสไลด์</div>
+    <div class="line">Throughput 100 ชิ้น/วัน × Lead Time 5 วัน → WIP = <span class="ans">500 ชิ้น</span></div>
+    <div class="line">EOT: WIP 900 ผืน ÷ Throughput 300 ผืน/วัน → Lead Time = <span class="ans">3 วัน</span></div>
+    <div class="line">ลด WIP เหลือ 450 โดย Throughput เท่าเดิม → Lead Time = 450 ÷ 300 = <span class="ans">1.5 วัน</span> (ลด WIP คือวิธีลด Lead Time ที่ตรงที่สุด)</div>
+  </div>
+  <div class="calc noprint"><div class="ct">ฝึกเช็คคำตอบ · Takt / Capacity</div>
+    <div class="fields">
+      <div><label for="tk-shift">เวลากะ (นาที)</label><input id="tk-shift" type="number" value="480"></div>
+      <div><label for="tk-brk">พักและประชุม (นาที)</label><input id="tk-brk" type="number" value="60"></div>
+      <div><label for="tk-dem">ดีมานด์ต่อกะ</label><input id="tk-dem" type="number" value="600"></div>
+      <div><label for="tk-ct">CT จริง (วินาที)</label><input id="tk-ct" type="number" value="50"></div>
+    </div>
+    <div class="out" id="tk-out"></div>
+  </div>
+
+  <h3 class="h">5. Value Stream Mapping (VSM)</h3>
+  <p>แผนที่ที่ทำให้เห็นว่า Flow สะดุดตรงไหน · ขั้นแรกวาด <b>Current State</b> (สภาพจริงตอนนี้) แล้วออกแบบ <b>Future State</b> (สภาพที่อยากให้เป็น) · กำหนดขอบเขตแบบ Door-to-Door ใช้ 1 กลุ่มสินค้าต่อ 1 โรงงาน</p>
+  <div class="g2">
+    <div class="card"><b class="t">สัญลักษณ์หลัก</b>กล่องลูกค้า (ดีมานด์ รอบส่ง ขนาดแพ็ค) · Process Box + Data Box (CT, C/O, Uptime, จำนวนคน, Batch) · สามเหลี่ยม = WIP ("คิวบนแผนที่") · ลูกศร Push / FIFO / Supermarket · ข้อมูลแบบ Manual, Electronic, Kanban, Heijunka · Kaizen Burst = จุดที่ต้องปรับปรุง</div>
+    <div class="card"><b class="t">Timeline</b>บันทึกเวลารอ (วัน) คู่กับเวลาทำงานจริง (นาที) · Lead Time = ผลรวมเวลารอ + ผลรวมเวลาทำงาน · ตัวอย่างในสไลด์: Lead Time 4.9 วัน แต่ Processing จริงแค่ราว 3 นาที</div>
+  </div>
+  <div class="tw"><table>
+    <tr><th>กลไก</th><th>ใครเป็นผู้สั่งให้ผลิต</th><th>ผล</th></tr>
+    <tr><td>Push</td><td>ตารางผลิตจากส่วนกลาง</td><td>เสี่ยง Overproduction</td></tr>
+    <tr><td>Pull</td><td>การใช้ของปลายทาง</td><td>ผลิตตามดีมานด์ WIP ลดลง</td></tr>
+    <tr><td>FIFO</td><td>คิวมาก่อนได้ก่อน และจำกัดจำนวนคิว</td><td>คุมลำดับและ WIP ระหว่างกระบวนการที่ต่อกันแบบต่อเนื่องไม่ได้</td></tr>
+    <tr><td>Supermarket</td><td>จุดเก็บที่มีระดับ Min/Max</td><td>เติมของแบบ Pull</td></tr>
+  </table></div>
+  <div class="g2">
+    <div class="card"><b class="t">วาด Current State 7 ขั้น</b>1. เลือกกลุ่มสินค้า 2. เริ่มจากลูกค้า 3. เดินย้อนตามเส้นทางของ 4. เก็บข้อมูลจริง 5. วาด Material Flow 6. วาด Information Flow 7. ใส่ Timeline · <b>กฎ: วาดด้วยมือที่หน้างานก่อน แล้วค่อยทำให้สวย</b></div>
+    <div class="card"><b class="t">Future State 8 คำถาม</b>1. Takt เท่าไหร่ 2. ส่งตรงหรือผ่าน Supermarket 3. ทำ Continuous Flow ได้ตรงไหน 4. ต้องใช้ Pull/FIFO ตรงไหน 5. กระบวนการไหนเป็น Pacemaker 6. เกลี่ยสัดส่วนสินค้ายังไง 7. ปล่อยงานทุกกี่นาที (Pitch) 8. ต้องทำ Kaizen อะไร</div>
+  </div>
+
+  <h3 class="h">6. Lean Toolbox: ใช้เครื่องมือให้ตรงกับต้นเหตุ</h3>
+  <div class="tw"><table>
+    <tr><th>เครื่องมือ</th><th>แก้ปัญหาอะไร</th><th>สาระสำคัญ</th></tr>
+    <tr><td><b>5S</b></td><td>ค้นหาของนาน มองไม่เห็นความผิดปกติ</td><td>Sort (สะสาง) · Set in Order (สะดวก) · Shine (สะอาด ถือเป็นการตรวจไปในตัว) · Standardize (สร้างมาตรฐานที่ใช้ทุกกะ) · Sustain (สร้างนิสัย มี Audit และเจ้าของพื้นที่) · 5S ไม่ใช่แค่การทำความสะอาด ให้วัดผลจากประสิทธิภาพของกระบวนการ</td></tr>
+    <tr><td><b>Kanban</b></td><td>WIP กองระหว่างกระบวนการ ผลิตเกิน</td><td>สัญญาณที่อนุญาตให้ผลิตหรือเคลื่อนย้าย: ใช้ไป → ส่งสัญญาณ → เติม · คุม "เท่าไหร่" กับ "เมื่อไหร่" แต่ไม่ได้แก้ "ทำไมกระบวนการไม่นิ่ง" · มี 2 แบบ คือ Withdrawal Kanban กับ Production Kanban</td></tr>
+    <tr><td><b>Poka-Yoke</b></td><td>คนหยิบผิดหรือใส่ผิด ของเสียหลุดไปขั้นต่อไป</td><td>กันผิดตั้งแต่ต้นทาง ระดับ Prevent &gt; Control &gt; Warning · วิธี: Contact/Sensor · Fixed Value/Count · Motion Step Sequence · Interlock · ตัวอย่างในสไลด์: ต้องสแกนบาร์โค้ดให้ตรงก่อน เครื่องตัดจึงจะทำงาน ทำให้ไม่ต้องพึ่งความจำของคน</td></tr>
+    <tr><td><b>SMED</b></td><td>เปลี่ยนรุ่นนาน ต้องผลิต Batch ใหญ่</td><td>ตัวอย่าง: C/O จาก 60 เหลือ 15 นาที · 4 ขั้น: Observe (จับเวลา ถ่ายวิดีโอ) → Separate (แยก Internal กับ External) → Convert (ย้าย Internal ไปเป็น External) → Streamline (ลดการขยับ การปรับ การขันยึด) · <b>Internal</b> = ต้องหยุดเครื่องจึงทำได้ · <b>External</b> = ทำได้ระหว่างเครื่องยังเดิน · ลดเวลาด้วยการเปลี่ยนวิธี ไม่ใช่เร่งคน</td></tr>
+  </table></div>
+  <div class="fx"><div class="nm">Kanban Sizing</div>
+    <div class="eq"># Kanban = (Demand × Replenishment Lead Time × Safety) ÷ Container Qty</div>
+    <div class="ex" style="margin:8px 0 0"><div class="line">20 ชิ้น/ชม. × 2 ชม. × 1.1 = 44 ชิ้น → 44 ÷ 10 ชิ้นต่อกล่อง = 4.4 → ปัดขึ้น <span class="ans">5 ใบ</span></div></div>
+    <div class="keys">ลด Replenishment Lead Time ได้เมื่อไหร่ จำนวน Kanban และ WIP จะลดลงตาม</div>
+  </div>
+  <p><b>Lean + DMAIC:</b> Define (ลูกค้าและขอบเขต) → Measure (VSM, CT, LT, WIP) → Analyze (ความสูญเปล่า คอขวด ต้นเหตุ) → Improve (Flow, Pull, 5S, SMED, Poka-Yoke) → Control (Standard, Kanban) · <b>Lean ทำให้งานไหล · Six Sigma ลดความผันแปร · DMAIC ให้กรอบการทำโครงการ</b></p>
+
+  <h3 class="h">7. OEE และตัวชี้วัดประสิทธิภาพ</h3>
+  <div class="fx"><div class="nm">Overall Equipment Effectiveness</div>
+    <div class="eq">OEE = Availability × Performance × Quality</div>
+    <div class="eq">Availability (A) = Run Time ÷ Planned Production Time</div>
+    <div class="eq">Performance (P) = (Ideal Cycle Time × Total Count) ÷ Run Time</div>
+    <div class="eq">Quality (Q) = Good Count ÷ Total Count</div>
+    <div class="tw"><table>
+      <tr><th>ตัวแปร</th><th>แปลว่า</th><th>เอามาจากไหน</th></tr>
+      <tr><td class="v">Planned Time</td><td>เวลาที่วางแผนให้เครื่องเดิน</td><td>โจทย์</td></tr>
+      <tr><td class="v">Run Time</td><td>เวลาที่เดินจริง = Planned − Downtime</td><td>หัก Downtime ออกก่อน</td></tr>
+      <tr><td class="v">Ideal CT</td><td>เวลาต่อชิ้นตามสเปกของเครื่อง (ความเร็วสูงสุด)</td><td>โจทย์</td></tr>
+      <tr><td class="v">Total / Good Count</td><td>ชิ้นที่ผลิตทั้งหมด / ชิ้นที่ดี</td><td>โจทย์</td></tr>
+    </table></div>
+    <div class="keys"><b>Six Big Losses:</b> เครื่องเสีย (Breakdown) และ Setup ทำให้ A ต่ำ · หยุดสั้น ๆ (Minor Stop) และเดินช้า (Speed Loss) ทำให้ P ต่ำ · ของเสียจากกระบวนการ (Defect) และของเสียช่วงเริ่มเดินเครื่อง (Start-up) ทำให้ Q ต่ำ</div>
+  </div>
+  <div class="ex"><div class="tag">แบบฝึกหัดในสไลด์</div>
+    <div class="line">Planned 450 นาที · Downtime 45 นาที · Performance 92% · Quality 96%</div>
+    <div class="line">A = (450 − 45) ÷ 450 = 405 ÷ 450 = <span class="ans">90%</span></div>
+    <div class="line">OEE = 0.90 × 0.92 × 0.96 = <span class="ans">0.795 = 79.5%</span> · ความสูญเสียที่ใหญ่ที่สุดคือ A (เครื่องหยุด)</div>
+    <div class="line">อีกตัวอย่าง: Planned 450, Downtime 60 → A = 390 ÷ 450 = <span class="ans">86.7%</span></div>
+  </div>
+  <div class="calc noprint"><div class="ct">ฝึกเช็คคำตอบ · OEE</div>
+    <div class="fields">
+      <div><label for="oee-p">Planned (นาที)</label><input id="oee-p" type="number" value="450"></div>
+      <div><label for="oee-d">Downtime (นาที)</label><input id="oee-d" type="number" value="45"></div>
+      <div><label for="oee-pf">Performance (%)</label><input id="oee-pf" type="number" value="92"></div>
+      <div><label for="oee-q">Quality (%)</label><input id="oee-q" type="number" value="96"></div>
+    </div>
+    <div class="out" id="oee-out"></div>
+  </div>
+  <div class="fx"><div class="nm">ตัวชี้วัดอื่น ๆ</div>
+    <div class="eq">Scrap % = Scrap Quantity ÷ Total Input × 100</div>
+    <div class="eq">Yield = Good Output ÷ Input · FPY = Good Output ที่ไม่ผ่านการแก้งาน ÷ Input</div>
+    <div class="eq">Productivity = Good Output ÷ Resource Input (ชิ้น/ชั่วโมงแรงงาน, ชิ้น/ชั่วโมงเครื่อง, ชิ้น/m², ชิ้น/kWh)</div>
+    <div class="eq">Simple Payback = Initial Investment ÷ Annual Net Cash Benefit</div>
+    <div class="keys"><b>FPY สะท้อนสุขภาพกระบวนการได้ดีกว่า Yield</b> เพราะการแก้งานทำให้ Yield สุดท้ายดูดีได้ · อย่าหยุดแค่ตัวเลข % ของ Scrap ให้ทำ Pareto แยกตามประเภทของเสีย สินค้า เครื่อง และกะ · <b>ระวัง False Productivity</b>: Output เพิ่มแต่ WIP เพิ่ม · เร็วขึ้นแต่ของเสียเพิ่ม · ลดคนแต่ OT เพิ่ม · Utilization สูงแต่ Lead Time ยาวขึ้น</div>
+  </div>
+  <p><b>เชื่อมไปที่เงิน:</b> Cost of Poor Quality (ของทิ้ง งานแก้ คัดแยก ความล่าช้า การเคลมของลูกค้า) → KPI Tree (Business: Conversion Cost ↓ → Result: Scrap Cost ↓ → Process: Scrap% ↓ / FPY ↑ → Driver: ทำตาม Parameter และชิ้นแรกผ่าน) → Baseline → Target → Gap (เช่น Rework 8.4% → เป้า ≤ 4.0% = ต้องลด 4.4 จุด)</p>
+  <p class="small muted">ส่วนท้ายของไฟล์ (หัวข้อ Smart Operations / IoT &amp; AI) เป็นภาพและกราฟิกเกือบทั้งหมด แทบไม่มีข้อความให้สรุปได้ ถ้าจำเป็นให้เปิดดูจาก PDF โดยตรง</p>
+
+  <h3 class="h">ทดสอบความเข้าใจ</h3>
+  <details class="q"><summary>กะ 8 ชม. พัก 60 นาที ดีมานด์ 840 ชิ้น Takt เท่าไหร่ ถ้า CT = 25 วินาที ผลิตทันไหม</summary><div class="a">Available = 420 × 60 = 25,200 วินาที → Takt = 25,200 ÷ 840 = <b>30 วินาที</b> · CT 25 &lt; 30 → ผลิตทัน</div></details>
+  <details class="q"><summary>WIP 1,200 ชิ้น Throughput 400 ชิ้น/วัน Lead Time เท่าไหร่</summary><div class="a">1,200 ÷ 400 = <b>3 วัน</b></div></details>
+  <details class="q"><summary>เปลี่ยนรุ่นใช้เวลา 55 นาที ควรใช้เครื่องมือไหน</summary><div class="a"><b>SMED</b> แยก Internal กับ External แล้วย้ายงานไปทำตอนเครื่องยังเดินให้มากที่สุด</div></details>
+</section>
+
+<!-- ===================== FORMULA SHEET ===================== -->
+<section class="mod" id="sheet" hidden>
+  <div class="mh"><span class="no">ALL</span><h2>ชีทสรุปสูตรทั้งหมด</h2></div>
+  <div class="sub">รวมทุกสูตรไว้ที่เดียวสำหรับทบทวนก่อนสอบ ถ้าสั่งพิมพ์ หน้านี้จะขึ้นเป็นหน้าสุดท้าย</div>
+
+  <h3 class="h">M1 · Productivity</h3>
+  <div class="tw"><table>
+    <tr><td class="mono">Productivity = Output ÷ Input</td><td>Partial = ทรัพยากรเดียว · Multifactor = แปลงทุก input เป็นเงินแล้วรวมกัน</td></tr>
+  </table></div>
+
+  <h3 class="h">M3 · Forecasting</h3>
+  <div class="tw"><table>
+    <tr><td class="mono">F<sub>t</sub> = A<sub>t−1</sub></td><td>Naive</td></tr>
+    <tr><td class="mono">F<sub>t</sub> = (A<sub>t−1</sub> + … + A<sub>t−n</sub>) ÷ n</td><td>Moving Average</td></tr>
+    <tr><td class="mono">F<sub>t</sub> = ΣW<sub>t−i</sub>A<sub>t−i</sub>  (ΣW = 1)</td><td>Weighted MA</td></tr>
+    <tr><td class="mono">F<sub>t</sub> = F<sub>t−1</sub> + α(A<sub>t−1</sub> − F<sub>t−1</sub>)</td><td>Exponential Smoothing (0 ≤ α ≤ 1)</td></tr>
+    <tr><td class="mono">Error = A<sub>t</sub> − F<sub>t</sub></td><td>เทียบความแม่นของแต่ละวิธี</td></tr>
+    <tr><td class="mono">F<sub>t</sub> = a + bt</td><td>Trend</td></tr>
+    <tr><td class="mono">b = [nΣty − ΣtΣy] ÷ [nΣt² − (Σt)²]</td><td>ความชัน (หาก่อน)</td></tr>
+    <tr><td class="mono">a = [Σy − bΣt] ÷ n</td><td>จุดตัดแกน</td></tr>
+    <tr><td class="mono">SI = เฉลี่ยไตรมาส ÷ เฉลี่ยรวม · F<sub>Q</sub> = (F<sub>ปี</sub> ÷ 4) × SI</td><td>Seasonal</td></tr>
+    <tr><td class="mono">Y = a + bX</td><td>Causal (ใช้สูตร a, b เดิม แทน t ด้วย X)</td></tr>
+  </table></div>
+
+  <h3 class="h">M4 · MPS / MRP</h3>
+  <div class="tw"><table>
+    <tr><td class="mono">Demand = Customer Order (t ≤ DTF) · Forecast (t &gt; DTF)</td><td>MPS</td></tr>
+    <tr><td class="mono">PAB<sub>t</sub> = PAB<sub>t−1</sub> + Receipt<sub>t</sub> − Demand<sub>t</sub></td><td>ติดลบเมื่อไหร่ ให้รับของเข้าเป็นจำนวนเท่าของ Lot</td></tr>
+    <tr><td class="mono">งวด Issue / Release = งวด Receipt − Lead Time</td><td>MPS และ MRP</td></tr>
+    <tr><td class="mono">Gross Req (ลูก) = Issue (แม่) × จำนวนต่อชิ้นใน BOM</td><td>MRP</td></tr>
+    <tr><td class="mono">Planning Horizon = ผลรวม LT ของเส้นทางที่ยาวที่สุด</td><td>—</td></tr>
+  </table></div>
+
+  <h3 class="h">M5 · Inventory</h3>
+  <div class="tw"><table>
+    <tr><td class="mono">Ordering/yr = (D ÷ Q) × O</td><td>ค่าสั่งต่อปี</td></tr>
+    <tr><td class="mono">Carrying/yr = (Q ÷ 2) × C × i</td><td>ค่าเก็บต่อปี (หรือใช้ H แทน C×i)</td></tr>
+    <tr><td class="mono">EOQ = √(2DO ÷ Ci)</td><td>ที่จุดนี้ ค่าสั่ง = ค่าเก็บ</td></tr>
+    <tr><td class="mono">จำนวนครั้ง = D ÷ Q* · รอบ = 365 ÷ (D ÷ Q*)</td><td>—</td></tr>
+    <tr><td class="mono">TC (มีส่วนลด) = DO/Q + (Q/2)Ci + CD</td><td>EOQ ต่ำกว่าขั้นต่ำของช่วง → ใช้ขั้นต่ำ</td></tr>
+    <tr><td class="mono">R = d × L + SS</td><td>Reorder Point</td></tr>
+    <tr><td class="mono">มูลค่าต่อปี = จำนวน × ราคา → เรียง → % สะสม</td><td>ABC</td></tr>
+  </table></div>
+
+  <h3 class="h">M6 · Time Study</h3>
+  <div class="tw"><table>
+    <tr><td class="mono">NT = T̄ × RF × ความถี่</td><td>Normal Time</td></tr>
+    <tr><td class="mono">ST = ΣNT ÷ (1 − Allowance)</td><td>Standard Time</td></tr>
+    <tr><td class="mono">เป้าต่อวัน = เวลาทำงาน ÷ ST</td><td>—</td></tr>
+  </table></div>
+
+  <h3 class="h">M7 · Line Balancing</h3>
+  <div class="tw"><table>
+    <tr><td class="mono">C<sub>d</sub> = เวลาที่มี ÷ จำนวนที่ต้องการ</td><td>Desired Cycle Time</td></tr>
+    <tr><td class="mono">N = Σt ÷ C<sub>d</sub> (ปัดขึ้น)</td><td>จำนวนสถานีขั้นต่ำ</td></tr>
+    <tr><td class="mono">E = Σt ÷ (N × C<sub>d</sub>)</td><td>ใช้ N จริง</td></tr>
+    <tr><td class="mono">Balance Delay = 1 − E · Idle = N×C<sub>d</sub> − Σt</td><td>—</td></tr>
+  </table></div>
+
+  <h3 class="h">M8 · Logistics</h3>
+  <div class="tw"><table>
+    <tr><td class="mono">Total Logistics Cost = ขนส่ง + คลัง + เก็บสต๊อก + บริหารจัดการ</td><td>—</td></tr>
+  </table></div>
+
+  <h3 class="h">M9 · SPC</h3>
+  <div class="tw"><table>
+    <tr><td class="mono">X̄ chart: X̿ ± A<sub>2</sub>R̄</td><td>n = 5: A<sub>2</sub> = 0.577</td></tr>
+    <tr><td class="mono">R chart: UCL = D<sub>4</sub>R̄ · LCL = D<sub>3</sub>R̄</td><td>n = 5: D<sub>4</sub> = 2.114, D<sub>3</sub> = 0</td></tr>
+    <tr><td class="mono">σ<sub>within</sub> = R̄ ÷ d<sub>2</sub></td><td>n = 5: d<sub>2</sub> = 2.326</td></tr>
+    <tr><td class="mono">I chart: X̄ ± 3(MR̄ ÷ 1.128)</td><td>ข้อมูลทีละตัว</td></tr>
+    <tr><td class="mono">Cp = (USL − LSL) ÷ 6σ</td><td>ใช้กับ Pm / Pp / Cp / Cw ด้วย แล้วเปลี่ยน σ ตามขั้น</td></tr>
+    <tr><td class="mono">Cpk = MIN[(USL − X̄), (X̄ − LSL)] ÷ 3σ</td><td>ใช้กับ Pmk / Ppk / Cpk / Cwk ด้วย</td></tr>
+    <tr><td class="mono">p: p̄ ± 3√(p̄(1−p̄)/n) · c: c̄ ± 3√c̄ · u: ū ± 3√(ū/n)</td><td>LCL ติดลบ → 0</td></tr>
+    <tr><td class="mono">p-value &gt; 0.05 → ถือว่า Normal ได้</td><td>Anderson-Darling</td></tr>
+  </table></div>
+
+  <h3 class="h">M10 · Lean</h3>
+  <div class="tw"><table>
+    <tr><td class="mono">Available = กะ − พัก − ประชุม (แปลงเป็นวินาที ×60)</td><td>—</td></tr>
+    <tr><td class="mono">Takt = Available ÷ Demand</td><td>CT &gt; Takt = คอขวด</td></tr>
+    <tr><td class="mono">Capacity = Available ÷ CT</td><td>—</td></tr>
+    <tr><td class="mono">Lead Time = Processing + Waiting</td><td>—</td></tr>
+    <tr><td class="mono">WIP = Throughput × Lead Time</td><td>Little's Law</td></tr>
+    <tr><td class="mono"># Kanban = (Demand × LT × Safety) ÷ Container</td><td>ปัดขึ้น</td></tr>
+    <tr><td class="mono">OEE = A × P × Q</td><td>A = Run ÷ Planned · P = (Ideal CT × Total) ÷ Run · Q = Good ÷ Total</td></tr>
+    <tr><td class="mono">Scrap% = Scrap ÷ Input × 100 · FPY = ของดีที่ไม่ต้องแก้ ÷ Input</td><td>—</td></tr>
+    <tr><td class="mono">Payback = Investment ÷ Annual Net Benefit</td><td>—</td></tr>
+  </table></div>
+</section>
+
+<footer>
+  เรียบเรียงจากสไลด์วิชา Next-Generation Operations Management (14227102) บทที่ 1–8 โดย ผศ.ดร.อภิวรรตน์ กรมเมือง, สไลด์ SPC (26 ก.ย. 2026) และ Lean (27 ก.ย. 2026) พร้อมไฟล์ Excel ประกอบ · ตำรา Russell &amp; Taylor, Stevenson &amp; Sum · ตัวอย่างทุกข้อคำนวณซ้ำแล้ว จุดที่สไลด์พิมพ์ผิดมีหมายเหตุกำกับไว้ · เอกสารนี้ใช้ทบทวนเท่านั้น ไม่ใช่เอกสารทางการของวิชา
+</footer>
+</div>
+
+<script>
+(function(){
+  var KEY='om-guide-tab-v2';
+  var sections=[].slice.call(document.querySelectorAll('section.mod'));
+  var tabs=[].slice.call(document.querySelectorAll('.tab'));
+  function show(id, scroll){
+    if(!document.getElementById(id)) id='m1';
+    sections.forEach(function(s){ s.hidden = s.id!==id; });
+    tabs.forEach(function(t){ t.setAttribute('aria-selected', t.dataset.tab===id ? 'true':'false'); });
+    try{ localStorage.setItem(KEY,id); }catch(e){}
+    if(scroll){ var bar=document.querySelector('.tabbar'); window.scrollTo({top: bar.offsetTop-4, behavior:'smooth'}); }
+  }
+  tabs.forEach(function(t){ t.addEventListener('click', function(){ show(t.dataset.tab,false); }); });
+  [].slice.call(document.querySelectorAll('[data-go]')).forEach(function(b){ b.addEventListener('click', function(){ show(b.dataset.go,true); }); });
+  document.getElementById('goSheet').addEventListener('click', function(){ show('sheet',true); });
+
+  var openedByPrint=[];
+  function beforePrint(){ [].slice.call(document.querySelectorAll('details.q:not([open])')).forEach(function(d){ d.open=true; openedByPrint.push(d); }); }
+  function afterPrint(){ openedByPrint.forEach(function(d){ d.open=false; }); openedByPrint=[]; }
+  window.addEventListener('beforeprint', beforePrint);
+  window.addEventListener('afterprint', afterPrint);
+  document.getElementById('printAll').addEventListener('click', function(){ beforePrint(); try{ window.print(); }catch(e){} });
+
+  var last='m1'; try{ last=localStorage.getItem(KEY)||'m1'; }catch(e){}
+  show(last,false);
+
+  /* ---------- calculators ---------- */
+  function v(id){ var n=parseFloat(document.getElementById(id).value); return isNaN(n)?0:n; }
+  function f(n,d){ if(!isFinite(n)) return '—'; return Number(n.toFixed(d===undefined?2:d)).toLocaleString('en-US',{maximumFractionDigits:d===undefined?2:d}); }
+  function rows(list, how){ return list.map(function(r){ return '<div class="r"><span>'+r[0]+'</span><b>'+r[1]+'</b></div>'; }).join('') + (how?'<div class="how">'+how+'</div>':''); }
+  function bind(ids, fn){ ids.forEach(function(id){ var el=document.getElementById(id); if(el) el.addEventListener('input', fn); }); fn(); }
+
+  bind(['es-f','es-a','es-al'], function(){
+    var F=v('es-f'),A=v('es-a'),a=v('es-al'),r=F+a*(A-F);
+    document.getElementById('es-out').innerHTML=rows([['F(t)',f(r,2)]], f(F)+' + '+a+' × ('+f(A)+' − '+f(F)+') = '+f(F)+' + '+f(a*(A-F))+' = '+f(r));
+  });
+
+  bind(['mps-f','mps-c','mps-oh','mps-lot','mps-dtf','mps-lt'], function(){
+    var F=document.getElementById('mps-f').value.split(',').map(Number), C=document.getElementById('mps-c').value.split(',').map(Number);
+    var pab=v('mps-oh'), lot=v('mps-lot'), dtf=v('mps-dtf'), lt=v('mps-lt'), n=Math.max(F.length,C.length);
+    var out=document.getElementById('mps-out');
+    if(lot<=0){ out.innerHTML='Lot Size ต้องมากกว่า 0'; return; }
+    var P=[],R=[],I=[];
+    for(var t=1;t<=n;t++){ var d = t<=dtf ? (C[t-1]||0) : (F[t-1]||0); var tmp=pab-d, rec=0; while(tmp+rec<0) rec+=lot; pab=tmp+rec; P.push(pab); R.push(rec); if(rec>0) I.push((t-lt)+' ('+rec+')'); }
+    out.innerHTML=rows([['PAB แต่ละงวด',P.join(', ')],['MPS Receipt',R.map(function(x){return x||'–';}).join(', ')],['MPS Issue ที่งวด (จำนวน)', I.join(' · ')||'ไม่ต้องสั่ง']], 'งวด ≤ DTF ใช้ Customer Order · งวดหลัง DTF ใช้ Forecast · งวด Issue ที่ ≤ 0 แปลว่าควรสั่งไปก่อนหน้านี้แล้ว');
+  });
+
+  bind(['eoq-d','eoq-o','eoq-c','eoq-i'], function(){
+    var D=v('eoq-d'),O=v('eoq-o'),C=v('eoq-c'),i=v('eoq-i')/100,out=document.getElementById('eoq-out');
+    if(C*i<=0||D<=0){ out.innerHTML='ใส่ D, C และ i ที่มากกว่า 0'; return; }
+    var Q=Math.sqrt(2*D*O/(C*i)), n=D/Q;
+    out.innerHTML=rows([['EOQ (Q*)',f(Q,1)+' ชิ้น'],['สั่งกี่ครั้งต่อปี',f(n,2)+' ครั้ง (ทุก '+f(365/n,0)+' วัน)'],['ค่าสั่งต่อปี',f(n*O)],['ค่าเก็บต่อปี',f(Q/2*C*i)],['ต้นทุนรวม',f(n*O+Q/2*C*i)]], '√(2×'+f(D,0)+'×'+f(O)+' ÷ ('+f(C)+'×'+i+')) = √('+f(2*D*O,0)+' ÷ '+f(C*i,4)+') = '+f(Q,1));
+  });
+
+  bind(['ts-nt','ts-a','ts-t'], function(){
+    var nt=v('ts-nt'),a=v('ts-a')/100,t=v('ts-t'),st=nt/(1-a);
+    document.getElementById('ts-out').innerHTML=rows([['Standard Time',f(st,3)+' นาที/ชิ้น'],['เป้าต่อวัน',f(t/st,2)+' → '+Math.floor(t/st)+' ชิ้น']], f(nt,3)+' ÷ (1 − '+a+') = '+f(nt,3)+' ÷ '+f(1-a,2)+' = '+f(st,3));
+  });
+
+  bind(['lb-time','lb-q','lb-sum','lb-n'], function(){
+    var T=v('lb-time'),q=v('lb-q'),s=v('lb-sum'),out=document.getElementById('lb-out');
+    if(q<=0||T<=0){ out.innerHTML='ใส่เวลาและจำนวนที่มากกว่า 0'; return; }
+    var cd=T/q, nmin=Math.ceil(s/cd-1e-9), nr=document.getElementById('lb-n').value, N=nr?parseFloat(nr):nmin, E=s/(N*cd);
+    out.innerHTML=rows([['Cd',f(cd,3)],['N ขั้นต่ำ',f(s/cd,2)+' → '+nmin+' สถานี'],['Efficiency (N='+N+')',f(E*100,2)+'%'],['Balance Delay',f((1-E)*100,2)+'%'],['Idle time',f(N*cd-s,2)]], 'E = '+f(s)+' ÷ ('+N+' × '+f(cd,3)+') = '+f(E,4));
+  });
+
+  var K={2:[1.880,0,3.267,1.128],3:[1.023,0,2.575,1.693],4:[0.729,0,2.282,2.059],5:[0.577,0,2.114,2.326],6:[0.483,0,2.004,2.534],7:[0.419,0.076,1.924,2.704],8:[0.373,0.136,1.864,2.847],9:[0.337,0.184,1.816,2.970],10:[0.308,0.223,1.777,3.078]};
+  bind(['xr-x','xr-r','xr-n'], function(){
+    var x=v('xr-x'),r=v('xr-r'),n=Math.min(10,Math.max(2,Math.round(v('xr-n')||5))),k=K[n];
+    document.getElementById('xr-out').innerHTML=rows([['ค่าคงที่ (n='+n+')','A2='+k[0]+' D3='+k[1]+' D4='+k[2]+' d2='+k[3]],['X̄ chart UCL / LCL',f(x+k[0]*r,4)+' / '+f(x-k[0]*r,4)],['R chart UCL / LCL',f(k[2]*r,4)+' / '+f(k[1]*r,4)],['σ within',f(r/k[3],5)]], 'UCL = '+x+' + '+k[0]+' × '+r+' = '+f(x+k[0]*r,4));
+  });
+
+  bind(['cp-l','cp-u','cp-m','cp-s'], function(){
+    var L=v('cp-l'),U=v('cp-u'),m=v('cp-m'),s=v('cp-s'),out=document.getElementById('cp-out');
+    if(s<=0){ out.innerHTML='σ ต้องมากกว่า 0'; return; }
+    var cp=(U-L)/(6*s),cu=(U-m)/(3*s),cl=(m-L)/(3*s),k=Math.min(cu,cl);
+    out.innerHTML=rows([['Cp (Pp/Pm/Cw)',f(cp,3)],['Cpu',f(cu,3)],['Cpl',f(cl,3)],['Cpk (Ppk/Pmk/Cwk)',f(k,3)+(k>=1.33?' ≥ 1.33 ผ่าน':' < 1.33 ยังไม่ผ่าน')]], 'ค่าเฉลี่ยชิดฝั่ง '+(cl<cu?'LSL':'USL')+' มากกว่า · ชื่อดัชนีขึ้นกับว่าใช้ σ จากขั้นไหน');
+  });
+
+  bind(['tk-shift','tk-brk','tk-dem','tk-ct'], function(){
+    var av=(v('tk-shift')-v('tk-brk'))*60,d=v('tk-dem'),ct=v('tk-ct'),out=document.getElementById('tk-out');
+    if(d<=0||ct<=0){ out.innerHTML='ใส่ดีมานด์และ CT ที่มากกว่า 0'; return; }
+    var tk=av/d;
+    out.innerHTML=rows([['Available',f(av,0)+' วินาที'],['Takt',f(tk,2)+' วินาที/ชิ้น'],['Capacity (CT '+ct+')',f(av/ct,1)+' ชิ้น/กะ'],['ผล',ct<=tk?'CT ≤ Takt → ผลิตทัน':'CT > Takt → ผลิตไม่ทัน (คอขวด)']], f(av,0)+' ÷ '+f(d,0)+' = '+f(tk,2));
+  });
+
+  bind(['oee-p','oee-d','oee-pf','oee-q'], function(){
+    var p=v('oee-p'),d=v('oee-d'),A=p>0?(p-d)/p:0,P=v('oee-pf')/100,Q=v('oee-q')/100,o=A*P*Q;
+    document.getElementById('oee-out').innerHTML=rows([['Availability',f(A*100,1)+'%'],['OEE',f(o*100,1)+'%']], '('+f(p,0)+' − '+f(d,0)+') ÷ '+f(p,0)+' = '+f(A,3)+' → '+f(A,3)+' × '+P+' × '+Q+' = '+f(o,4));
+  });
+})();
+</script>
+</body></html>
